@@ -10,8 +10,12 @@ class HomeDrawer extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          const DrawerHeader(
-            child: Text('Drawer Header'),
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.primary,
+              shape: BoxShape.rectangle,
+            ),
+            child: const Text('Drawer Header'),
           ),
           ListTile(
             title: const Text('Settings'),

@@ -17,7 +17,7 @@ class ThemeCubit extends HydratedCubit<ThemeData> {
 
   static final ThemeData _darkTheme = ThemeData(
     colorScheme: const ColorScheme.dark(
-      primary: Color(0xFFBB86FC),
+      primary: Color(0xFF6200EE),
       secondary: Color(0xFF03DAC6),
       surface: Color(0xFF333333),
       onPrimary: Colors.black,
