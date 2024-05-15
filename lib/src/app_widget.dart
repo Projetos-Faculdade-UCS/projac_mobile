@@ -8,7 +8,6 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'My Smart App',
-      // dark
       theme: ThemeData(
         colorScheme: const ColorScheme.dark(),
       ),
