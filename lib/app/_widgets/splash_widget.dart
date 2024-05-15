@@ -24,7 +24,7 @@ class _SplashWidgetState extends State<SplashWidget> {
       body: Center(
         child: Card(
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(16),
             child: Text('Splash Screen'),
           ),
         ),

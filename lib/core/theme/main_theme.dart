@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class MainTheme {
+
+  MainTheme._();
   static final lightTheme = ThemeData(
     brightness: Brightness.light,
     primaryColor: const Color(0xFF3A0CA3),
@@ -22,7 +24,6 @@ class MainTheme {
       primary: Color(0xFF3A0CA3),
       secondary: Color(0xFF93ADF6),
       surface: Color(0xFFFAF7FA),
-      onPrimary: Color(0xFFFFFFFF),
       onSecondary: Color(0xFFFFFFFF),
       onSurface: Color(0xFF0E0B0D),
     )
@@ -83,6 +84,4 @@ class MainTheme {
   static LinearGradient getGradient(Brightness brightness) {
     return brightness == Brightness.light ? lightGradient : darkGradient;
   }
-
-  MainTheme._();
 }
