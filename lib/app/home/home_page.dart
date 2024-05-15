@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:projac_mobile/src/modules/home/widgets/home_drawer.dart';
+import 'package:projac_mobile/app/home/widgets/home_drawer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
     super.key,
-    required this.title,
   });
 
-  final String title;
+  static const String title = 'Home Page';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: const Text(title),
       ),
       drawer: const HomeDrawer(),
       body: const Center(
