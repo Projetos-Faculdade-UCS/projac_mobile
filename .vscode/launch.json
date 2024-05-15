@@ -7,19 +7,28 @@
         {
             "name": "projac_mobile",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "args": [
+                "--enable-impeller",
+            ]
         },
         {
             "name": "projac_mobile (profile mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "flutterMode": "profile",
+            "args": [
+                "--enable-impeller",
+            ]
         },
         {
             "name": "projac_mobile (release mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "flutterMode": "release",
+            "args": [
+                "--enable-impeller",
+            ]
         }
     ]
 }
