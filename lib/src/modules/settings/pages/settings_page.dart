@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:projac_mobile/src/core/theme/theme_cubit.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    bool isDarkMode =
-        Theme.of(context).colorScheme.brightness == Brightness.dark;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -19,11 +19,9 @@ class SettingsPage extends StatelessWidget {
             StatefulBuilder(builder: (context, setState) {
               return SwitchListTile(
                 title: const Text('Dark Mode'),
-                value: isDarkMode,
+                value: Theme.of(context).brightness == Brightness.dark,
                 onChanged: (bool value) {
-                  setState(() {
-                    isDarkMode = value;
-                  });
+                  context.read<ThemeCubit>().toggleTheme();
                 },
               );
             }),
