@@ -157,3 +157,5 @@ lib/generated_plugin_registrant.dart
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 
+!.env.example
+lib/core/env.g.dart

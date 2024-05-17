@@ -8,27 +8,27 @@
             "name": "projac_mobile",
             "request": "launch",
             "type": "dart",
-            "args": [
-                "--enable-impeller",
-            ]
+            // "args": [
+            //     "--enable-impeller",
+            // ]
         },
         {
             "name": "projac_mobile (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile",
-            "args": [
-                "--enable-impeller",
-            ]
+            // "args": [
+            //     "--enable-impeller",
+            // ]
         },
         {
             "name": "projac_mobile (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release",
-            "args": [
-                "--enable-impeller",
-            ]
+            // "args": [
+            //     "--enable-impeller",
+            // ]
         }
     ]
 }
