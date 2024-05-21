@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:projac_mobile/app/_widgets/custom_app_bar.dart';
 import 'package:projac_mobile/core/theme/theme_cubit.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -8,8 +9,8 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Settings'),
+      appBar: const CustomAppBar(
+        title: Text('Settings'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8),

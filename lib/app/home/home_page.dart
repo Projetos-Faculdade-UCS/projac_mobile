@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projac_mobile/app/_widgets/custom_app_bar.dart';
 import 'package:projac_mobile/app/home/widgets/home_drawer.dart';
 import 'package:projac_mobile/core/get_it.dart';
 
@@ -12,8 +13,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(title),
+      appBar: const CustomAppBar(
+        title: Text(title),
       ),
       drawer: const HomeDrawer(),
       // TODO(marhaubrich): Remove this code and make the API call in it's respective page and bloc.
