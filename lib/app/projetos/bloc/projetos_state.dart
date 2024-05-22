@@ -21,7 +21,7 @@ final class ProjetosLoaded extends ProjetosState {
 
 final class ProjetosError extends ProjetosState {
   const ProjetosError(this.error);
-  final Object error;
+  final String error;
 
   @override
   List<Object> get props => [error];
