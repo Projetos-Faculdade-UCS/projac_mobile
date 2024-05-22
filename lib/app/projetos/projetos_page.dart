@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projac_mobile/app/_widgets/custom_app_bar.dart';
 import 'package:projac_mobile/app/projetos/bloc/projetos_bloc.dart';
+import 'package:routefly/routefly.dart';
 
 class ProjetosPage extends StatelessWidget {
   const ProjetosPage({super.key});
@@ -47,6 +48,11 @@ class ProjetosPage extends StatelessWidget {
                     child: ListTile(
                       title: Text(projeto.titulo),
                       subtitle: Text(projeto.objetivo),
+                      onTap: () {
+                        Routefly.pushNavigate(
+                          '/projetos/${projeto.id}',
+                        );
+                      },
                     ),
                   );
                 },
