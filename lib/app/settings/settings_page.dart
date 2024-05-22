@@ -10,7 +10,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(
-        title: Text('Settings'),
+        title: Text('Configurações'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8),
@@ -19,7 +19,7 @@ class SettingsPage extends StatelessWidget {
             StatefulBuilder(
               builder: (context, setState) {
                 return SwitchListTile(
-                  title: const Text('Dark Mode'),
+                  title: const Text('Modo Escuro'),
                   value: Theme.of(context).brightness == Brightness.dark,
                   onChanged: (bool value) {
                     context.read<ThemeCubit>().toggleTheme();

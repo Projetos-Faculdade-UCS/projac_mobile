@@ -28,7 +28,7 @@ class HomeDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Ionicons.settings_outline),
-            title: const Text('Settings'),
+            title: const Text('Configurações'),
             onTap: () {
               Routefly.pushNavigate(routePaths.settings);
             },

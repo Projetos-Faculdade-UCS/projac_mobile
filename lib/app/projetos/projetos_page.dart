@@ -33,14 +33,17 @@ class ProjetosPage extends StatelessWidget {
                 itemCount: state.projetos.length,
                 itemBuilder: (context, index) {
                   final projeto = state.projetos[index];
+                  final boxDecoration = index != state.projetos.length - 1
+                      ? BoxDecoration(
+                          border: Border(
+                            bottom: BorderSide(
+                              color: Theme.of(context).dividerColor,
+                            ),
+                          ),
+                        )
+                      : null;
                   return Container(
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: Theme.of(context).dividerColor,
-                        ),
-                      ),
-                    ),
+                    decoration: boxDecoration,
                     child: ListTile(
                       title: Text(projeto.titulo),
                       subtitle: Text(projeto.objetivo),

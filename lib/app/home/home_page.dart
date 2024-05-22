@@ -7,7 +7,7 @@ class HomePage extends StatelessWidget {
     super.key,
   });
 
-  static const String title = 'Home Page';
+  static const String title = 'Projac';
 
   @override
   Widget build(BuildContext context) {
