@@ -2,9 +2,9 @@ import 'package:routefly/routefly.dart';
 
 import 'app/app_page.dart' as a0;
 import 'app/home/home_page.dart' as a1;
-import 'app/projetos/[id]_page.dart' as a4;
-import 'app/projetos/projetos_page.dart' as a3;
-import 'app/settings/settings_page.dart' as a2;
+import 'app/projetos/[id]_page.dart' as a3;
+import 'app/projetos/projetos_page.dart' as a2;
+import 'app/settings/settings_page.dart' as a4;
 
 List<RouteEntity> get routes => [
   RouteEntity(
@@ -26,21 +26,12 @@ List<RouteEntity> get routes => [
     ),
   ),
   RouteEntity(
-    key: '/settings',
-    uri: Uri.parse('/settings'),
-    routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
-      ctx,
-      settings,
-      const a2.SettingsPage(),
-    ),
-  ),
-  RouteEntity(
     key: '/projetos',
     uri: Uri.parse('/projetos'),
     routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
       ctx,
       settings,
-      const a3.ProjetosPage(),
+      const a2.ProjetosPage(),
     ),
   ),
   RouteEntity(
@@ -49,7 +40,16 @@ List<RouteEntity> get routes => [
     routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
       ctx,
       settings,
-      const a4.ProjetoPage(),
+      const a3.ProjetoPage(),
+    ),
+  ),
+  RouteEntity(
+    key: '/settings',
+    uri: Uri.parse('/settings'),
+    routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
+      ctx,
+      settings,
+      const a4.SettingsPage(),
     ),
   ),
 ];
@@ -57,9 +57,9 @@ List<RouteEntity> get routes => [
 const routePaths = (
   path: '/',
   home: '/home',
-  settings: '/settings',
   projetos: (
     path: '/projetos',
     $id: '/projetos/[id]',
   ),
+  settings: '/settings',
 );
