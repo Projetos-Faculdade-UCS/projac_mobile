@@ -27,6 +27,7 @@ dependencies:
   retrofit: ^4.1.0
   routefly: ^1.0.9
   very_good_analysis: ^5.1.0
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:
