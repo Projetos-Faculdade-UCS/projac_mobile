@@ -7,11 +7,11 @@ part 'projetos_event.dart';
 part 'projetos_state.dart';
 
 class ProjetosBloc extends Bloc<ProjetosEvent, ProjetosState> {
-  ProjetosBloc() : super(ProjetosInitial()) {
+  ProjetosBloc(ProjetosRepository repository) : super(ProjetosInitial()) {
     on<FetchProjetos>((event, emit) async {
       emit(ProjetosLoading());
       try {
-        final projetos = await ProjetosRepository().fetch();
+        final projetos = await repository.fetch();
         emit(ProjetosLoaded(projetos));
       } catch (e) {
         emit(ProjetosError(e.toString()));
