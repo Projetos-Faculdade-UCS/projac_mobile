@@ -8,16 +8,54 @@ class ProjetosListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: const EdgeInsets.all(8),
-      itemCount: projetos.length,
-      itemBuilder: (context, index) {
-        final projeto = projetos[index];
-        return ProjetoListTile(
-          projeto: projeto,
-          isLast: index == projetos.length - 1,
-        );
-      },
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: Theme.of(context).primaryColor,
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black26,
+                blurRadius: 4,
+                offset: Offset(0, 2),
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Projeto',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
+              ),
+              Text(
+                'Status',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          child: ListView.builder(
+            padding: const EdgeInsets.all(8),
+            itemCount: projetos.length,
+            itemBuilder: (context, index) {
+              final projeto = projetos[index];
+              return ProjetoListTile(
+                projeto: projeto,
+                isLast: index == projetos.length - 1,
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }

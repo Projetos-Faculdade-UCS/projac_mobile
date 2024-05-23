@@ -18,6 +18,7 @@ class AppWidget extends StatelessWidget {
               routes: routes,
             ),
             theme: theme,
+            debugShowCheckedModeBanner: false,
           );
         },
       ),
