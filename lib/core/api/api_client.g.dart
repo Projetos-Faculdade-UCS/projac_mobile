@@ -19,9 +19,10 @@ class _ApiClient implements ApiClient {
   String? baseUrl;
 
   @override
-  Future<List<Projeto>> getProjetos() async {
+  Future<List<Projeto>> getProjetos({String? query}) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'query': query};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result =

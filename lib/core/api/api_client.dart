@@ -12,7 +12,9 @@ abstract class ApiClient {
   factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
 
   @GET('/projetos')
-  Future<List<Projeto>> getProjetos();
+  Future<List<Projeto>> getProjetos({
+    @Query('query') String? query,
+  });
 
   @GET('/projetos/{id}')
   Future<Projeto> getProjeto(@Path('id') int id);
