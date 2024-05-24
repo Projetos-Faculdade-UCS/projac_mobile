@@ -13,7 +13,7 @@ Projeto _$ProjetoFromJson(Map<String, dynamic> json) => Projeto(
       dataCriacao: json['dataCriacao'] as String,
       valorSolicitado: (json['valorSolicitado'] as num).toDouble(),
       valorTotalArrecadado: (json['valorTotalArrecadado'] as num).toDouble(),
-      area: json['area'] as String,
+      area: BaseArea.fromJson(json['area'] as Map<String, dynamic>),
       producoesAcademicas: (json['producoesAcademicas'] as List<dynamic>)
           .map((e) => ProducaoAcademica.fromJson(e as Map<String, dynamic>))
           .toList(),

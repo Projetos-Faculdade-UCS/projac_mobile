@@ -37,7 +37,7 @@ class Projeto {
   final String? descricao;
   final String? dataConclusao;
   final double valorTotalArrecadado;
-  final String area;
+  final BaseArea area;
   final List<ProducaoAcademica> producoesAcademicas;
   final List<ValorArrecadado> valoresArrecadados;
   final List<BaseArea> subareas;

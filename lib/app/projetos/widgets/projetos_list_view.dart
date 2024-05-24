@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projac_mobile/app/projetos/widgets/projeto_list_tile.dart';
+import 'package:projac_mobile/app/projetos/widgets/projeto_list_tile/projeto_list_tile.dart';
 import 'package:projac_mobile/core/api/models/projeto.dart';
 
 class ProjetosListView extends StatelessWidget {
