@@ -18,71 +18,130 @@ class ProjetoListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
-        border: Border(
-          left: BorderSide(
-            color: projeto.area.color,
-            width: 4,
-          ),
-        ),
-        borderRadius: const BorderRadius.all(Radius.circular(6)),
-        boxShadow: [
-          BoxShadow(
-            color: Theme.of(context).shadowColor,
-            blurRadius: 4,
-            offset: const Offset(0, 1),
-          ),
-        ],
-      ),
       margin: const EdgeInsets.symmetric(vertical: 6),
-      child: ListTile(
-        title: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              projeto.titulo,
-              style: const TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 24,
+      child: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
+              border: Border(
+                left: BorderSide(
+                  color: projeto.area.color,
+                  width: 4,
+                ),
               ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            const SizedBox(width: 8),
-            Icon(
-              Ionicons.close,
-              size: 20,
-              color: Colors.red,
-              shadows: [
+              borderRadius: const BorderRadius.all(Radius.circular(6)),
+              boxShadow: [
                 BoxShadow(
                   color: Theme.of(context).shadowColor,
-                  blurRadius: 1,
-                  offset: const Offset(0, 2),
+                  blurRadius: 4,
+                  offset: const Offset(0, 1),
                 ),
               ],
             ),
-          ],
-        ),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              projeto.objetivo,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
+            child: ListTile(
+              title: Text(
+                projeto.titulo,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 24,
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    projeto.objetivo,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 8),
+                  Responsavel(responsavel: projeto.pesquisadores.first),
+                  const SizedBox(height: 2),
+                  AreaWidget(area: projeto.area),
+                ],
+              ),
+              onTap: () {
+                Routefly.pushNavigate('/projetos/${projeto.id}');
+              },
             ),
-            const SizedBox(height: 8),
-            Responsavel(responsavel: projeto.pesquisadores.first),
-            const SizedBox(height: 2),
-            AreaWidget(area: projeto.area),
-          ],
-        ),
-        onTap: () {
-          Routefly.pushNavigate('/projetos/${projeto.id}');
-        },
+          ),
+          const Positioned(
+            right: 0,
+            child: TopCornerFlag(
+              color: Colors.green,
+              padding: EdgeInsets.only(top: 2, right: 2),
+              borderRadius: 6,
+              icon: Icon(
+                Ionicons.checkmark_done_sharp,
+                size: 20,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
+}
+
+class TopCornerFlag extends StatelessWidget {
+  const TopCornerFlag({
+    required this.borderRadius,
+    required this.color,
+    required this.icon,
+    this.padding = EdgeInsets.zero,
+    super.key,
+  });
+
+  final double borderRadius;
+  final Color color;
+  final Widget icon;
+  final EdgeInsets padding;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.topRight,
+      children: [
+        ClipPath(
+          clipper: _TopCornerFlagClipper(borderRadius),
+          child: Container(
+            height: 40,
+            width: 40,
+            color: color,
+          ),
+        ),
+        Container(
+          margin: padding,
+          child: icon,
+        ),
+      ],
+    );
+  }
+}
+
+class _TopCornerFlagClipper extends CustomClipper<Path> {
+  _TopCornerFlagClipper(this.borderRadius);
+
+  final double borderRadius;
+
+  @override
+  Path getClip(Size size) {
+    final path = Path()
+      ..moveTo(0, 0)
+      ..lineTo(size.width - borderRadius, 0)
+      ..arcToPoint(
+        Offset(size.width, borderRadius),
+        radius: Radius.circular(borderRadius),
+      )
+      ..lineTo(size.width, size.height);
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => true;
 }
