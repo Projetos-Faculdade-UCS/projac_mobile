@@ -5,6 +5,30 @@ import 'package:projac_mobile/app/projetos/widgets/projeto_list_tile/responsavel
 import 'package:projac_mobile/core/api/models/projeto.dart';
 import 'package:routefly/routefly.dart';
 
+extension on StatusProjeto {
+  Color get color {
+    switch (this) {
+      case StatusProjeto.emAndamento:
+        return Colors.orange;
+      case StatusProjeto.concluido:
+        return Colors.green;
+      case StatusProjeto.cancelado:
+        return Colors.red;
+    }
+  }
+
+  IconData get iconData {
+    switch (this) {
+      case StatusProjeto.emAndamento:
+        return Ionicons.construct;
+      case StatusProjeto.concluido:
+        return Ionicons.checkmark_done_sharp;
+      case StatusProjeto.cancelado:
+        return Ionicons.close;
+    }
+  }
+}
+
 class ProjetoListTile extends StatelessWidget {
   const ProjetoListTile({
     required this.projeto,
@@ -68,14 +92,14 @@ class ProjetoListTile extends StatelessWidget {
               },
             ),
           ),
-          const Positioned(
+          Positioned(
             right: 0,
             child: TopCornerFlag(
-              color: Colors.green,
-              padding: EdgeInsets.only(top: 2, right: 2),
+              color: projeto.status.color,
+              padding: const EdgeInsets.only(top: 2, right: 2),
               borderRadius: 6,
               icon: Icon(
-                Ionicons.checkmark_done_sharp,
+                projeto.status.iconData,
                 size: 20,
                 color: Colors.white,
               ),
@@ -143,5 +167,5 @@ class _TopCornerFlagClipper extends CustomClipper<Path> {
   }
 
   @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => true;
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
 }

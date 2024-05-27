@@ -22,6 +22,7 @@ class Projeto {
     required this.subareas,
     required this.pesquisadores,
     required this.agenciasFomento,
+    required this.status,
     this.descricao,
     this.dataConclusao,
   });
@@ -44,5 +45,44 @@ class Projeto {
   final List<Pesquisador> pesquisadores;
   final List<AgenciaFomento> agenciasFomento;
 
+  @StatusProjetoConverter()
+  final StatusProjeto status;
+
   Map<String, dynamic> toJson() => _$ProjetoToJson(this);
+}
+
+class StatusProjetoConverter implements JsonConverter<StatusProjeto, String> {
+  const StatusProjetoConverter();
+
+  @override
+  StatusProjeto fromJson(String json) {
+    switch (json) {
+      case 'EM_ANDAMENTO':
+        return StatusProjeto.emAndamento;
+      case 'CONCLUIDO':
+        return StatusProjeto.concluido;
+      case 'CANCELADO':
+        return StatusProjeto.cancelado;
+      default:
+        throw ArgumentError.value(json);
+    }
+  }
+
+  @override
+  String toJson(StatusProjeto object) {
+    switch (object) {
+      case StatusProjeto.emAndamento:
+        return 'EM_ANDAMENTO';
+      case StatusProjeto.concluido:
+        return 'CONCLUIDO';
+      case StatusProjeto.cancelado:
+        return 'CANCELADO';
+    }
+  }
+}
+
+enum StatusProjeto {
+  emAndamento,
+  concluido,
+  cancelado,
 }

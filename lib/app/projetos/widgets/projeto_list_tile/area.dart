@@ -19,7 +19,7 @@ class AreaWidget extends StatelessWidget {
         ),
         const SizedBox(width: 8),
         Text(
-          'Ciências Biológicas',
+          area.nome,
           style: TextStyle(
             color: area.color,
             fontWeight: FontWeight.w600,
