@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:projac_mobile/app/_widgets/detail/detail_expandable_field.dart';
+import 'package:projac_mobile/app/_widgets/detail/detail_field.dart';
 import 'package:projac_mobile/core/api/models/projeto.dart';
 import 'package:super_sliver_list/super_sliver_list.dart';
 
@@ -14,63 +16,31 @@ class ProjetoDetail extends StatelessWidget {
     return SuperListView(
       padding: const EdgeInsets.all(8),
       children: [
-        ListTile(
-          title: const Text('Nome'),
-          subtitle: Text(projeto.titulo),
+        DetailField(
+          icon: const Icon(Icons.title),
+          title: 'Título',
+          child: Text(projeto.titulo),
         ),
-        ListTile(
-          title: const Text('Objetivo'),
-          subtitle: Text(projeto.objetivo),
+        DetailField(
+          icon: const Icon(Icons.money),
+          title: 'Objetivo',
+          child: Text(projeto.objetivo),
         ),
         if (projeto.descricao != null)
-          _DescricaoProjeto(descricao: projeto.descricao!),
-        ListTile(
-          title: const Text('Data de criação'),
-          subtitle: Text(projeto.dataCriacao),
+          DetailExpandableField(
+            title: 'Descrição',
+            child: Text(projeto.descricao!),
+          ),
+        DetailField(
+          icon: const Icon(Icons.monetization_on),
+          title: 'Data de criação',
+          child: Text(projeto.dataCriacao),
         ),
         if (projeto.dataConclusao != null)
           ListTile(
             title: const Text('Data de Conclusão'),
             subtitle: Text(projeto.dataConclusao!),
           ),
-      ],
-    );
-  }
-}
-
-class _DescricaoProjeto extends StatelessWidget {
-  const _DescricaoProjeto({
-    required this.descricao,
-  });
-  final String descricao;
-
-  @override
-  Widget build(BuildContext context) {
-    return ExpansionTile(
-      title: const Text(
-        'Descrição',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      backgroundColor: Theme.of(context).cardColor,
-      collapsedBackgroundColor: Theme.of(context).cardColor,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
-      collapsedShape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
-      children: [
-        Container(
-          constraints: const BoxConstraints(maxHeight: 200),
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(descricao),
-            ),
-          ),
-        ),
       ],
     );
   }
