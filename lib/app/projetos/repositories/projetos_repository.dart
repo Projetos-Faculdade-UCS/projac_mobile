@@ -9,4 +9,8 @@ class ProjetosRepository {
   Future<List<Projeto>> search(String query) async {
     return apiClient.getProjetos(query: query);
   }
+
+  Future<Projeto> get(int id) async {
+    return apiClient.getProjeto(id);
+  }
 }
