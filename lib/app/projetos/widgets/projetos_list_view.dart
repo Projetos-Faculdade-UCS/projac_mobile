@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projac_mobile/app/projetos/widgets/projeto_list_tile/projeto_list_tile.dart';
 import 'package:projac_mobile/core/api/models/projeto.dart';
+import 'package:super_sliver_list/super_sliver_list.dart';
 
 class ProjetosListView extends StatelessWidget {
   const ProjetosListView({required this.projetos, super.key});
@@ -43,7 +44,7 @@ class ProjetosListView extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: ListView.builder(
+          child: SuperListView.builder(
             padding: const EdgeInsets.all(8),
             itemCount: projetos.length,
             itemBuilder: (context, index) {

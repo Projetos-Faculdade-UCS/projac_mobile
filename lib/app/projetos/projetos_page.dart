@@ -10,7 +10,7 @@ import 'package:projac_mobile/app/projetos/projetos_search_delegate.dart';
 import 'package:projac_mobile/app/projetos/widgets/projetos_list_view.dart';
 
 class ProjetosPage extends StatefulWidget {
-  const ProjetosPage({super.key});
+  const ProjetosPage({super.key = const Key('projetos_page')});
 
   @override
   State<ProjetosPage> createState() => _ProjetosPageState();

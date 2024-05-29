@@ -29,6 +29,7 @@ dependencies:
   very_good_analysis: ^5.1.0
   equatable: ^2.0.5
   skeletonizer: ^1.1.2+1
+  super_sliver_list: ^0.4.1
 
 dev_dependencies:
   flutter_test:
