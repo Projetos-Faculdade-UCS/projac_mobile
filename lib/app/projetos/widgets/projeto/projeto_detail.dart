@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:projac_mobile/app/_widgets/detail/detail_expandable_field.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:projac_mobile/app/_widgets/detail/detail_field.dart';
 import 'package:projac_mobile/core/api/models/projeto.dart';
+import 'package:readmore/readmore.dart';
 import 'package:super_sliver_list/super_sliver_list.dart';
 
 class ProjetoDetail extends StatelessWidget {
@@ -17,29 +18,32 @@ class ProjetoDetail extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       children: [
         DetailField(
-          icon: const Icon(Icons.title),
-          title: 'Título',
-          child: Text(projeto.titulo),
-        ),
-        DetailField(
-          icon: const Icon(Icons.money),
+          icon: const Icon(Ionicons.bulb_outline),
           title: 'Objetivo',
           child: Text(projeto.objetivo),
         ),
         if (projeto.descricao != null)
-          DetailExpandableField(
+          DetailField(
+            icon: const Icon(Ionicons.document_text_outline),
             title: 'Descrição',
-            child: Text(projeto.descricao!),
+            child: ReadMoreText(
+              projeto.descricao!,
+              trimMode: TrimMode.Line,
+              trimLines: 4,
+              trimCollapsedText: '\nVer mais',
+              trimExpandedText: '\nVer menos',
+            ),
           ),
         DetailField(
-          icon: const Icon(Icons.monetization_on),
+          icon: const Icon(Ionicons.calendar_clear_outline),
           title: 'Data de criação',
           child: Text(projeto.dataCriacao),
         ),
         if (projeto.dataConclusao != null)
-          ListTile(
-            title: const Text('Data de Conclusão'),
-            subtitle: Text(projeto.dataConclusao!),
+          DetailField(
+            icon: const Icon(Ionicons.calendar_outline),
+            title: 'Data de Conclusão',
+            child: Text(projeto.dataConclusao!),
           ),
       ],
     );

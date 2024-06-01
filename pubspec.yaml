@@ -30,6 +30,7 @@ dependencies:
   equatable: ^2.0.5
   skeletonizer: ^1.1.2+1
   super_sliver_list: ^0.4.1
+  readmore: ^3.0.0
 
 dev_dependencies:
   flutter_test:
