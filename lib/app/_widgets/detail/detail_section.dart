@@ -10,22 +10,25 @@ class DetailSection extends StatelessWidget {
   final String title;
   final List<Widget> children;
 
-  static final _shape = RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(8),
-  );
-
   @override
   Widget build(BuildContext context) {
-    return ExpansionTile(
-      title: Text(
-        title,
-        style: Theme.of(context).textTheme.titleLarge,
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: children,
+          ),
+        ],
       ),
-      initiallyExpanded: true,
-      shape: _shape,
-      collapsedShape: _shape,
-      childrenPadding: const EdgeInsets.only(left: 14),
-      children: children,
     );
   }
 }

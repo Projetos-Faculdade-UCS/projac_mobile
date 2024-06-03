@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class OutlinedBadge extends StatelessWidget {
-  const OutlinedBadge({
+class CustomBadge extends StatelessWidget {
+  const CustomBadge({
     required this.child,
     required this.color,
     super.key,
@@ -26,16 +26,13 @@ class OutlinedBadge extends StatelessWidget {
     return Container(
       padding: padding,
       decoration: BoxDecoration(
-        color: Theme.of(context).scaffoldBackgroundColor,
-        border: Border.all(
-          color: color,
-        ),
+        color: color,
         borderRadius: BorderRadius.circular(16),
         boxShadow: boxShadow,
       ),
       child: DefaultTextStyle(
         style: _textStyle.copyWith(
-          color: color,
+          color: Colors.white,
         ),
         child: child,
       ),

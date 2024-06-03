@@ -14,41 +14,39 @@ class ProjetoPage extends StatelessWidget {
     final id = Routefly.query['id'] as int;
     return BlocProvider(
       create: (context) => projetosGetIt<ProjetoBloc>()..add(ProjetoLoad(id)),
-      child: Scaffold(
-        appBar: CustomAppBar(
-          title: BlocBuilder<ProjetoBloc, ProjetoState>(
-            builder: (context, state) {
-              if (state is ProjetoLoaded) {
-                return Text(state.projeto.titulo);
-              }
+      child: BlocBuilder<ProjetoBloc, ProjetoState>(
+        builder: (context, state) {
+          return Scaffold(
+            appBar: state is! ProjetoLoaded
+                ? const CustomAppBar(
+                    title: Text('Projeto'),
+                  )
+                : null,
+            body: Builder(
+              builder: (context) {
+                if (state is ProjetoLoaded) {
+                  return ProjetoDetail(projeto: state.projeto);
+                }
 
-              return const Text('Projeto');
-            },
-          ),
-        ),
-        body: BlocBuilder<ProjetoBloc, ProjetoState>(
-          builder: (context, state) {
-            if (state is ProjetoLoaded) {
-              return ProjetoDetail(projeto: state.projeto);
-            }
+                if (state is ProjetoError) {
+                  return Center(
+                    child: Text('Erro ao carregar projeto: ${state.error}'),
+                  );
+                }
 
-            if (state is ProjetoError) {
-              return Center(
-                child: Text('Erro ao carregar projeto: ${state.error}'),
-              );
-            }
+                if (state is ProjetoLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
 
-            if (state is ProjetoLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-
-            return const Center(
-              child: Text('Erro desconhecido'),
-            );
-          },
-        ),
+                return const Center(
+                  child: Text('Erro desconhecido'),
+                );
+              },
+            ),
+          );
+        },
       ),
     );
   }

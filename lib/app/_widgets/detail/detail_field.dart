@@ -22,36 +22,39 @@ class DetailField extends StatelessWidget {
       icon == null || leading == null,
       'Icon and leading cannot be provided at the same time',
     );
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(
-            top: 12,
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 12,
+            ),
+            child: icon != null
+                ? GradientIcon(
+                    icon,
+                    size: 20,
+                  )
+                : leading,
           ),
-          child: icon != null
-              ? GradientIcon(
-                  icon,
-                  size: 20,
-                )
-              : leading,
-        ),
-        Expanded(
-          child: ListTile(
-            title: Text(
-              title,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
+          Expanded(
+            child: ListTile(
+              title: Text(
+                title,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              subtitle: Container(
+                margin: const EdgeInsets.only(top: 4),
+                child: child,
               ),
             ),
-            subtitle: Container(
-              margin: const EdgeInsets.only(top: 4),
-              child: child,
-            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
