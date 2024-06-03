@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:projac_mobile/app/_widgets/gradient_icon.dart';
 import 'package:projac_mobile/core/theme/main_theme.dart';
 import 'package:projac_mobile/routes.dart';
 import 'package:routefly/routefly.dart';
@@ -20,7 +21,7 @@ class HomeDrawer extends StatelessWidget {
             child: const Text('Drawer Header'),
           ),
           ListTile(
-            leading: const Icon(Ionicons.library_outline),
+            leading: const GradientIcon(Ionicons.library_outline),
             title: const Text('Projetos'),
             onTap: () {
               Routefly.pushNavigate(
@@ -29,7 +30,7 @@ class HomeDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Ionicons.settings_outline),
+            leading: const GradientIcon(Ionicons.settings_outline),
             title: const Text('Configurações'),
             onTap: () {
               Routefly.pushNavigate(routePaths.settings);

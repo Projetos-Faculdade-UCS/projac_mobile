@@ -1,33 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
+import 'package:projac_mobile/app/_widgets/projeto_status_extension.dart';
+import 'package:projac_mobile/app/_widgets/top_corner_flag.dart';
 import 'package:projac_mobile/app/projetos/widgets/projeto_list_tile/area.dart';
 import 'package:projac_mobile/app/projetos/widgets/projeto_list_tile/responsavel.dart';
 import 'package:projac_mobile/core/api/models/projeto.dart';
 import 'package:routefly/routefly.dart';
-
-extension on StatusProjeto {
-  Color get color {
-    switch (this) {
-      case StatusProjeto.emAndamento:
-        return Colors.orange;
-      case StatusProjeto.concluido:
-        return Colors.green;
-      case StatusProjeto.cancelado:
-        return Colors.red;
-    }
-  }
-
-  IconData get iconData {
-    switch (this) {
-      case StatusProjeto.emAndamento:
-        return Ionicons.construct;
-      case StatusProjeto.concluido:
-        return Ionicons.checkmark_done_sharp;
-      case StatusProjeto.cancelado:
-        return Ionicons.close;
-    }
-  }
-}
 
 class ProjetoListTile extends StatelessWidget {
   const ProjetoListTile({
@@ -109,63 +86,4 @@ class ProjetoListTile extends StatelessWidget {
       ),
     );
   }
-}
-
-class TopCornerFlag extends StatelessWidget {
-  const TopCornerFlag({
-    required this.borderRadius,
-    required this.color,
-    required this.icon,
-    this.padding = EdgeInsets.zero,
-    super.key,
-  });
-
-  final double borderRadius;
-  final Color color;
-  final Widget icon;
-  final EdgeInsets padding;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.topRight,
-      children: [
-        ClipPath(
-          clipper: _TopCornerFlagClipper(borderRadius),
-          child: Container(
-            height: 40,
-            width: 40,
-            color: color,
-          ),
-        ),
-        Container(
-          margin: padding,
-          child: icon,
-        ),
-      ],
-    );
-  }
-}
-
-class _TopCornerFlagClipper extends CustomClipper<Path> {
-  _TopCornerFlagClipper(this.borderRadius);
-
-  final double borderRadius;
-
-  @override
-  Path getClip(Size size) {
-    final path = Path()
-      ..moveTo(0, 0)
-      ..lineTo(size.width - borderRadius, 0)
-      ..arcToPoint(
-        Offset(size.width, borderRadius),
-        radius: Radius.circular(borderRadius),
-      )
-      ..lineTo(size.width, size.height);
-
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
 }

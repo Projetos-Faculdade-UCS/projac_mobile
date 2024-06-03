@@ -1,26 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:projac_mobile/app/_widgets/gradient_icon.dart';
 
 class DetailField extends StatelessWidget {
   const DetailField({
     required this.title,
     required this.child,
-    required this.icon,
+    this.leading,
+    this.icon,
     super.key,
   });
-  final Widget icon;
+
+  final IconData? icon;
+  final Widget? leading;
   final String title;
   final Widget child;
 
   @override
   Widget build(BuildContext context) {
+    assert(icon != null || leading != null, 'Icon or leading must be provided');
+    assert(
+      icon == null || leading == null,
+      'Icon and leading cannot be provided at the same time',
+    );
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         Padding(
           padding: const EdgeInsets.only(
             top: 12,
           ),
-          child: icon,
+          child: icon != null
+              ? GradientIcon(
+                  icon,
+                  size: 20,
+                )
+              : leading,
         ),
         Expanded(
           child: ListTile(
@@ -30,7 +45,10 @@ class DetailField extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            subtitle: child,
+            subtitle: Container(
+              margin: const EdgeInsets.only(top: 4),
+              child: child,
+            ),
           ),
         ),
       ],

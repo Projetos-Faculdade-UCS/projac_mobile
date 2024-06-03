@@ -83,4 +83,8 @@ class MainTheme {
   static LinearGradient getGradient(Brightness brightness) {
     return brightness == Brightness.light ? lightGradient : darkGradient;
   }
+
+  static Shader getGradientShader(Brightness brightness, Rect bounds) {
+    return getGradient(brightness).createShader(bounds);
+  }
 }

@@ -86,3 +86,16 @@ enum StatusProjeto {
   concluido,
   cancelado,
 }
+
+extension StatusProjetoExtension on StatusProjeto {
+  String get name {
+    switch (this) {
+      case StatusProjeto.emAndamento:
+        return 'Em andamento';
+      case StatusProjeto.concluido:
+        return 'Concluído';
+      case StatusProjeto.cancelado:
+        return 'Cancelado';
+    }
+  }
+}
