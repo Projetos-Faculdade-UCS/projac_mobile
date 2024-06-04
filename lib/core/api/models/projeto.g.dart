@@ -24,7 +24,7 @@ Projeto _$ProjetoFromJson(Map<String, dynamic> json) => Projeto(
           .map((e) => BaseArea.fromJson(e as Map<String, dynamic>))
           .toList(),
       pesquisadores: (json['pesquisadores'] as List<dynamic>)
-          .map((e) => Pesquisador.fromJson(e as Map<String, dynamic>))
+          .map((e) => PesquisadorProjeto.fromJson(e as Map<String, dynamic>))
           .toList(),
       agenciasFomento: (json['agenciasFomento'] as List<dynamic>)
           .map((e) => AgenciaFomento.fromJson(e as Map<String, dynamic>))

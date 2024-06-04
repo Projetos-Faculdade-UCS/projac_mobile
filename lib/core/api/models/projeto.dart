@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:projac_mobile/core/api/models/agencia_fomento.dart';
 import 'package:projac_mobile/core/api/models/area.dart';
-import 'package:projac_mobile/core/api/models/pesquisador.dart';
+import 'package:projac_mobile/core/api/models/pesquisador_projeto.dart';
 import 'package:projac_mobile/core/api/models/producao_academica.dart';
 import 'package:projac_mobile/core/api/models/valor_arrecadado.dart';
 
@@ -42,7 +42,7 @@ class Projeto {
   final List<ProducaoAcademica> producoesAcademicas;
   final List<ValorArrecadado> valoresArrecadados;
   final List<BaseArea> subareas;
-  final List<Pesquisador> pesquisadores;
+  final List<PesquisadorProjeto> pesquisadores;
   final List<AgenciaFomento> agenciasFomento;
 
   @StatusProjetoConverter()

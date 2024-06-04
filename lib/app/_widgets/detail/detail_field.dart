@@ -9,6 +9,7 @@ class DetailField extends StatelessWidget {
     this.leading,
     this.icon,
     this.onTap,
+    this.trailing,
     super.key,
   });
 
@@ -17,6 +18,16 @@ class DetailField extends StatelessWidget {
   final String title;
   final Widget child;
   final VoidCallback? onTap;
+  final Widget? trailing;
+
+  Widget? get _trailingIcon =>
+      trailing ??
+      (onTap != null
+          ? const Icon(
+              Ionicons.chevron_forward,
+              size: 20,
+            )
+          : null);
 
   @override
   Widget build(BuildContext context) {
@@ -55,12 +66,7 @@ class DetailField extends StatelessWidget {
                 child: child,
               ),
               onTap: onTap,
-              trailing: onTap != null
-                  ? const Icon(
-                      Ionicons.chevron_forward_outline,
-                      size: 16,
-                    )
-                  : null,
+              trailing: _trailingIcon,
             ),
           ),
         ],

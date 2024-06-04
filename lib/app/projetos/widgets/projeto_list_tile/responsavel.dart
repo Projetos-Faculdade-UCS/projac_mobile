@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:projac_mobile/core/api/models/pesquisador.dart';
+import 'package:projac_mobile/core/api/models/pesquisador_projeto.dart';
 
 class Responsavel extends StatelessWidget {
   const Responsavel({
@@ -8,7 +8,7 @@ class Responsavel extends StatelessWidget {
     super.key,
   });
 
-  final Pesquisador responsavel;
+  final PesquisadorProjeto responsavel;
 
   @override
   Widget build(BuildContext context) {

@@ -18,9 +18,51 @@ class PesquisadoresTab extends StatelessWidget {
       children: projeto.pesquisadores
           .map(
             (pesquisador) => DetailField(
-              icon: Ionicons.person_outline,
+              leading: CircleAvatar(
+                backgroundImage: NetworkImage(
+                  pesquisador.fotoPerfil,
+                ),
+                child: pesquisador.fotoPerfil.isEmpty
+                    ? const Icon(
+                        Ionicons.person_outline,
+                        size: 40,
+                      )
+                    : null,
+              ),
               title: pesquisador.nome,
-              child: Text(pesquisador.cargo),
+              child: RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: pesquisador.cargo,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    const WidgetSpan(
+                      alignment: PlaceholderAlignment.middle,
+                      child: Baseline(
+                        baseline: 5, // Adjust this value as needed
+                        baselineType: TextBaseline.alphabetic,
+                        child: Text(
+                          '   ●   ',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 6,
+                          ),
+                        ),
+                      ),
+                    ),
+                    TextSpan(
+                      text: '${pesquisador.horas}h no projeto',
+                      style: const TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               onTap: () {
                 Routefly.pushNavigate(
                   routePaths.pesquisadores.$id.changes(
