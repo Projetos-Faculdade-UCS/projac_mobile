@@ -5,6 +5,7 @@ import 'package:projac_mobile/app/projetos/bloc/projeto/projeto_bloc.dart';
 import 'package:projac_mobile/app/projetos/get_it.dart';
 import 'package:projac_mobile/app/projetos/widgets/projeto/projeto_detail.dart';
 import 'package:routefly/routefly.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class ProjetoPage extends StatelessWidget {
   const ProjetoPage({super.key});
@@ -18,8 +19,22 @@ class ProjetoPage extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: state is! ProjetoLoaded
-                ? const CustomAppBar(
-                    title: Text('Projeto'),
+                ? CustomAppBar(
+                    title: Skeletonizer(
+                      effect: ShimmerEffect(
+                        baseColor: Colors.grey[300]!.withOpacity(.3),
+                        highlightColor: Colors.grey[100]!.withOpacity(.5),
+                      ),
+                      textBoneBorderRadius:
+                          const TextBoneBorderRadius.fromHeightFactor(.2),
+                      child: const Text(
+                        'Title For The Project',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                   )
                 : null,
             body: Builder(
@@ -35,9 +50,7 @@ class ProjetoPage extends StatelessWidget {
                 }
 
                 if (state is ProjetoLoading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
+                  return ProjetoDetail.skeleton;
                 }
 
                 return const Center(

@@ -10,7 +10,6 @@ class Pesquisador {
     required this.sobrenome,
     required this.email,
     required this.genero,
-    required this.telefone,
     required this.dataNascimento,
     required this.fotoPerfil,
     required this.curriculoLattes,
@@ -23,7 +22,6 @@ class Pesquisador {
   final String sobrenome;
   final String email;
   final String genero;
-  final String telefone;
   final String dataNascimento;
   final String fotoPerfil;
   final String curriculoLattes;

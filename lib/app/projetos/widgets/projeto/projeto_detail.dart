@@ -9,6 +9,7 @@ import 'package:projac_mobile/app/projetos/widgets/projeto/tabs/geral_tab.dart';
 import 'package:projac_mobile/app/projetos/widgets/projeto/tabs/pesquisadores_tab.dart';
 import 'package:projac_mobile/app/projetos/widgets/projeto/tabs/producoes_academicas_tab.dart';
 import 'package:projac_mobile/core/api/models/projeto.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class ProjetoDetail extends StatelessWidget {
   const ProjetoDetail({
@@ -16,6 +17,12 @@ class ProjetoDetail extends StatelessWidget {
     super.key,
   });
   final Projeto projeto;
+
+  static Widget get skeleton {
+    return Skeletonizer(
+      child: ProjetoDetail(projeto: Projeto.skeleton()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

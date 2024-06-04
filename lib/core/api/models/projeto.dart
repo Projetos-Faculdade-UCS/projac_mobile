@@ -27,6 +27,25 @@ class Projeto {
     this.dataConclusao,
   });
 
+  factory Projeto.skeleton() => Projeto(
+        id: 0,
+        titulo: 'Título Qualquer',
+        objetivo: 'Objetivo qualquer',
+        dataCriacao: '2021-01-01',
+        valorSolicitado: 0,
+        valorTotalArrecadado: 0,
+        area: BaseArea.skeleton(),
+        producoesAcademicas: [],
+        valoresArrecadados: [],
+        subareas: [
+          BaseArea.skeleton(),
+          BaseArea.skeleton(),
+        ],
+        pesquisadores: [],
+        agenciasFomento: [],
+        status: StatusProjeto.emAndamento,
+      );
+
   factory Projeto.fromJson(Map<String, dynamic> json) =>
       _$ProjetoFromJson(json);
 

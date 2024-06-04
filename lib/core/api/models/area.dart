@@ -11,6 +11,11 @@ class BaseArea {
     this.id,
   });
 
+  factory BaseArea.skeleton() => BaseArea(
+        nome: 'Nome Qualquer',
+        color: Colors.blue,
+      );
+
   factory BaseArea.fromJson(Map<String, dynamic> json) =>
       _$BaseAreaFromJson(json);
 
