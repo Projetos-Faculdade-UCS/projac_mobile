@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:projac_mobile/core/theme/main_theme.dart';
@@ -12,13 +14,22 @@ class BaseArea {
     this.id,
   });
 
-  factory BaseArea.skeleton() => BaseArea(
-        nome: 'Exatas',
-        color: MainTheme.lightTheme.primaryColor,
-      );
+  factory BaseArea.skeleton() {
+    final random = Random();
+    return BaseArea(
+      nome: _examples[random.nextInt(_examples.length)],
+      color: MainTheme.lightTheme.primaryColor,
+    );
+  }
 
   factory BaseArea.fromJson(Map<String, dynamic> json) =>
       _$BaseAreaFromJson(json);
+
+  static const _examples = [
+    'Exatas',
+    'Ciências Biológicas',
+    'Outra',
+  ];
 
   final int? id;
   final String nome;

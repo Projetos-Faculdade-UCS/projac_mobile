@@ -20,6 +20,16 @@ class ProjetoList {
   factory ProjetoList.fromJson(Map<String, dynamic> json) =>
       _$ProjetoListFromJson(json);
 
+  factory ProjetoList.skeleton() => ProjetoList(
+        id: 0,
+        titulo: 'Título Projeto',
+        objetivo: 'Objetivo' * 20,
+        dataCriacao: 'Data de criação',
+        status: StatusProjeto.emAndamento,
+        area: BaseArea.skeleton(),
+        coordenador: Coordenador.skeleton(),
+      );
+
   final int id;
   final String titulo;
   final String objetivo;

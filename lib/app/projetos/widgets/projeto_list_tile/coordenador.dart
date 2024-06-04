@@ -21,7 +21,7 @@ class CoordenadorWidget extends StatelessWidget {
         ),
         const SizedBox(width: 4),
         Text(
-          coordenador.nome,
+          coordenador.nomeCompleto,
           style: const TextStyle(
             color: Colors.grey,
           ),

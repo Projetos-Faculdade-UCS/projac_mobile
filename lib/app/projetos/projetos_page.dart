@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:projac_mobile/app/_widgets/custom_app_bar.dart';
 import 'package:projac_mobile/app/_widgets/error_message.dart';
-import 'package:projac_mobile/app/_widgets/loading_indicator.dart';
 import 'package:projac_mobile/app/_widgets/search_action_button.dart';
 import 'package:projac_mobile/app/projetos/bloc/list/projetos_list_bloc.dart';
 import 'package:projac_mobile/app/projetos/get_it.dart';
@@ -55,6 +54,31 @@ class _ProjetosPageState extends State<ProjetosPage> {
               delegate: projetosListGetIt<ProjetosSearchDelegate>(),
             ),
           ],
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(40),
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Projeto',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
+                  ),
+                  Text(
+                    'Status',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
         body: BlocBuilder<ProjetosListBloc, ProjetosListState>(
           builder: (context, state) {
@@ -63,7 +87,7 @@ class _ProjetosPageState extends State<ProjetosPage> {
             }
 
             if (state is ProjetosListLoading || state is ProjetosListInitial) {
-              return const LoadingIndicator();
+              return ProjetosListView.skeleton;
             }
             if (state is ProjetosListLoaded) {
               return ProjetosListView(projetos: state.projetos);
