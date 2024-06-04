@@ -38,5 +38,9 @@ class Pesquisador {
   final String fotoPerfil;
   final String curriculoLattes;
 
+  Uri get curriculoLattesUri => Uri.parse(curriculoLattes);
+
+  String get nomeCompleto => '$nome $sobrenome';
+
   Map<String, dynamic> toJson() => _$PesquisadorToJson(this);
 }
