@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projac_mobile/app/_widgets/custom_app_bar.dart';
 import 'package:projac_mobile/app/pesquisadores/bloc/pesquisador/pesquisador_bloc.dart';
 import 'package:projac_mobile/app/pesquisadores/get_it.dart';
+import 'package:projac_mobile/app/pesquisadores/widgets/pesquisador_widget.dart';
 import 'package:routefly/routefly.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -63,8 +64,20 @@ class _PesquisadorPageState extends State<PesquisadorPage> {
             },
           ),
         ),
-        body: Center(
-          child: Text('PesquisadorPage $id'),
+        body: BlocBuilder<PesquisadorBloc, PesquisadorState>(
+          builder: (context, state) {
+            if (state is PesquisadorLoaded) {
+              return PesquisadorWidget(pesquisador: state.pesquisador);
+            }
+
+            if (state is PesquisadorError) {
+              return const Center(
+                child: Text('Erro ao carregar pesquisador'),
+              );
+            }
+
+            return PesquisadorWidget.skeleton;
+          },
         ),
       ),
     );

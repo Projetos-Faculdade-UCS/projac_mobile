@@ -17,6 +17,18 @@ class Pesquisador {
 
   factory Pesquisador.fromJson(Map<String, dynamic> json) =>
       _$PesquisadorFromJson(json);
+
+  factory Pesquisador.skeleton() => Pesquisador(
+        id: 0,
+        nome: 'Nome',
+        sobrenome: 'Sobrenome',
+        email: 'nome.sobrenome@gmail.com',
+        genero: 'Masculino',
+        dataNascimento: '01/01/2000',
+        fotoPerfil: '',
+        curriculoLattes: '',
+      );
+
   final int id;
   final String nome;
   final String sobrenome;
