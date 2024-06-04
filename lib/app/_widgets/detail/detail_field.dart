@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:projac_mobile/app/_widgets/gradient_icon.dart';
 
 class DetailField extends StatelessWidget {
@@ -7,6 +8,7 @@ class DetailField extends StatelessWidget {
     required this.child,
     this.leading,
     this.icon,
+    this.onTap,
     super.key,
   });
 
@@ -14,6 +16,7 @@ class DetailField extends StatelessWidget {
   final Widget? leading;
   final String title;
   final Widget child;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +54,13 @@ class DetailField extends StatelessWidget {
                 margin: const EdgeInsets.only(top: 4),
                 child: child,
               ),
+              onTap: onTap,
+              trailing: onTap != null
+                  ? const Icon(
+                      Ionicons.chevron_forward_outline,
+                      size: 16,
+                    )
+                  : null,
             ),
           ),
         ],
