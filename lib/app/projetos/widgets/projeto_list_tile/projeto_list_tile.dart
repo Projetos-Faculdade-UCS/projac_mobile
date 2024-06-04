@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:projac_mobile/app/_widgets/projeto_status_extension.dart';
 import 'package:projac_mobile/app/_widgets/top_corner_flag.dart';
 import 'package:projac_mobile/app/projetos/widgets/projeto_list_tile/area.dart';
 import 'package:projac_mobile/app/projetos/widgets/projeto_list_tile/responsavel.dart';
-import 'package:projac_mobile/core/api/models/projeto.dart';
+import 'package:projac_mobile/core/api/models/projeto_list.dart';
+import 'package:projac_mobile/core/api/models/status_projeto.dart';
 import 'package:routefly/routefly.dart';
 
 class ProjetoListTile extends StatelessWidget {
@@ -13,7 +13,7 @@ class ProjetoListTile extends StatelessWidget {
     super.key,
   });
 
-  final Projeto projeto;
+  final ProjetoList projeto;
   final bool isLast;
 
   @override
@@ -59,7 +59,7 @@ class ProjetoListTile extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 8),
-                  Responsavel(responsavel: projeto.pesquisadores.first),
+                  CoordenadorWidget(coordenador: projeto.coordenador),
                   const SizedBox(height: 2),
                   AreaWidget(area: projeto.area),
                 ],

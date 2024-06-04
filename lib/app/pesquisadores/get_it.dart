@@ -3,10 +3,10 @@ import 'package:projac_mobile/app/pesquisadores/bloc/pesquisador/pesquisador_blo
 import 'package:projac_mobile/app/pesquisadores/bloc/pesquisadores_repository.dart';
 import 'package:projac_mobile/core/get_it.dart';
 
-final pesquisadoresGetIt = GetIt.asNewInstance();
+final pesquisadorGetIt = GetIt.asNewInstance();
 
-void setupPesquisadoresGetIt() {
-  pesquisadoresGetIt
+void setupPesquisadorGetIt() {
+  pesquisadorGetIt
     ..registerLazySingletonAsync<PesquisadoresRepository>(() async {
       final apiClient0 = await apiClient;
       return PesquisadoresRepository(apiClient0);
@@ -16,6 +16,6 @@ void setupPesquisadoresGetIt() {
     });
 }
 
-void disposePesquisadoresGetIt() {
-  pesquisadoresGetIt.reset();
+void disposePesquisadorGetIt() {
+  pesquisadorGetIt.reset();
 }

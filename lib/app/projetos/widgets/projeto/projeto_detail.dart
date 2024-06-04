@@ -20,14 +20,19 @@ class ProjetoDetail extends StatelessWidget {
 
   static Widget get skeleton {
     return Skeletonizer(
+      effect: ShimmerEffect(
+        baseColor: Colors.grey[300]!.withAlpha(100),
+        highlightColor: Colors.white.withAlpha(100),
+      ),
       child: ProjetoDetail(projeto: Projeto.skeleton()),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final tabs = _buildTabs(context);
     return DefaultTabController(
-      length: 5,
+      length: tabs.length,
       child: Scaffold(
         appBar: CustomAppBar(
           title: BlocBuilder<ProjetoBloc, ProjetoState>(
@@ -40,8 +45,9 @@ class ProjetoDetail extends StatelessWidget {
             },
           ),
           bottom: TabBar(
+            enableFeedback: true,
             isScrollable: true,
-            tabs: _buildTabs(context),
+            tabs: tabs,
           ),
         ),
         body: TabBarView(

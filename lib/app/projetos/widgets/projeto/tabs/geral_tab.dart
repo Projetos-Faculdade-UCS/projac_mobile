@@ -3,8 +3,8 @@ import 'package:ionicons/ionicons.dart';
 import 'package:projac_mobile/app/_widgets/custom_badge.dart';
 import 'package:projac_mobile/app/_widgets/detail/detail_field.dart';
 import 'package:projac_mobile/app/_widgets/outlined_badge.dart';
-import 'package:projac_mobile/app/_widgets/projeto_status_extension.dart';
 import 'package:projac_mobile/core/api/models/projeto.dart';
+import 'package:projac_mobile/core/api/models/status_projeto.dart';
 import 'package:readmore/readmore.dart';
 import 'package:super_sliver_list/super_sliver_list.dart';
 

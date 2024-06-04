@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:projac_mobile/core/api/models/area.dart';
 import 'package:projac_mobile/core/api/models/pesquisador.dart';
 import 'package:projac_mobile/core/api/models/projeto.dart';
+import 'package:projac_mobile/core/api/models/projeto_list.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'api_client.g.dart';
@@ -11,7 +12,7 @@ abstract class ApiClient {
   factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
 
   @GET('/projetos')
-  Future<List<Projeto>> getProjetos({
+  Future<List<ProjetoList>> getProjetos({
     @Query('query') String? query,
   });
 

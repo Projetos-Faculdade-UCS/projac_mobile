@@ -4,6 +4,7 @@ import 'package:projac_mobile/app/_widgets/loading_indicator.dart';
 import 'package:projac_mobile/app/projetos/repositories/projetos_repository.dart';
 import 'package:projac_mobile/app/projetos/widgets/projetos_list_view.dart';
 import 'package:projac_mobile/core/api/models/projeto.dart';
+import 'package:projac_mobile/core/api/models/projeto_list.dart';
 
 class ProjetosSearchDelegate extends SearchDelegate<List<Projeto>> {
   ProjetosSearchDelegate(this._repository);
@@ -40,7 +41,7 @@ class ProjetosSearchDelegate extends SearchDelegate<List<Projeto>> {
 
   @override
   Widget buildResults(BuildContext context) {
-    return FutureBuilder<List<Projeto>>(
+    return FutureBuilder<List<ProjetoList>>(
       future: _repository.fetch(),
       builder: _builder,
     );
@@ -48,13 +49,16 @@ class ProjetosSearchDelegate extends SearchDelegate<List<Projeto>> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return FutureBuilder<List<Projeto>>(
+    return FutureBuilder<List<ProjetoList>>(
       future: _repository.fetch(),
       builder: _builder,
     );
   }
 
-  Widget _builder(BuildContext context, AsyncSnapshot<List<Projeto>> snapshot) {
+  Widget _builder(
+    BuildContext context,
+    AsyncSnapshot<List<ProjetoList>> snapshot,
+  ) {
     if (snapshot.connectionState == ConnectionState.waiting) {
       return const LoadingIndicator();
     }

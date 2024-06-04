@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:projac_mobile/core/theme/main_theme.dart';
 
 part 'area.g.dart';
 
@@ -12,8 +13,8 @@ class BaseArea {
   });
 
   factory BaseArea.skeleton() => BaseArea(
-        nome: 'Nome Qualquer',
-        color: Colors.blue,
+        nome: 'Exatas',
+        color: MainTheme.lightTheme.primaryColor,
       );
 
   factory BaseArea.fromJson(Map<String, dynamic> json) =>

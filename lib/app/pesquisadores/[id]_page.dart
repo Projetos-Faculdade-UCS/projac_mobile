@@ -17,12 +17,12 @@ class _PesquisadorPageState extends State<PesquisadorPage> {
   @override
   void initState() {
     super.initState();
-    setupPesquisadoresGetIt();
+    setupPesquisadorGetIt();
   }
 
   @override
   void dispose() {
-    disposePesquisadoresGetIt();
+    disposePesquisadorGetIt();
     super.dispose();
   }
 

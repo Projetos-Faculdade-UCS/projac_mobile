@@ -14,7 +14,7 @@ class PesquisadorBloc extends Bloc<PesquisadorEvent, PesquisadorState> {
 
       try {
         final repository =
-            await pesquisadoresGetIt.getAsync<PesquisadoresRepository>();
+            await pesquisadorGetIt.getAsync<PesquisadoresRepository>();
         final pesquisador = await repository.getPesquisador(event.id);
         emit(PesquisadorLoaded(pesquisador));
       } catch (e) {
