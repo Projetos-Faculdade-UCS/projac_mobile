@@ -19,6 +19,7 @@ class PesquisadorBloc extends Bloc<PesquisadorEvent, PesquisadorState> {
         emit(PesquisadorLoaded(pesquisador));
       } catch (e) {
         emit(PesquisadorError(e.toString()));
+        rethrow;
       }
     });
   }

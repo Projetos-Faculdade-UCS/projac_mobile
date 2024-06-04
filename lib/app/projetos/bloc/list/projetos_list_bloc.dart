@@ -16,6 +16,7 @@ class ProjetosListBloc extends Bloc<ProjetosListEvent, ProjetosListState> {
         emit(ProjetosListLoaded(projetos));
       } catch (e) {
         emit(ProjetosListError(e.toString()));
+        rethrow;
       }
     });
   }
