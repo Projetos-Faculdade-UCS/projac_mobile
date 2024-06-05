@@ -10,7 +10,7 @@ part 'area.g.dart';
 class BaseArea {
   BaseArea({
     required this.nome,
-    required this.color,
+    required this.cor,
     this.id,
   });
 
@@ -18,7 +18,7 @@ class BaseArea {
     final random = Random();
     return BaseArea(
       nome: _examples[random.nextInt(_examples.length)],
-      color: MainTheme.lightTheme.primaryColor,
+      cor: MainTheme.lightTheme.primaryColor,
     );
   }
 
@@ -35,7 +35,7 @@ class BaseArea {
   final String nome;
 
   @_ColorConverter()
-  final Color color;
+  final Color cor;
 
   Map<String, dynamic> toJson() => _$BaseAreaToJson(this);
 }
@@ -44,7 +44,7 @@ class BaseArea {
 class Area extends BaseArea {
   Area({
     required super.nome,
-    required super.color,
+    required super.cor,
     required this.subareas,
     super.id,
   });
@@ -56,7 +56,7 @@ class Area extends BaseArea {
   Map<String, dynamic> toJson() => _$AreaToJson(this);
 }
 
-/// A color is a hex string. in the format #RRGGBB.
+/// A cor is a hex string. in the format #RRGGBB.
 class _ColorConverter implements JsonConverter<Color, String> {
   const _ColorConverter();
 

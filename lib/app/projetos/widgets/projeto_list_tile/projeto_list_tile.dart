@@ -28,7 +28,7 @@ class ProjetoListTile extends StatelessWidget {
               color: Theme.of(context).cardColor,
               border: Border(
                 left: BorderSide(
-                  color: projeto.area.color,
+                  color: projeto.area.cor,
                   width: 4,
                 ),
               ),

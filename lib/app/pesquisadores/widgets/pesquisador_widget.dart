@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:projac_mobile/app/_widgets/detail/detail_field.dart';
 import 'package:projac_mobile/app/pesquisadores/widgets/openable_picture.dart';
 import 'package:projac_mobile/core/api/models/pesquisador.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -57,35 +59,30 @@ class PesquisadorWidget extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             pesquisador.nomeCompleto,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
           const SizedBox(height: 8),
-          Text(
-            pesquisador.email,
-            style: const TextStyle(
-              fontSize: 16,
+          DetailField(
+            title: 'E-mail',
+            icon: Ionicons.mail_outline,
+            child: Text(
+              pesquisador.email,
             ),
           ),
-          const SizedBox(height: 8),
-          Text(
-            pesquisador.genero,
-            style: const TextStyle(
-              fontSize: 16,
-            ),
+          DetailField(
+            title: 'Gênero',
+            icon: Ionicons.woman_outline,
+            child: Text(pesquisador.genero),
           ),
-          const SizedBox(height: 8),
-          Text(
-            pesquisador.dataNascimento,
-            style: const TextStyle(
-              fontSize: 16,
-            ),
+          DetailField(
+            title: 'Data de nascimento',
+            icon: Ionicons.calendar_outline,
+            child: Text(pesquisador.dataNascimento),
           ),
-          const SizedBox(height: 8),
-          OutlinedButton(
-            onPressed: () {
+          DetailField(
+            title: 'Formação',
+            icon: Ionicons.school_outline,
+            onTap: () {
               launchUrl(pesquisador.curriculoLattesUri);
             },
             child: const Text('Ver currículo Lattes'),

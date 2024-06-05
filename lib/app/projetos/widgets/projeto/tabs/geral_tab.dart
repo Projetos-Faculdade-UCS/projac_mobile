@@ -69,10 +69,10 @@ class GeralTab extends StatelessWidget {
           runSpacing: 8,
           children: [
             CustomBadge(
-              color: projeto.area.color,
+              color: projeto.area.cor,
               boxShadow: [
                 BoxShadow(
-                  color: projeto.area.color.withOpacity(0.5),
+                  color: projeto.area.cor.withOpacity(0.5),
                   blurRadius: 4,
                   offset: const Offset(0, 2),
                 ),
@@ -81,10 +81,10 @@ class GeralTab extends StatelessWidget {
             ),
             ...projeto.subareas.map(
               (subarea) => OutlinedBadge(
-                color: subarea.color,
+                color: subarea.cor,
                 boxShadow: [
                   BoxShadow(
-                    color: subarea.color.withOpacity(0.5),
+                    color: subarea.cor.withOpacity(0.5),
                     blurRadius: 4,
                     offset: const Offset(0, 2),
                   ),
