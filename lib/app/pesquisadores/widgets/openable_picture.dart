@@ -16,6 +16,8 @@ class OpenablePicture extends StatelessWidget {
       onTap: () {
         context.pushTransparentRoute<void>(
           DismissiblePicture(image: image),
+          transitionDuration: const Duration(milliseconds: 500),
+          reverseTransitionDuration: const Duration(milliseconds: 500),
         );
       },
       child: Hero(

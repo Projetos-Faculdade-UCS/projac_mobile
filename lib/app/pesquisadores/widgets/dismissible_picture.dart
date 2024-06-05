@@ -2,6 +2,7 @@ import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:projac_mobile/app/_widgets/custom_app_bar.dart';
 
 class DismissiblePicture extends StatefulWidget {
   const DismissiblePicture({
@@ -43,43 +44,15 @@ class _DismissiblePictureState extends State<DismissiblePicture> {
 
   @override
   Widget build(BuildContext context) {
-    return DismissiblePage(
-      disabled: _zoomed,
-      direction: DismissiblePageDismissDirection.down,
-      dragSensitivity: 0.5,
-      onDismissed: () {
-        Navigator.of(context).pop();
-      },
-      child: Center(
-        child: Hero(
-          tag: widget.image,
-          createRectTween: (begin, end) {
-            return MaterialRectCenterArcTween(begin: begin, end: end);
-          },
-          flightShuttleBuilder: (
-            flightContext,
-            animation,
-            flightDirection,
-            fromHeroContext,
-            toHeroContext,
-          ) {
-            return ListenableBuilder(
-              listenable: animation,
-              builder: (context, snapshot) {
-                return Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(
-                      (1 - animation.value) * 50,
-                    ),
-                    image: DecorationImage(
-                      image: widget.image,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                );
-              },
-            );
-          },
+    return Scaffold(
+      appBar: const CustomAppBar(),
+      body: DismissiblePage(
+        disabled: _zoomed,
+        direction: DismissiblePageDismissDirection.multi,
+        onDismissed: () {
+          Navigator.of(context).pop();
+        },
+        child: Center(
           child: PhotoView(
             controller: _controller,
             backgroundDecoration: const BoxDecoration(
@@ -99,6 +72,36 @@ class _DismissiblePictureState extends State<DismissiblePicture> {
             imageProvider: widget.image,
             minScale: PhotoViewComputedScale.contained,
             tightMode: true,
+            heroAttributes: PhotoViewHeroAttributes(
+              tag: widget.image,
+              createRectTween: (begin, end) {
+                return MaterialRectCenterArcTween(begin: begin, end: end);
+              },
+              flightShuttleBuilder: (
+                flightContext,
+                animation,
+                flightDirection,
+                fromHeroContext,
+                toHeroContext,
+              ) {
+                return ListenableBuilder(
+                  listenable: animation,
+                  builder: (context, snapshot) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          (1 - animation.value) * 50,
+                        ),
+                        image: DecorationImage(
+                          image: widget.image,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
           ),
         ),
       ),
