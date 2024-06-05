@@ -15,6 +15,7 @@ void setupApi({
     ..registerLazySingletonAsync<CacheOptions>(
       () async {
         final dir = await getApplicationDocumentsDirectory();
+        print('Cache dir: ${dir.path}');
         return CacheOptions(
           store: HiveCacheStore('${dir.path}/hiveCache'),
           hitCacheOnErrorExcept: [401, 403],
