@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:projac_mobile/app/_widgets/custom_app_bar.dart';
 import 'package:projac_mobile/app/pesquisadores/bloc/pesquisador/pesquisador_bloc.dart';
 import 'package:projac_mobile/app/pesquisadores/get_it.dart';
+import 'package:projac_mobile/app/pesquisadores/widgets/pesquisador/cubit/pesquisador_app_bar_cubit.dart';
 import 'package:projac_mobile/app/pesquisadores/widgets/pesquisador/pesquisador_widget.dart';
 import 'package:routefly/routefly.dart';
 
@@ -13,17 +15,42 @@ class PesquisadorPage extends StatefulWidget {
   State<PesquisadorPage> createState() => _PesquisadorPageState();
 }
 
-class _PesquisadorPageState extends State<PesquisadorPage> {
+class _PesquisadorPageState extends State<PesquisadorPage>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
   @override
   void initState() {
     super.initState();
     setupPesquisadorGetIt();
+    pesquisadorGetIt.registerSingleton<PesquisadorAppBarCubit>(
+      PesquisadorAppBarCubit(),
+    );
+    _tabController = TabController(
+      length: 3,
+      vsync: this,
+    );
+    _tabController.addListener(_handleTabSelection);
   }
 
   @override
   void dispose() {
     disposePesquisadorGetIt();
+    _tabController.dispose();
     super.dispose();
+  }
+
+  Future<void> _handleTabSelection() async {
+    final cubit = pesquisadorGetIt.get<PesquisadorAppBarCubit>();
+    if (_tabController.index == 0) {
+      cubit.hidePesquisador();
+    } else {
+      final state = (await pesquisadorGetIt.getAsync<PesquisadorBloc>()).state;
+      if (state is PesquisadorLoaded) {
+        final pesquisadorName = state.pesquisador.nomeCompleto;
+        cubit.showPesquisador(pesquisadorName);
+      }
+    }
   }
 
   @override
@@ -39,28 +66,137 @@ class _PesquisadorPageState extends State<PesquisadorPage> {
         }
         return BlocProvider<PesquisadorBloc>(
           create: (context) => snapshot.data!..add(PesquisadorLoad(id)),
-          child: Scaffold(
-            appBar: const CustomAppBar(
-              title: Text('Pesquisador'),
-            ),
-            body: BlocBuilder<PesquisadorBloc, PesquisadorState>(
-              builder: (context, state) {
-                if (state is PesquisadorLoaded) {
-                  return PesquisadorWidget(pesquisador: state.pesquisador);
-                }
+          child: BlocProvider(
+            create: (context) => pesquisadorGetIt.get<PesquisadorAppBarCubit>(),
+            child: Scaffold(
+              appBar: CustomAppBar(
+                title:
+                    BlocBuilder<PesquisadorAppBarCubit, PesquisadorAppBarState>(
+                  builder: (context, state) {
+                    return AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 300),
+                      transitionBuilder: (
+                        Widget child,
+                        Animation<double> animation,
+                      ) {
+                        final opacityAnimation = Tween<double>(
+                          begin: 0,
+                          end: 1,
+                        ).animate(
+                          CurvedAnimation(
+                            parent: animation,
+                            curve: const Interval(
+                              0.5,
+                              1,
+                            ),
+                          ),
+                        );
 
-                if (state is PesquisadorError) {
-                  return const Center(
-                    child: Text('Erro ao carregar pesquisador'),
-                  );
-                }
-
-                return PesquisadorWidget.skeleton;
-              },
+                        return FadeTransition(
+                          opacity: opacityAnimation,
+                          child: SlideTransition(
+                            position: Tween<Offset>(
+                              begin: const Offset(-1, 0),
+                              end: Offset.zero,
+                            ).animate(animation),
+                            child: child,
+                          ),
+                        );
+                      },
+                      child: _buildTitle(
+                        state,
+                      ),
+                    );
+                  },
+                ),
+                bottom: TabBar(
+                  controller: _tabController,
+                  tabAlignment: TabAlignment.fill,
+                  tabs: const [
+                    Tab(
+                      text: 'Perfil',
+                      icon: Icon(Ionicons.person_outline),
+                    ),
+                    Tab(
+                      text: 'Projetos',
+                      icon: Icon(Ionicons.folder_open_outline),
+                    ),
+                    Tab(
+                      text: 'Produções',
+                      icon: Icon(Ionicons.library_outline),
+                    ),
+                  ],
+                ),
+              ),
+              body: TabBarView(
+                controller: _tabController,
+                children: [
+                  _buildPerfilTab(),
+                  _buildProjetosTab(),
+                  _buildProducoesTab(),
+                ],
+              ),
             ),
           ),
         );
       },
+    );
+  }
+
+  Widget _buildPerfilTab() {
+    return BlocBuilder<PesquisadorBloc, PesquisadorState>(
+      builder: (context, state) {
+        if (state is PesquisadorLoaded) {
+          return PesquisadorWidget(
+            pesquisador: state.pesquisador,
+          );
+        }
+
+        if (state is PesquisadorError) {
+          return const Center(
+            child: Text('Erro ao carregar pesquisador'),
+          );
+        }
+
+        return PesquisadorWidget.skeleton;
+      },
+    );
+  }
+
+  Widget _buildProjetosTab() {
+    return const Center(child: Text('Tab 2 content'));
+  }
+
+  Widget _buildProducoesTab() {
+    return const Center(child: Text('Tab 3 content'));
+  }
+
+  Widget _buildTitle(PesquisadorAppBarState state) {
+    if (state is PesquisadorAppBarShow) {
+      if (_tabController.index != 0) {
+        return Hero(
+          tag: 'pesquisador_nome_completo_${state.title}_detail',
+          child: Text(
+            state.title,
+            key: ValueKey<String>(
+              state.title,
+            ),
+          ),
+        );
+      } else {
+        return const Text(
+          'Pesquisador',
+          key: ValueKey<String>(
+            'Pesquisador',
+          ),
+        );
+      }
+    }
+    return const Text(
+      'Pesquisador',
+      key: ValueKey<String>(
+        'Pesquisador',
+      ),
     );
   }
 }
