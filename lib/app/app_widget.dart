@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:projac_mobile/core/get_it.dart';
 import 'package:projac_mobile/core/theme/theme_cubit.dart';
 import 'package:projac_mobile/routes.dart';
 import 'package:routefly/routefly.dart';
@@ -13,10 +14,15 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ThemeCubit(),
+      create: (context) => getIt.get<ThemeCubit>(),
       child: BlocBuilder<ThemeCubit, ThemeData>(
         builder: (context, theme) {
+          print(
+            'Theme: ${theme.brightness == Brightness.light ? 'light' : 'dark'}',
+          );
           return MaterialApp.router(
+            theme: theme,
+            debugShowCheckedModeBanner: false,
             routerConfig: Routefly.routerConfig(
               routes: routes,
               routeBuilder: (context, settings, child) {
@@ -28,7 +34,6 @@ class AppWidget extends StatelessWidget {
                     reverseDuration: const Duration(milliseconds: 500),
                     child: child,
                     settings: settings,
-                    inheritTheme: true,
                     ctx: context,
                   );
                 }
@@ -44,13 +49,10 @@ class AppWidget extends StatelessWidget {
                         settings: settings,
                         child: child,
                         type: PageTransitionType.theme,
-                        inheritTheme: true,
                         ctx: context,
                       );
               },
             ),
-            theme: theme,
-            debugShowCheckedModeBanner: false,
           );
         },
       ),
