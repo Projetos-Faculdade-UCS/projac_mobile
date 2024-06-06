@@ -1,28 +1,40 @@
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
+import 'package:projac_mobile/app/projetos/bloc/list/projetos_list_bloc.dart';
 import 'package:projac_mobile/app/projetos/bloc/projeto/projeto_bloc.dart';
-import 'package:projac_mobile/app/projetos/bloc/projetos_bloc.dart';
 import 'package:projac_mobile/app/projetos/projetos_search_delegate.dart';
 import 'package:projac_mobile/app/projetos/repositories/projetos_repository.dart';
 
-final projetosGetIt = GetIt.asNewInstance();
+final projetosListGetIt = GetIt.asNewInstance();
+final projetoGetIt = GetIt.asNewInstance();
 
-void setupProjetosGetIt() {
+void setupProjetosListGetIt() {
   debugPrint('Projetos Initialized');
-  projetosGetIt
+  projetosListGetIt
     ..registerFactory<ProjetosRepository>(ProjetosRepository.new)
-    ..registerFactory<ProjetosBloc>(
-      () => ProjetosBloc(projetosGetIt<ProjetosRepository>()),
+    ..registerFactory<ProjetosListBloc>(
+      () => ProjetosListBloc(projetosListGetIt<ProjetosRepository>()),
     )
     ..registerFactory<ProjetosSearchDelegate>(
-      () => ProjetosSearchDelegate(projetosGetIt<ProjetosRepository>()),
-    )
-    ..registerFactory<ProjetoBloc>(
-      () => ProjetoBloc(projetosGetIt<ProjetosRepository>()),
+      () => ProjetosSearchDelegate(projetosListGetIt<ProjetosRepository>()),
     );
 }
 
-void disposeProjetosGetIt() {
+void setupProjetoGetIt() {
+  debugPrint('Projeto Initialized');
+  projetoGetIt
+    ..registerFactory<ProjetosRepository>(ProjetosRepository.new)
+    ..registerFactory<ProjetoBloc>(
+      () => ProjetoBloc(projetosListGetIt<ProjetosRepository>()),
+    );
+}
+
+void disposeProjetosListGetIt() {
+  debugPrint('ProjetosList Disposed');
+  projetosListGetIt.reset();
+}
+
+void disposeProjetoGetIt() {
   debugPrint('Projetos Disposed');
-  projetosGetIt.reset();
+  projetoGetIt.reset();
 }

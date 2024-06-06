@@ -16,15 +16,11 @@ class SettingsPage extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         child: Column(
           children: <Widget>[
-            StatefulBuilder(
-              builder: (context, setState) {
-                return SwitchListTile(
-                  title: const Text('Modo Escuro'),
-                  value: Theme.of(context).brightness == Brightness.dark,
-                  onChanged: (bool value) {
-                    context.read<ThemeCubit>().toggleTheme();
-                  },
-                );
+            SwitchListTile(
+              title: const Text('Modo Escuro'),
+              value: Theme.of(context).brightness == Brightness.dark,
+              onChanged: (bool value) {
+                context.read<ThemeCubit>().toggleTheme();
               },
             ),
           ],

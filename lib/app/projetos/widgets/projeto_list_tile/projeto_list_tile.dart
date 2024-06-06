@@ -1,33 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
+import 'package:projac_mobile/app/_widgets/top_corner_flag.dart';
 import 'package:projac_mobile/app/projetos/widgets/projeto_list_tile/area.dart';
-import 'package:projac_mobile/app/projetos/widgets/projeto_list_tile/responsavel.dart';
-import 'package:projac_mobile/core/api/models/projeto.dart';
+import 'package:projac_mobile/app/projetos/widgets/projeto_list_tile/coordenador.dart';
+import 'package:projac_mobile/core/api/models/projeto_list.dart';
+import 'package:projac_mobile/core/api/models/status_projeto.dart';
 import 'package:routefly/routefly.dart';
-
-extension on StatusProjeto {
-  Color get color {
-    switch (this) {
-      case StatusProjeto.emAndamento:
-        return Colors.orange;
-      case StatusProjeto.concluido:
-        return Colors.green;
-      case StatusProjeto.cancelado:
-        return Colors.red;
-    }
-  }
-
-  IconData get iconData {
-    switch (this) {
-      case StatusProjeto.emAndamento:
-        return Ionicons.construct;
-      case StatusProjeto.concluido:
-        return Ionicons.checkmark_done_sharp;
-      case StatusProjeto.cancelado:
-        return Ionicons.close;
-    }
-  }
-}
+import 'package:skeletonizer/skeletonizer.dart';
 
 class ProjetoListTile extends StatelessWidget {
   const ProjetoListTile({
@@ -36,7 +14,7 @@ class ProjetoListTile extends StatelessWidget {
     super.key,
   });
 
-  final Projeto projeto;
+  final ProjetoList projeto;
   final bool isLast;
 
   @override
@@ -50,7 +28,7 @@ class ProjetoListTile extends StatelessWidget {
               color: Theme.of(context).cardColor,
               border: Border(
                 left: BorderSide(
-                  color: projeto.area.color,
+                  color: projeto.area.cor,
                   width: 4,
                 ),
               ),
@@ -82,7 +60,7 @@ class ProjetoListTile extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 8),
-                  Responsavel(responsavel: projeto.pesquisadores.first),
+                  CoordenadorWidget(coordenador: projeto.coordenador),
                   const SizedBox(height: 2),
                   AreaWidget(area: projeto.area),
                 ],
@@ -94,14 +72,31 @@ class ProjetoListTile extends StatelessWidget {
           ),
           Positioned(
             right: 0,
-            child: TopCornerFlag(
-              color: projeto.status.color,
-              padding: const EdgeInsets.only(top: 2, right: 2),
-              borderRadius: 6,
-              icon: Icon(
-                projeto.status.iconData,
-                size: 20,
-                color: Colors.white,
+            child: Skeleton.replace(
+              replacement: Skeleton.keep(
+                child: TopCornerFlag(
+                  color: Theme.of(context).primaryColor,
+                  padding: const EdgeInsets.only(top: 4, right: 4),
+                  borderRadius: 6,
+                  icon: const SizedBox(
+                    height: 15,
+                    width: 15,
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                      strokeWidth: 2,
+                    ),
+                  ),
+                ),
+              ),
+              child: TopCornerFlag(
+                color: projeto.status.color,
+                padding: const EdgeInsets.only(top: 2, right: 2),
+                borderRadius: 6,
+                icon: Icon(
+                  projeto.status.iconData,
+                  size: 20,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
@@ -109,63 +104,4 @@ class ProjetoListTile extends StatelessWidget {
       ),
     );
   }
-}
-
-class TopCornerFlag extends StatelessWidget {
-  const TopCornerFlag({
-    required this.borderRadius,
-    required this.color,
-    required this.icon,
-    this.padding = EdgeInsets.zero,
-    super.key,
-  });
-
-  final double borderRadius;
-  final Color color;
-  final Widget icon;
-  final EdgeInsets padding;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.topRight,
-      children: [
-        ClipPath(
-          clipper: _TopCornerFlagClipper(borderRadius),
-          child: Container(
-            height: 40,
-            width: 40,
-            color: color,
-          ),
-        ),
-        Container(
-          margin: padding,
-          child: icon,
-        ),
-      ],
-    );
-  }
-}
-
-class _TopCornerFlagClipper extends CustomClipper<Path> {
-  _TopCornerFlagClipper(this.borderRadius);
-
-  final double borderRadius;
-
-  @override
-  Path getClip(Size size) {
-    final path = Path()
-      ..moveTo(0, 0)
-      ..lineTo(size.width - borderRadius, 0)
-      ..arcToPoint(
-        Offset(size.width, borderRadius),
-        radius: Radius.circular(borderRadius),
-      )
-      ..lineTo(size.width, size.height);
-
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
 }

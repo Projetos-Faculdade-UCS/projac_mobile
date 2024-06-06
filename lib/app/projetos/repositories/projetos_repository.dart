@@ -1,16 +1,17 @@
 import 'package:projac_mobile/core/api/models/projeto.dart';
+import 'package:projac_mobile/core/api/models/projeto_list.dart';
 import 'package:projac_mobile/core/get_it.dart';
 
 class ProjetosRepository {
-  Future<List<Projeto>> fetch() async {
-    return apiClient.getProjetos();
+  Future<List<ProjetoList>> fetch() async {
+    return (await apiClient).getProjetos();
   }
 
-  Future<List<Projeto>> search(String query) async {
-    return apiClient.getProjetos(query: query);
+  Future<List<ProjetoList>> search(String query) async {
+    return (await apiClient).getProjetos(query: query);
   }
 
   Future<Projeto> get(int id) async {
-    return apiClient.getProjeto(id);
+    return (await apiClient).getProjeto(id);
   }
 }

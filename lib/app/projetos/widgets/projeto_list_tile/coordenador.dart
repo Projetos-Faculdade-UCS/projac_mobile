@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:projac_mobile/core/api/models/pesquisador.dart';
+import 'package:projac_mobile/core/api/models/coordenador.dart';
 
-class Responsavel extends StatelessWidget {
-  const Responsavel({
-    required this.responsavel,
+class CoordenadorWidget extends StatelessWidget {
+  const CoordenadorWidget({
+    required this.coordenador,
     super.key,
   });
 
-  final Pesquisador responsavel;
+  final Coordenador coordenador;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class Responsavel extends StatelessWidget {
         ),
         const SizedBox(width: 4),
         Text(
-          responsavel.nome,
+          coordenador.nomeCompleto,
           style: const TextStyle(
             color: Colors.grey,
           ),

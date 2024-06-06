@@ -15,13 +15,13 @@ class AreaWidget extends StatelessWidget {
         Icon(
           Icons.circle,
           size: 12,
-          color: area.color,
+          color: area.cor,
         ),
         const SizedBox(width: 8),
         Text(
           area.nome,
           style: TextStyle(
-            color: area.color,
+            color: area.cor,
             fontWeight: FontWeight.w600,
           ),
         ),
