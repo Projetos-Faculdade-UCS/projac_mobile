@@ -15,6 +15,12 @@ PesquisadorDetail _$PesquisadorDetailFromJson(Map<String, dynamic> json) =>
       dataNascimento: json['dataNascimento'] as String,
       fotoPerfil: json['fotoPerfil'] as String,
       curriculoLattes: json['curriculoLattes'] as String,
+      projetos: (json['projetos'] as List<dynamic>)
+          .map((e) => ProjetoList.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      producoesAcademicas: (json['producoesAcademicas'] as List<dynamic>)
+          .map((e) => ProducaoAcademica.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$PesquisadorDetailToJson(PesquisadorDetail instance) =>
@@ -26,4 +32,6 @@ Map<String, dynamic> _$PesquisadorDetailToJson(PesquisadorDetail instance) =>
       'dataNascimento': instance.dataNascimento,
       'fotoPerfil': instance.fotoPerfil,
       'curriculoLattes': instance.curriculoLattes,
+      'projetos': instance.projetos,
+      'producoesAcademicas': instance.producoesAcademicas,
     };

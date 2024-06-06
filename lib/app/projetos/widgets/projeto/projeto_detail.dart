@@ -81,7 +81,9 @@ class ProjetoDetail extends StatelessWidget {
       PesquisadoresTab(projeto: projeto),
       FinanceiroTab(projeto: projeto),
       if (projeto.producoesAcademicas.isNotEmpty)
-        ProducoesAcademicasTab(projeto: projeto),
+        ProducoesAcademicasTab(
+          producoesAcademicas: projeto.producoesAcademicas,
+        ),
       if (projeto.agenciasFomento.isNotEmpty)
         AgenciasFomentoTab(projeto: projeto),
     ];

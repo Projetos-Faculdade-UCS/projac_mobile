@@ -6,6 +6,8 @@ import 'package:projac_mobile/app/pesquisadores/bloc/pesquisador/pesquisador_blo
 import 'package:projac_mobile/app/pesquisadores/get_it.dart';
 import 'package:projac_mobile/app/pesquisadores/widgets/pesquisador/cubit/pesquisador_app_bar_cubit.dart';
 import 'package:projac_mobile/app/pesquisadores/widgets/pesquisador/pesquisador_widget.dart';
+import 'package:projac_mobile/app/projetos/widgets/projeto/tabs/producoes_academicas_tab.dart';
+import 'package:projac_mobile/app/projetos/widgets/projetos_list_view.dart';
 import 'package:routefly/routefly.dart';
 
 class PesquisadorPage extends StatefulWidget {
@@ -164,11 +166,41 @@ class _PesquisadorPageState extends State<PesquisadorPage>
   }
 
   Widget _buildProjetosTab() {
-    return const Center(child: Text('Tab 2 content'));
+    return BlocBuilder<PesquisadorBloc, PesquisadorState>(
+      builder: (context, state) {
+        if (state is PesquisadorLoaded) {
+          return ProjetosListView(projetos: state.pesquisador.projetos);
+        }
+
+        if (state is PesquisadorError) {
+          return const Center(
+            child: Text('Erro ao carregar pesquisador'),
+          );
+        }
+
+        return ProjetosListView.skeleton;
+      },
+    );
   }
 
   Widget _buildProducoesTab() {
-    return const Center(child: Text('Tab 3 content'));
+    return BlocBuilder<PesquisadorBloc, PesquisadorState>(
+      builder: (context, state) {
+        if (state is PesquisadorLoaded) {
+          return ProducoesAcademicasTab(
+            producoesAcademicas: state.pesquisador.producoesAcademicas,
+          );
+        }
+
+        if (state is PesquisadorError) {
+          return const Center(
+            child: Text('Erro ao carregar pesquisador'),
+          );
+        }
+
+        return ProducoesAcademicasTab.skeleton;
+      },
+    );
   }
 
   Widget _buildTitle(PesquisadorAppBarState state) {
