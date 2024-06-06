@@ -22,8 +22,8 @@ void setupProjetosListGetIt() {
 
 void setupProjetoGetIt() {
   projetoGetIt
-    ..registerLazySingleton<ProjetosRepository>(ProjetosRepository.new)
-    ..registerLazySingleton<ProjetoBloc>(
+    ..registerFactory<ProjetosRepository>(ProjetosRepository.new)
+    ..registerFactory<ProjetoBloc>(
       () => ProjetoBloc(projetoGetIt<ProjetosRepository>()),
     );
   debugPrint('Projeto Initialized');

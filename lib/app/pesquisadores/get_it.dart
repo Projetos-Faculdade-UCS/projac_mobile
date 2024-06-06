@@ -10,34 +10,32 @@ final pesquisadoresGetIt = GetIt.asNewInstance();
 
 void setupPesquisadorGetIt() {
   pesquisadorGetIt
-    ..registerLazySingletonAsync<PesquisadoresRepository>(() async {
+    ..registerFactoryAsync<PesquisadoresRepository>(() async {
       final apiClient0 = await apiClient;
       return PesquisadoresRepository(apiClient0);
     })
-    ..registerLazySingletonAsync<PesquisadorBloc>(
+    ..registerFactoryAsync<PesquisadorBloc>(
       () async {
         return PesquisadorBloc(
           await pesquisadorGetIt.getAsync<PesquisadoresRepository>(),
         );
       },
-      dispose: (bloc) => bloc.close(),
     );
   debugPrint('Pesquisador Initialized');
 }
 
 void setupPesquisadoresGetIt() {
   pesquisadoresGetIt
-    ..registerLazySingletonAsync<PesquisadoresRepository>(() async {
+    ..registerFactoryAsync<PesquisadoresRepository>(() async {
       final apiClient0 = await apiClient;
       return PesquisadoresRepository(apiClient0);
     })
-    ..registerLazySingletonAsync<PesquisadoresBloc>(
+    ..registerFactoryAsync<PesquisadoresBloc>(
       () async {
         return PesquisadoresBloc(
           await pesquisadoresGetIt.getAsync<PesquisadoresRepository>(),
         );
       },
-      dispose: (bloc) => bloc.close(),
     );
   debugPrint('Pesquisadores Initialized');
 }
