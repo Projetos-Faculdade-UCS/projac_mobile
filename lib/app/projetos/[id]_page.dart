@@ -31,7 +31,8 @@ class _ProjetoPageState extends State<ProjetoPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => projetoGetIt<ProjetoBloc>()..add(ProjetoLoad(id)),
+      create: (context) =>
+          projetoGetIt.get<ProjetoBloc>()..add(ProjetoLoad(id)),
       child: BlocBuilder<ProjetoBloc, ProjetoState>(
         builder: (context, state) {
           return Scaffold(

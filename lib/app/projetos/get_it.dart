@@ -21,20 +21,20 @@ void setupProjetosListGetIt() {
 }
 
 void setupProjetoGetIt() {
-  debugPrint('Projeto Initialized');
   projetoGetIt
-    ..registerFactory<ProjetosRepository>(ProjetosRepository.new)
-    ..registerFactory<ProjetoBloc>(
-      () => ProjetoBloc(projetosListGetIt<ProjetosRepository>()),
+    ..registerLazySingleton<ProjetosRepository>(ProjetosRepository.new)
+    ..registerLazySingleton<ProjetoBloc>(
+      () => ProjetoBloc(projetoGetIt<ProjetosRepository>()),
     );
+  debugPrint('Projeto Initialized');
 }
 
 void disposeProjetosListGetIt() {
-  debugPrint('ProjetosList Disposed');
   projetosListGetIt.reset();
+  debugPrint('ProjetosList Disposed');
 }
 
 void disposeProjetoGetIt() {
-  debugPrint('Projetos Disposed');
   projetoGetIt.reset();
+  debugPrint('Projeto Disposed');
 }
