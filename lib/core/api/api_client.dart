@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:projac_mobile/core/api/models/area.dart';
-import 'package:projac_mobile/core/api/models/pesquisador.dart';
+import 'package:projac_mobile/core/api/models/pesquisador_detail.dart';
+import 'package:projac_mobile/core/api/models/pesquisador_list.dart';
 import 'package:projac_mobile/core/api/models/projeto.dart';
 import 'package:projac_mobile/core/api/models/projeto_list.dart';
 import 'package:retrofit/retrofit.dart';
@@ -23,8 +24,8 @@ abstract class ApiClient {
   Future<Area> getAreas();
 
   @GET('/pesquisadores')
-  Future<List<Pesquisador>> getPesquisadores();
+  Future<List<PesquisadorList>> getPesquisadores();
 
   @GET('/pesquisadores/{id}')
-  Future<Pesquisador> getPesquisador(@Path('id') int id);
+  Future<PesquisadorDetail> getPesquisador(@Path('id') int id);
 }

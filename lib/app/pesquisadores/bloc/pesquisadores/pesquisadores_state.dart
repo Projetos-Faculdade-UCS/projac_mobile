@@ -13,7 +13,7 @@ final class PesquisadoresLoading extends PesquisadoresState {}
 
 final class PesquisadoresLoaded extends PesquisadoresState {
   const PesquisadoresLoaded(this.pesquisadores);
-  final List<Pesquisador> pesquisadores;
+  final List<PesquisadorList> pesquisadores;
 
   @override
   List<Object> get props => [pesquisadores];

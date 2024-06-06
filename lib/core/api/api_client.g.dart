@@ -103,13 +103,13 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<List<Pesquisador>> getPesquisadores() async {
+  Future<List<PesquisadorList>> getPesquisadores() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio
-        .fetch<List<dynamic>>(_setStreamType<List<Pesquisador>>(Options(
+        .fetch<List<dynamic>>(_setStreamType<List<PesquisadorList>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -126,19 +126,19 @@ class _ApiClient implements ApiClient {
               baseUrl,
             ))));
     var value = _result.data!
-        .map((dynamic i) => Pesquisador.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) => PesquisadorList.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
 
   @override
-  Future<Pesquisador> getPesquisador(int id) async {
+  Future<PesquisadorDetail> getPesquisador(int id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<Pesquisador>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<PesquisadorDetail>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -154,7 +154,7 @@ class _ApiClient implements ApiClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = Pesquisador.fromJson(_result.data!);
+    final value = PesquisadorDetail.fromJson(_result.data!);
     return value;
   }
 

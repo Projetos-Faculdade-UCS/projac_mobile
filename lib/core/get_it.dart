@@ -21,6 +21,7 @@ void setupApi({
           hitCacheOnErrorExcept: [401, 403],
           maxStale: const Duration(days: 1),
           policy: CachePolicy.forceCache,
+          // policy: CachePolicy.noCache,
           priority: CachePriority.high,
         );
       },

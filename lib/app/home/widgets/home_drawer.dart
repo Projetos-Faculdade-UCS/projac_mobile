@@ -21,7 +21,7 @@ class HomeDrawer extends StatelessWidget {
             child: const Text('Drawer Header'),
           ),
           ListTile(
-            leading: const GradientIcon(Ionicons.library_outline),
+            leading: const GradientIcon(Ionicons.folder_open_outline),
             title: const Text('Projetos'),
             onTap: () {
               Routefly.pushNavigate(
