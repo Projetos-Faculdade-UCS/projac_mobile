@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:projac_mobile/app/_widgets/detail/detail_field.dart';
-import 'package:projac_mobile/app/pesquisadores/widgets/openable_picture.dart';
+import 'package:projac_mobile/app/pesquisadores/widgets/pesquisador/openable_picture.dart';
 import 'package:projac_mobile/core/api/models/pesquisador.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:url_launcher/url_launcher.dart';

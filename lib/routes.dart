@@ -2,10 +2,11 @@ import 'package:routefly/routefly.dart';
 
 import 'app/app_page.dart' as a0;
 import 'app/home/home_page.dart' as a1;
-import 'app/pesquisadores/[id]_page.dart' as a2;
-import 'app/projetos/[id]_page.dart' as a4;
-import 'app/projetos/projetos_page.dart' as a3;
-import 'app/settings/settings_page.dart' as a5;
+import 'app/pesquisadores/[id]_page.dart' as a3;
+import 'app/pesquisadores/pesquisadores_page.dart' as a2;
+import 'app/projetos/[id]_page.dart' as a6;
+import 'app/projetos/projetos_page.dart' as a5;
+import 'app/settings/settings_page.dart' as a4;
 
 List<RouteEntity> get routes => [
   RouteEntity(
@@ -27,30 +28,21 @@ List<RouteEntity> get routes => [
     ),
   ),
   RouteEntity(
+    key: '/pesquisadores',
+    uri: Uri.parse('/pesquisadores'),
+    routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
+      ctx,
+      settings,
+      const a2.PesquisadoresPage(),
+    ),
+  ),
+  RouteEntity(
     key: '/pesquisadores/[id]',
     uri: Uri.parse('/pesquisadores/[id]'),
     routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
       ctx,
       settings,
-      const a2.PesquisadorPage(),
-    ),
-  ),
-  RouteEntity(
-    key: '/projetos',
-    uri: Uri.parse('/projetos'),
-    routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
-      ctx,
-      settings,
-      const a3.ProjetosPage(),
-    ),
-  ),
-  RouteEntity(
-    key: '/projetos/[id]',
-    uri: Uri.parse('/projetos/[id]'),
-    routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
-      ctx,
-      settings,
-      const a4.ProjetoPage(),
+      const a3.PesquisadorPage(),
     ),
   ),
   RouteEntity(
@@ -59,7 +51,25 @@ List<RouteEntity> get routes => [
     routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
       ctx,
       settings,
-      const a5.SettingsPage(),
+      const a4.SettingsPage(),
+    ),
+  ),
+  RouteEntity(
+    key: '/projetos',
+    uri: Uri.parse('/projetos'),
+    routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
+      ctx,
+      settings,
+      const a5.ProjetosPage(),
+    ),
+  ),
+  RouteEntity(
+    key: '/projetos/[id]',
+    uri: Uri.parse('/projetos/[id]'),
+    routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
+      ctx,
+      settings,
+      const a6.ProjetoPage(),
     ),
   ),
 ];
@@ -71,9 +81,9 @@ const routePaths = (
     path: '/pesquisadores',
     $id: '/pesquisadores/[id]',
   ),
+  settings: '/settings',
   projetos: (
     path: '/projetos',
     $id: '/projetos/[id]',
   ),
-  settings: '/settings',
 );

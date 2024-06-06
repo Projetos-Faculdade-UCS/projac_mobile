@@ -30,6 +30,15 @@ class HomeDrawer extends StatelessWidget {
             },
           ),
           ListTile(
+            leading: const GradientIcon(Ionicons.people_outline),
+            title: const Text('Pesquisadores'),
+            onTap: () {
+              Routefly.pushNavigate(
+                routePaths.pesquisadores.path,
+              );
+            },
+          ),
+          ListTile(
             leading: const GradientIcon(Ionicons.settings_outline),
             title: const Text('Configurações'),
             onTap: () {

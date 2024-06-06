@@ -1,6 +1,6 @@
 import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
-import 'package:projac_mobile/app/pesquisadores/widgets/dismissible_picture.dart';
+import 'package:projac_mobile/app/pesquisadores/widgets/pesquisador/dismissible_picture.dart';
 
 class OpenablePicture extends StatelessWidget {
   const OpenablePicture({
