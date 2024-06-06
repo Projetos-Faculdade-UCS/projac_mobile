@@ -20,7 +20,7 @@ void setupApi({
           store: HiveCacheStore('${dir.path}/hiveCache'),
           hitCacheOnErrorExcept: [401, 403],
           maxStale: const Duration(days: 1),
-          policy: CachePolicy.noCache,
+          policy: CachePolicy.forceCache,
           priority: CachePriority.high,
         );
       },
