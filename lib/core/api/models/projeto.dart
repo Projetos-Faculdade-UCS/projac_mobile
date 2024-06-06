@@ -1,8 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:projac_mobile/core/api/models/agencia_fomento.dart';
 import 'package:projac_mobile/core/api/models/area.dart';
-import 'package:projac_mobile/core/api/models/pesquisador.dart';
+import 'package:projac_mobile/core/api/models/pesquisador_projeto.dart';
 import 'package:projac_mobile/core/api/models/producao_academica.dart';
+import 'package:projac_mobile/core/api/models/status_projeto.dart';
 import 'package:projac_mobile/core/api/models/valor_arrecadado.dart';
 
 part 'projeto.g.dart';
@@ -22,9 +23,39 @@ class Projeto {
     required this.subareas,
     required this.pesquisadores,
     required this.agenciasFomento,
+    required this.status,
     this.descricao,
     this.dataConclusao,
   });
+
+  factory Projeto.skeleton() => Projeto(
+        id: 0,
+        titulo: 'Título Qualquer',
+        objetivo: 'Objetivo qualquer' * 3,
+        dataCriacao: '2021-01-01',
+        valorSolicitado: 0,
+        valorTotalArrecadado: 0,
+        descricao: 'Descrição qualquer de um proj' * 10,
+        area: BaseArea.skeleton(),
+        producoesAcademicas: [
+          ProducaoAcademica.skeleton(),
+          ProducaoAcademica.skeleton(),
+        ],
+        valoresArrecadados: [],
+        subareas: [
+          BaseArea.skeleton(),
+          BaseArea.skeleton(),
+        ],
+        pesquisadores: [
+          PesquisadorProjeto.skeleton(),
+          PesquisadorProjeto.skeleton(),
+        ],
+        agenciasFomento: [
+          AgenciaFomento.skeleton(),
+          AgenciaFomento.skeleton(),
+        ],
+        status: StatusProjeto.emAndamento,
+      );
 
   factory Projeto.fromJson(Map<String, dynamic> json) =>
       _$ProjetoFromJson(json);
@@ -37,12 +68,15 @@ class Projeto {
   final String? descricao;
   final String? dataConclusao;
   final double valorTotalArrecadado;
-  final String area;
+  final BaseArea area;
   final List<ProducaoAcademica> producoesAcademicas;
   final List<ValorArrecadado> valoresArrecadados;
   final List<BaseArea> subareas;
-  final List<Pesquisador> pesquisadores;
+  final List<PesquisadorProjeto> pesquisadores;
   final List<AgenciaFomento> agenciasFomento;
+
+  @StatusProjetoConverter()
+  final StatusProjeto status;
 
   Map<String, dynamic> toJson() => _$ProjetoToJson(this);
 }

@@ -19,13 +19,14 @@ class _ApiClient implements ApiClient {
   String? baseUrl;
 
   @override
-  Future<List<Projeto>> getProjetos() async {
+  Future<List<ProjetoList>> getProjetos({String? query}) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'query': query};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result =
-        await _dio.fetch<List<dynamic>>(_setStreamType<List<Projeto>>(Options(
+    final _result = await _dio
+        .fetch<List<dynamic>>(_setStreamType<List<ProjetoList>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -42,7 +43,7 @@ class _ApiClient implements ApiClient {
               baseUrl,
             ))));
     var value = _result.data!
-        .map((dynamic i) => Projeto.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) => ProjetoList.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
@@ -131,20 +132,20 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<Usuario> getUser() async {
+  Future<Pesquisador> getPesquisador(int id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Usuario>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<Pesquisador>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/usuario',
+              '/pesquisadores/${id}',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -153,7 +154,7 @@ class _ApiClient implements ApiClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = Usuario.fromJson(_result.data!);
+    final value = Pesquisador.fromJson(_result.data!);
     return value;
   }
 

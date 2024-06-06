@@ -13,7 +13,7 @@ Projeto _$ProjetoFromJson(Map<String, dynamic> json) => Projeto(
       dataCriacao: json['dataCriacao'] as String,
       valorSolicitado: (json['valorSolicitado'] as num).toDouble(),
       valorTotalArrecadado: (json['valorTotalArrecadado'] as num).toDouble(),
-      area: json['area'] as String,
+      area: BaseArea.fromJson(json['area'] as Map<String, dynamic>),
       producoesAcademicas: (json['producoesAcademicas'] as List<dynamic>)
           .map((e) => ProducaoAcademica.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -24,11 +24,12 @@ Projeto _$ProjetoFromJson(Map<String, dynamic> json) => Projeto(
           .map((e) => BaseArea.fromJson(e as Map<String, dynamic>))
           .toList(),
       pesquisadores: (json['pesquisadores'] as List<dynamic>)
-          .map((e) => Pesquisador.fromJson(e as Map<String, dynamic>))
+          .map((e) => PesquisadorProjeto.fromJson(e as Map<String, dynamic>))
           .toList(),
       agenciasFomento: (json['agenciasFomento'] as List<dynamic>)
           .map((e) => AgenciaFomento.fromJson(e as Map<String, dynamic>))
           .toList(),
+      status: const StatusProjetoConverter().fromJson(json['status'] as String),
       descricao: json['descricao'] as String?,
       dataConclusao: json['dataConclusao'] as String?,
     );
@@ -48,4 +49,5 @@ Map<String, dynamic> _$ProjetoToJson(Projeto instance) => <String, dynamic>{
       'subareas': instance.subareas,
       'pesquisadores': instance.pesquisadores,
       'agenciasFomento': instance.agenciasFomento,
+      'status': const StatusProjetoConverter().toJson(instance.status),
     };

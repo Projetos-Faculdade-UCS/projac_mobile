@@ -6,9 +6,11 @@ class ThemeCubit extends HydratedCubit<ThemeData> {
   ThemeCubit() : super(MainTheme.lightTheme);
 
   void toggleTheme() {
-    emit(state.brightness == Brightness.light
-        ? MainTheme.darkTheme
-        : MainTheme.lightTheme,);
+    emit(
+      state.brightness == Brightness.light
+          ? MainTheme.darkTheme
+          : MainTheme.lightTheme,
+    );
   }
 
   @override

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
@@ -8,11 +9,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.title,
     this.centerTitle,
     this.automaticallyImplyLeading = true,
+    this.actions,
+    this.bottom,
   });
   final Widget? leading;
   final Widget? title;
   final bool? centerTitle;
   final bool automaticallyImplyLeading;
+  final List<Widget>? actions;
+  final PreferredSizeWidget? bottom;
 
   @override
   Widget build(BuildContext context) {
@@ -25,18 +30,22 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     if (leadingIcon == null && automaticallyImplyLeading) {
       if (hasDrawer) {
-        leadingIcon = IconButton(
-          icon: const Icon(
-            Ionicons.menu_outline,
+        leadingIcon = Skeleton.keep(
+          child: IconButton(
+            icon: const Icon(
+              Ionicons.menu_outline,
+            ),
+            onPressed: () => Scaffold.of(context).openDrawer(),
           ),
-          onPressed: () => Scaffold.of(context).openDrawer(),
         );
       } else {
         if (canPop) {
-          leadingIcon = IconButton(
-            onPressed: () => Navigator.of(context).pop(),
-            icon: const Icon(
-              Ionicons.arrow_back_outline,
+          leadingIcon = Skeleton.keep(
+            child: IconButton(
+              onPressed: () => Navigator.of(context).pop(),
+              icon: const Icon(
+                Ionicons.arrow_back_outline,
+              ),
             ),
           );
         }
@@ -46,10 +55,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       leading: leadingIcon,
       title: title,
+      bottom: bottom,
       centerTitle: centerTitle,
+      actions: actions,
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize {
+    var height = kToolbarHeight;
+    if (bottom != null) {
+      height += bottom!.preferredSize.height;
+    }
+
+    return Size.fromHeight(height);
+  }
 }

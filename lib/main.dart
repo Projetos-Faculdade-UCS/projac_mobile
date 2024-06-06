@@ -5,6 +5,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:projac_mobile/app/app_widget.dart';
 import 'package:projac_mobile/core/env.dart';
 import 'package:projac_mobile/core/get_it.dart';
+import 'package:projac_mobile/core/theme/theme_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,6 +14,8 @@ void main() async {
         ? HydratedStorage.webStorageDirectory
         : await getApplicationDocumentsDirectory(),
   );
+
+  getIt.registerLazySingleton(ThemeCubit.new);
 
   setupApi(
     apiKey: Env.apiKey,
