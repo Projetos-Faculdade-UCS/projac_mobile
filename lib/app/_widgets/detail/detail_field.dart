@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:projac_mobile/app/_widgets/gradient_icon.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class DetailField extends StatelessWidget {
   const DetailField({
@@ -47,11 +48,22 @@ class DetailField extends StatelessWidget {
               top: 12,
             ),
             child: icon != null
-                ? GradientIcon(
-                    icon,
-                    size: 20,
+                ? Skeleton.keep(
+                    child: GradientIcon(
+                      icon,
+                      size: 20,
+                    ),
                   )
-                : leading,
+                : Skeleton.replace(
+                    replacement: const SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 3,
+                      ),
+                    ),
+                    child: leading ?? const SizedBox.shrink(),
+                  ),
           ),
           Expanded(
             child: ListTile(

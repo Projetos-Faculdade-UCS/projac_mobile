@@ -3,8 +3,8 @@ import 'package:ionicons/ionicons.dart';
 import 'package:projac_mobile/app/_widgets/custom_badge.dart';
 import 'package:projac_mobile/app/_widgets/detail/detail_field.dart';
 import 'package:projac_mobile/app/_widgets/outlined_badge.dart';
-import 'package:projac_mobile/app/_widgets/projeto_status_extension.dart';
 import 'package:projac_mobile/core/api/models/projeto.dart';
+import 'package:projac_mobile/core/api/models/status_projeto.dart';
 import 'package:readmore/readmore.dart';
 import 'package:super_sliver_list/super_sliver_list.dart';
 
@@ -69,10 +69,10 @@ class GeralTab extends StatelessWidget {
           runSpacing: 8,
           children: [
             CustomBadge(
-              color: projeto.area.color,
+              color: projeto.area.cor,
               boxShadow: [
                 BoxShadow(
-                  color: projeto.area.color.withOpacity(0.5),
+                  color: projeto.area.cor.withOpacity(0.5),
                   blurRadius: 4,
                   offset: const Offset(0, 2),
                 ),
@@ -81,10 +81,10 @@ class GeralTab extends StatelessWidget {
             ),
             ...projeto.subareas.map(
               (subarea) => OutlinedBadge(
-                color: subarea.color,
+                color: subarea.cor,
                 boxShadow: [
                   BoxShadow(
-                    color: subarea.color.withOpacity(0.5),
+                    color: subarea.cor.withOpacity(0.5),
                     blurRadius: 4,
                     offset: const Offset(0, 2),
                   ),

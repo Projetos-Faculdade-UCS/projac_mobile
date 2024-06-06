@@ -15,6 +15,7 @@ class ProjetoBloc extends Bloc<ProjetoEvent, ProjetoState> {
         emit(ProjetoLoaded(projeto));
       } catch (e) {
         emit(ProjetoError(e));
+        rethrow;
       }
     });
   }

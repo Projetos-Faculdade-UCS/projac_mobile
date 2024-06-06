@@ -38,7 +38,11 @@ List<RouteEntity> get routes => [
   RouteEntity(
     key: '/projetos',
     uri: Uri.parse('/projetos'),
-    routeBuilder: a3.routeBuilder,
+    routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
+      ctx,
+      settings,
+      const a3.ProjetosPage(),
+    ),
   ),
   RouteEntity(
     key: '/projetos/[id]',

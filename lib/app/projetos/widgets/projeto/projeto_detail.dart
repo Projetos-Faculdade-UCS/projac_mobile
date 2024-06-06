@@ -9,6 +9,7 @@ import 'package:projac_mobile/app/projetos/widgets/projeto/tabs/geral_tab.dart';
 import 'package:projac_mobile/app/projetos/widgets/projeto/tabs/pesquisadores_tab.dart';
 import 'package:projac_mobile/app/projetos/widgets/projeto/tabs/producoes_academicas_tab.dart';
 import 'package:projac_mobile/core/api/models/projeto.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class ProjetoDetail extends StatelessWidget {
   const ProjetoDetail({
@@ -17,10 +18,21 @@ class ProjetoDetail extends StatelessWidget {
   });
   final Projeto projeto;
 
+  static Widget get skeleton {
+    return Skeletonizer(
+      effect: ShimmerEffect(
+        baseColor: Colors.grey[300]!.withAlpha(100),
+        highlightColor: Colors.white.withAlpha(100),
+      ),
+      child: ProjetoDetail(projeto: Projeto.skeleton()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final tabs = _buildTabs(context);
     return DefaultTabController(
-      length: 5,
+      length: tabs.length,
       child: Scaffold(
         appBar: CustomAppBar(
           title: BlocBuilder<ProjetoBloc, ProjetoState>(
@@ -33,8 +45,9 @@ class ProjetoDetail extends StatelessWidget {
             },
           ),
           bottom: TabBar(
+            enableFeedback: true,
             isScrollable: true,
-            tabs: _buildTabs(context),
+            tabs: tabs,
           ),
         ),
         body: TabBarView(

@@ -3,6 +3,7 @@ import 'package:projac_mobile/core/api/models/agencia_fomento.dart';
 import 'package:projac_mobile/core/api/models/area.dart';
 import 'package:projac_mobile/core/api/models/pesquisador_projeto.dart';
 import 'package:projac_mobile/core/api/models/producao_academica.dart';
+import 'package:projac_mobile/core/api/models/status_projeto.dart';
 import 'package:projac_mobile/core/api/models/valor_arrecadado.dart';
 
 part 'projeto.g.dart';
@@ -27,6 +28,35 @@ class Projeto {
     this.dataConclusao,
   });
 
+  factory Projeto.skeleton() => Projeto(
+        id: 0,
+        titulo: 'Título Qualquer',
+        objetivo: 'Objetivo qualquer' * 3,
+        dataCriacao: '2021-01-01',
+        valorSolicitado: 0,
+        valorTotalArrecadado: 0,
+        descricao: 'Descrição qualquer de um proj' * 10,
+        area: BaseArea.skeleton(),
+        producoesAcademicas: [
+          ProducaoAcademica.skeleton(),
+          ProducaoAcademica.skeleton(),
+        ],
+        valoresArrecadados: [],
+        subareas: [
+          BaseArea.skeleton(),
+          BaseArea.skeleton(),
+        ],
+        pesquisadores: [
+          PesquisadorProjeto.skeleton(),
+          PesquisadorProjeto.skeleton(),
+        ],
+        agenciasFomento: [
+          AgenciaFomento.skeleton(),
+          AgenciaFomento.skeleton(),
+        ],
+        status: StatusProjeto.emAndamento,
+      );
+
   factory Projeto.fromJson(Map<String, dynamic> json) =>
       _$ProjetoFromJson(json);
 
@@ -49,53 +79,4 @@ class Projeto {
   final StatusProjeto status;
 
   Map<String, dynamic> toJson() => _$ProjetoToJson(this);
-}
-
-class StatusProjetoConverter implements JsonConverter<StatusProjeto, String> {
-  const StatusProjetoConverter();
-
-  @override
-  StatusProjeto fromJson(String json) {
-    switch (json) {
-      case 'EM_ANDAMENTO':
-        return StatusProjeto.emAndamento;
-      case 'CONCLUIDO':
-        return StatusProjeto.concluido;
-      case 'CANCELADO':
-        return StatusProjeto.cancelado;
-      default:
-        throw ArgumentError.value(json);
-    }
-  }
-
-  @override
-  String toJson(StatusProjeto object) {
-    switch (object) {
-      case StatusProjeto.emAndamento:
-        return 'EM_ANDAMENTO';
-      case StatusProjeto.concluido:
-        return 'CONCLUIDO';
-      case StatusProjeto.cancelado:
-        return 'CANCELADO';
-    }
-  }
-}
-
-enum StatusProjeto {
-  emAndamento,
-  concluido,
-  cancelado,
-}
-
-extension StatusProjetoExtension on StatusProjeto {
-  String get name {
-    switch (this) {
-      case StatusProjeto.emAndamento:
-        return 'Em andamento';
-      case StatusProjeto.concluido:
-        return 'Concluído';
-      case StatusProjeto.cancelado:
-        return 'Cancelado';
-    }
-  }
 }

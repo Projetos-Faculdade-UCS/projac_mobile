@@ -13,6 +13,14 @@ class ProducaoAcademica {
 
   factory ProducaoAcademica.fromJson(Map<String, dynamic> json) =>
       _$ProducaoAcademicaFromJson(json);
+
+  factory ProducaoAcademica.skeleton() => ProducaoAcademica(
+        id: 0,
+        titulo: 'Título Qualquer',
+        tipo: 'Tipo Qualquer',
+        descricao: 'Descrição Qualquer',
+      );
+
   final int id;
   final String titulo;
   final String tipo;

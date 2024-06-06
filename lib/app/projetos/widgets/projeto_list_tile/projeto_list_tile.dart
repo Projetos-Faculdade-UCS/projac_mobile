@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:projac_mobile/app/_widgets/projeto_status_extension.dart';
 import 'package:projac_mobile/app/_widgets/top_corner_flag.dart';
 import 'package:projac_mobile/app/projetos/widgets/projeto_list_tile/area.dart';
-import 'package:projac_mobile/app/projetos/widgets/projeto_list_tile/responsavel.dart';
-import 'package:projac_mobile/core/api/models/projeto.dart';
+import 'package:projac_mobile/app/projetos/widgets/projeto_list_tile/coordenador.dart';
+import 'package:projac_mobile/core/api/models/projeto_list.dart';
+import 'package:projac_mobile/core/api/models/status_projeto.dart';
 import 'package:routefly/routefly.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class ProjetoListTile extends StatelessWidget {
   const ProjetoListTile({
@@ -13,7 +14,7 @@ class ProjetoListTile extends StatelessWidget {
     super.key,
   });
 
-  final Projeto projeto;
+  final ProjetoList projeto;
   final bool isLast;
 
   @override
@@ -27,7 +28,7 @@ class ProjetoListTile extends StatelessWidget {
               color: Theme.of(context).cardColor,
               border: Border(
                 left: BorderSide(
-                  color: projeto.area.color,
+                  color: projeto.area.cor,
                   width: 4,
                 ),
               ),
@@ -59,7 +60,7 @@ class ProjetoListTile extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 8),
-                  Responsavel(responsavel: projeto.pesquisadores.first),
+                  CoordenadorWidget(coordenador: projeto.coordenador),
                   const SizedBox(height: 2),
                   AreaWidget(area: projeto.area),
                 ],
@@ -71,14 +72,31 @@ class ProjetoListTile extends StatelessWidget {
           ),
           Positioned(
             right: 0,
-            child: TopCornerFlag(
-              color: projeto.status.color,
-              padding: const EdgeInsets.only(top: 2, right: 2),
-              borderRadius: 6,
-              icon: Icon(
-                projeto.status.iconData,
-                size: 20,
-                color: Colors.white,
+            child: Skeleton.replace(
+              replacement: Skeleton.keep(
+                child: TopCornerFlag(
+                  color: Theme.of(context).primaryColor,
+                  padding: const EdgeInsets.only(top: 4, right: 4),
+                  borderRadius: 6,
+                  icon: const SizedBox(
+                    height: 15,
+                    width: 15,
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                      strokeWidth: 2,
+                    ),
+                  ),
+                ),
+              ),
+              child: TopCornerFlag(
+                color: projeto.status.color,
+                padding: const EdgeInsets.only(top: 2, right: 2),
+                borderRadius: 6,
+                icon: Icon(
+                  projeto.status.iconData,
+                  size: 20,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),

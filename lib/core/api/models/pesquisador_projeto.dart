@@ -16,6 +16,16 @@ class PesquisadorProjeto {
 
   factory PesquisadorProjeto.fromJson(Map<String, dynamic> json) =>
       _$PesquisadorProjetoFromJson(json);
+
+  factory PesquisadorProjeto.skeleton() => PesquisadorProjeto(
+        id: 0,
+        nome: 'Nome Qualquer',
+        sobrenome: 'Sobrenome Qualquer',
+        cargo: 'Cargo Qualquer',
+        horas: 0,
+        fotoPerfil: '',
+      );
+
   final int id;
   final String nome;
   final String sobrenome;

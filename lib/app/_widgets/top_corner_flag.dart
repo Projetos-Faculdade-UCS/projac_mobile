@@ -20,7 +20,10 @@ class TopCornerFlag extends StatelessWidget {
       alignment: Alignment.topRight,
       children: [
         ClipPath(
-          clipper: _TopCornerFlagClipper(borderRadius),
+          clipper: _TopCornerFlagClipper(
+            borderRadius,
+            color,
+          ),
           child: Container(
             height: 40,
             width: 40,
@@ -37,9 +40,13 @@ class TopCornerFlag extends StatelessWidget {
 }
 
 class _TopCornerFlagClipper extends CustomClipper<Path> {
-  _TopCornerFlagClipper(this.borderRadius);
+  _TopCornerFlagClipper(
+    this.borderRadius,
+    this.color,
+  );
 
   final double borderRadius;
+  final Color color;
 
   @override
   Path getClip(Size size) {
@@ -57,6 +64,8 @@ class _TopCornerFlagClipper extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(covariant _TopCornerFlagClipper oldClipper) {
-    return borderRadius != oldClipper.borderRadius || oldClipper != this;
+    return borderRadius != oldClipper.borderRadius ||
+        oldClipper != this ||
+        color != oldClipper.color;
   }
 }
