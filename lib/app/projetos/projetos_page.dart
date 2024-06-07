@@ -16,15 +16,19 @@ class ProjetosPage extends StatefulWidget {
 }
 
 class _ProjetosPageState extends State<ProjetosPage> {
+  late final bool disposeGetIt;
+
   @override
   void initState() {
-    setupProjetosListGetIt();
+    disposeGetIt = setupProjetosListGetIt();
     super.initState();
   }
 
   @override
   void dispose() {
-    disposeProjetosListGetIt();
+    disposeProjetosListGetIt(
+      dispose: disposeGetIt,
+    );
     super.dispose();
   }
 

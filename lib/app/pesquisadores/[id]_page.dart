@@ -20,37 +20,39 @@ class PesquisadorPage extends StatefulWidget {
 class _PesquisadorPageState extends State<PesquisadorPage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  late final bool disposeGetIt;
+  final pesquisadorAppBarCubit = PesquisadorAppBarCubit();
+  late final Future<PesquisadorBloc> bloc;
 
   @override
   void initState() {
     super.initState();
-    setupPesquisadorGetIt();
-    pesquisadorGetIt.registerSingleton<PesquisadorAppBarCubit>(
-      PesquisadorAppBarCubit(),
-    );
+    disposeGetIt = setupPesquisadorGetIt();
     _tabController = TabController(
       length: 3,
       vsync: this,
     );
     _tabController.addListener(_handleTabSelection);
+    bloc = pesquisadorGetIt.getAsync<PesquisadorBloc>();
   }
 
   @override
   void dispose() {
-    disposePesquisadorGetIt();
+    disposePesquisadorGetIt(
+      dispose: disposeGetIt,
+    );
     _tabController.dispose();
     super.dispose();
   }
 
   Future<void> _handleTabSelection() async {
-    final cubit = pesquisadorGetIt.get<PesquisadorAppBarCubit>();
     if (_tabController.index == 0) {
-      cubit.hidePesquisador();
+      pesquisadorAppBarCubit.hidePesquisador();
     } else {
-      final state = (await pesquisadorGetIt.getAsync<PesquisadorBloc>()).state;
+      final state = (await bloc).state;
       if (state is PesquisadorLoaded) {
         final pesquisadorName = state.pesquisador.nomeCompleto;
-        cubit.showPesquisador(pesquisadorName);
+        pesquisadorAppBarCubit.showPesquisador(pesquisadorName);
       }
     }
   }
@@ -59,7 +61,7 @@ class _PesquisadorPageState extends State<PesquisadorPage>
   Widget build(BuildContext context) {
     final id = Routefly.query['id'] as int;
     return FutureBuilder<PesquisadorBloc>(
-      future: pesquisadorGetIt.getAsync<PesquisadorBloc>(),
+      future: bloc,
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const Center(
@@ -69,7 +71,7 @@ class _PesquisadorPageState extends State<PesquisadorPage>
         return BlocProvider<PesquisadorBloc>(
           create: (context) => snapshot.data!..add(PesquisadorLoad(id)),
           child: BlocProvider(
-            create: (context) => pesquisadorGetIt.get<PesquisadorAppBarCubit>(),
+            create: (context) => pesquisadorAppBarCubit,
             child: Scaffold(
               appBar: CustomAppBar(
                 title:

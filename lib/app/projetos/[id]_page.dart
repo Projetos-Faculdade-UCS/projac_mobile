@@ -14,17 +14,18 @@ class ProjetoPage extends StatefulWidget {
 
 class _ProjetoPageState extends State<ProjetoPage> {
   late final int id;
+  late final bool disposeGetIt;
 
   @override
   void initState() {
     super.initState();
-    setupProjetoGetIt();
+    disposeGetIt = setupProjetoGetIt();
     id = Routefly.query['id'] as int;
   }
 
   @override
   void dispose() {
-    disposeProjetoGetIt();
+    disposeProjetoGetIt(dispose: disposeGetIt);
     super.dispose();
   }
 

@@ -66,7 +66,7 @@ class ProjetoListTile extends StatelessWidget {
                 ],
               ),
               onTap: () {
-                Routefly.pushNavigate('/projetos/${projeto.id}');
+                Routefly.push('/projetos/${projeto.id}');
               },
             ),
           ),

@@ -13,15 +13,19 @@ class PesquisadoresPage extends StatefulWidget {
 }
 
 class _PesquisadoresPageState extends State<PesquisadoresPage> {
+  late final bool disposeGetIt;
+
   @override
   void initState() {
     super.initState();
-    setupPesquisadoresGetIt();
+    disposeGetIt = setupPesquisadoresGetIt();
   }
 
   @override
   void dispose() {
-    disposePesquisadoresGetIt();
+    disposePesquisadoresGetIt(
+      dispose: disposeGetIt,
+    );
     super.dispose();
   }
 

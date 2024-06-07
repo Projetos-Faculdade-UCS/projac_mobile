@@ -8,7 +8,12 @@ import 'package:projac_mobile/core/get_it.dart';
 final pesquisadorGetIt = GetIt.asNewInstance();
 final pesquisadoresGetIt = GetIt.asNewInstance();
 
-void setupPesquisadorGetIt() {
+bool setupPesquisadorGetIt() {
+  if (pesquisadorGetIt.isRegistered<PesquisadorBloc>()) {
+    debugPrint('Pesquisador already initialized');
+    return false;
+  }
+
   pesquisadorGetIt
     ..registerFactoryAsync<PesquisadoresRepository>(() async {
       final apiClient0 = await apiClient;
@@ -22,9 +27,16 @@ void setupPesquisadorGetIt() {
       },
     );
   debugPrint('Pesquisador Initialized');
+
+  return true;
 }
 
-void setupPesquisadoresGetIt() {
+bool setupPesquisadoresGetIt() {
+  if (pesquisadoresGetIt.isRegistered<PesquisadoresBloc>()) {
+    debugPrint('Pesquisadores already initialized');
+    return false;
+  }
+
   pesquisadoresGetIt
     ..registerFactoryAsync<PesquisadoresRepository>(() async {
       final apiClient0 = await apiClient;
@@ -38,14 +50,22 @@ void setupPesquisadoresGetIt() {
       },
     );
   debugPrint('Pesquisadores Initialized');
+
+  return true;
 }
 
-Future<void> disposePesquisadorGetIt() async {
+Future<void> disposePesquisadorGetIt({
+  required bool dispose,
+}) async {
+  if (!dispose) return;
   await pesquisadorGetIt.reset();
   debugPrint('Pesquisador Disposed');
 }
 
-Future<void> disposePesquisadoresGetIt() async {
+Future<void> disposePesquisadoresGetIt({
+  required bool dispose,
+}) async {
+  if (!dispose) return;
   await pesquisadoresGetIt.reset();
   debugPrint('Pesquisadores Disposed');
 }
