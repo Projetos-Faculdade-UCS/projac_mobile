@@ -63,6 +63,13 @@ class ProjetoListTile extends StatelessWidget {
                   CoordenadorWidget(coordenador: projeto.coordenador),
                   const SizedBox(height: 2),
                   AreaWidget(area: projeto.area),
+                  if (projeto.horas != null) ...[
+                    const SizedBox(height: 2),
+                    Text(
+                      'Horas Trabalhadas: ${projeto.horas}',
+                      style: Theme.of(context).textTheme.labelMedium,
+                    ),
+                  ],
                 ],
               ),
               onTap: () {

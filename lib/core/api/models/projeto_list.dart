@@ -15,6 +15,7 @@ class ProjetoList {
     required this.status,
     required this.area,
     required this.coordenador,
+    this.horas,
   });
 
   factory ProjetoList.fromJson(Map<String, dynamic> json) =>
@@ -38,6 +39,10 @@ class ProjetoList {
   final StatusProjeto status;
   final BaseArea area;
   final Coordenador coordenador;
+
+  /// Horas de trabalho do projeto (somente ira aparecer
+  /// na listagem de projetos de um pesquisador)
+  final int? horas;
 
   Map<String, dynamic> toJson() => _$ProjetoListToJson(this);
 }

@@ -15,6 +15,7 @@ ProjetoList _$ProjetoListFromJson(Map<String, dynamic> json) => ProjetoList(
       area: BaseArea.fromJson(json['area'] as Map<String, dynamic>),
       coordenador:
           Coordenador.fromJson(json['coordenador'] as Map<String, dynamic>),
+      horas: (json['horas'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$ProjetoListToJson(ProjetoList instance) =>
@@ -26,4 +27,5 @@ Map<String, dynamic> _$ProjetoListToJson(ProjetoList instance) =>
       'status': const StatusProjetoConverter().toJson(instance.status),
       'area': instance.area,
       'coordenador': instance.coordenador,
+      'horas': instance.horas,
     };
