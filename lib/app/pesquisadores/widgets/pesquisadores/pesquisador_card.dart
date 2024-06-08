@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:projac_mobile/app/_widgets/gradient_icon.dart';
@@ -14,10 +15,12 @@ class PesquisadorCard extends StatelessWidget {
 
   final PesquisadorList pesquisador;
 
+  static Widget? _prototype;
+
   static Widget get prototype {
     final pesquisador = PesquisadorList.skeleton();
 
-    return PesquisadorCard(pesquisador: pesquisador);
+    return _prototype ??= PesquisadorCard(pesquisador: pesquisador);
   }
 
   @override
@@ -43,8 +46,24 @@ class PesquisadorCard extends StatelessWidget {
                 shape: BoxShape.circle,
               ),
             ),
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(pesquisador.fotoPerfil),
+            child: CachedNetworkImage(
+              height: 40,
+              width: 40,
+              memCacheHeight: 40,
+              memCacheWidth: 40,
+              imageUrl: pesquisador.fotoPerfil,
+              placeholder: (context, url) => Skeletonizer(
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300]!.withOpacity(.3),
+                    shape: BoxShape.circle,
+                  ),
+                ),
+              ),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+              imageBuilder: (context, imageProvider) => CircleAvatar(
+                backgroundImage: imageProvider,
+              ),
             ),
           ),
         ),
