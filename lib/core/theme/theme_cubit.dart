@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:projac_mobile/core/theme/main_theme.dart';
 
+ThemeData get _initialTheme {
+  final brightness =
+      SchedulerBinding.instance.platformDispatcher.platformBrightness;
+  final isDarkMode = brightness == Brightness.dark;
+
+  return isDarkMode ? MainTheme.darkTheme : MainTheme.lightTheme;
+}
+
 class ThemeCubit extends HydratedCubit<ThemeData> {
-  ThemeCubit() : super(MainTheme.lightTheme);
+  ThemeCubit() : super(_initialTheme);
 
   void toggleTheme() {
     emit(
