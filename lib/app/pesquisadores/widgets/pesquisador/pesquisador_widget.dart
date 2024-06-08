@@ -51,7 +51,7 @@ class PesquisadorWidget extends StatelessWidget {
                   ),
                 ),
                 child: OpenablePicture(
-                  image: NetworkImage(pesquisador.fotoPerfil),
+                  imageUrl: pesquisador.fotoPerfil,
                 ),
               ),
             ),
