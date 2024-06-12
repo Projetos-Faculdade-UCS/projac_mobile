@@ -42,7 +42,7 @@ class ProjetosSearchDelegate extends SearchDelegate<List<Projeto>> {
   @override
   Widget buildResults(BuildContext context) {
     return FutureBuilder<List<ProjetoList>>(
-      future: _repository.fetch(),
+      future: _repository.search(query),
       builder: _builder,
     );
   }
@@ -50,7 +50,7 @@ class ProjetosSearchDelegate extends SearchDelegate<List<Projeto>> {
   @override
   Widget buildSuggestions(BuildContext context) {
     return FutureBuilder<List<ProjetoList>>(
-      future: _repository.fetch(),
+      future: _repository.search(query),
       builder: _builder,
     );
   }
