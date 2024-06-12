@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,11 +7,11 @@ import 'package:projac_mobile/app/_widgets/custom_app_bar.dart';
 
 class DismissiblePicture extends StatefulWidget {
   const DismissiblePicture({
-    required this.image,
+    required this.imageUrl,
     super.key,
   });
 
-  final ImageProvider<Object> image;
+  final String imageUrl;
 
   @override
   State<DismissiblePicture> createState() => _DismissiblePictureState();
@@ -69,11 +70,11 @@ class _DismissiblePictureState extends State<DismissiblePicture> {
             initialScale: PhotoViewComputedScale.contained,
             enablePanAlways: false,
             scaleStateController: _scaleController,
-            imageProvider: widget.image,
+            imageProvider: CachedNetworkImageProvider(widget.imageUrl),
             minScale: PhotoViewComputedScale.contained,
             tightMode: true,
             heroAttributes: PhotoViewHeroAttributes(
-              tag: widget.image,
+              tag: widget.imageUrl,
               createRectTween: (begin, end) {
                 return MaterialRectCenterArcTween(begin: begin, end: end);
               },
@@ -93,7 +94,9 @@ class _DismissiblePictureState extends State<DismissiblePicture> {
                           (1 - animation.value) * 50,
                         ),
                         image: DecorationImage(
-                          image: widget.image,
+                          image: CachedNetworkImageProvider(
+                            widget.imageUrl,
+                          ),
                           fit: BoxFit.cover,
                         ),
                       ),

@@ -8,7 +8,12 @@ import 'package:projac_mobile/app/projetos/repositories/projetos_repository.dart
 final projetosListGetIt = GetIt.asNewInstance();
 final projetoGetIt = GetIt.asNewInstance();
 
-void setupProjetosListGetIt() {
+bool setupProjetosListGetIt() {
+  if (projetosListGetIt.isRegistered<ProjetosListBloc>()) {
+    debugPrint('ProjetosList already initialized');
+    return false;
+  }
+
   debugPrint('Projetos Initialized');
   projetosListGetIt
     ..registerFactory<ProjetosRepository>(ProjetosRepository.new)
@@ -18,23 +23,37 @@ void setupProjetosListGetIt() {
     ..registerFactory<ProjetosSearchDelegate>(
       () => ProjetosSearchDelegate(projetosListGetIt<ProjetosRepository>()),
     );
+
+  return true;
 }
 
-void setupProjetoGetIt() {
-  debugPrint('Projeto Initialized');
+bool setupProjetoGetIt() {
+  if (projetoGetIt.isRegistered<ProjetoBloc>()) {
+    debugPrint('Projeto already initialized');
+    return false;
+  }
+
   projetoGetIt
     ..registerFactory<ProjetosRepository>(ProjetosRepository.new)
     ..registerFactory<ProjetoBloc>(
-      () => ProjetoBloc(projetosListGetIt<ProjetosRepository>()),
+      () => ProjetoBloc(projetoGetIt<ProjetosRepository>()),
     );
+  debugPrint('Projeto Initialized');
+  return true;
 }
 
-void disposeProjetosListGetIt() {
-  debugPrint('ProjetosList Disposed');
+void disposeProjetosListGetIt({
+  required bool dispose,
+}) {
+  if (!dispose) return;
   projetosListGetIt.reset();
+  debugPrint('ProjetosList Disposed');
 }
 
-void disposeProjetoGetIt() {
-  debugPrint('Projetos Disposed');
+void disposeProjetoGetIt({
+  required bool dispose,
+}) {
+  if (!dispose) return;
   projetoGetIt.reset();
+  debugPrint('Projeto Disposed');
 }

@@ -6,3 +6,7 @@ sealed class PesquisadoresEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class PesquisadoresLoad extends PesquisadoresEvent {
+  const PesquisadoresLoad();
+}

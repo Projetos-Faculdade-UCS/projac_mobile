@@ -5,8 +5,14 @@ import 'package:skeletonizer/skeletonizer.dart';
 import 'package:super_sliver_list/super_sliver_list.dart';
 
 class ProjetosListView extends StatelessWidget {
-  const ProjetosListView({required this.projetos, super.key});
+  const ProjetosListView({
+    required this.projetos,
+    required this.itemBuilder,
+    super.key,
+  });
   final List<ProjetoList> projetos;
+
+  final Widget? Function(BuildContext, int) itemBuilder;
 
   static Widget get skeleton {
     final projetos = List.generate(10, (index) => ProjetoList.skeleton());
@@ -16,7 +22,16 @@ class ProjetosListView extends StatelessWidget {
         baseColor: Colors.grey[300]!.withAlpha(100),
         highlightColor: Colors.white.withAlpha(100),
       ),
-      child: ProjetosListView(projetos: projetos),
+      child: ProjetosListView(
+        projetos: projetos,
+        itemBuilder: (context, index) {
+          final projeto = projetos[index];
+          return ProjetoListTile(
+            projeto: projeto,
+            isLast: index == projetos.length - 1,
+          );
+        },
+      ),
     );
   }
 
@@ -25,13 +40,7 @@ class ProjetosListView extends StatelessWidget {
     return SuperListView.builder(
       padding: const EdgeInsets.all(8),
       itemCount: projetos.length,
-      itemBuilder: (context, index) {
-        final projeto = projetos[index];
-        return ProjetoListTile(
-          projeto: projeto,
-          isLast: index == projetos.length - 1,
-        );
-      },
+      itemBuilder: itemBuilder,
     );
   }
 }

@@ -13,7 +13,7 @@ final class PesquisadorLoading extends PesquisadorState {}
 
 final class PesquisadorLoaded extends PesquisadorState {
   const PesquisadorLoaded(this.pesquisador);
-  final Pesquisador pesquisador;
+  final PesquisadorDetail pesquisador;
 
   @override
   List<Object> get props => [pesquisador];

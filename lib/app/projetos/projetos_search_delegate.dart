@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projac_mobile/app/_widgets/error_message.dart';
 import 'package:projac_mobile/app/projetos/repositories/projetos_repository.dart';
+import 'package:projac_mobile/app/projetos/widgets/projeto_list_tile/projeto_list_tile.dart';
 import 'package:projac_mobile/app/projetos/widgets/projetos_list_view.dart';
 import 'package:projac_mobile/core/api/models/projeto.dart';
 import 'package:projac_mobile/core/api/models/projeto_list.dart';
@@ -65,6 +66,15 @@ class ProjetosSearchDelegate extends SearchDelegate<List<Projeto>> {
       return ErrorMessage(error: snapshot.error.toString());
     }
     final projetos = snapshot.data!;
-    return ProjetosListView(projetos: projetos);
+    return ProjetosListView(
+      projetos: projetos,
+      itemBuilder: (context, index) {
+        final projeto = projetos[index];
+        return ProjetoListTile(
+          projeto: projeto,
+          isLast: index == projetos.length - 1,
+        );
+      },
+    );
   }
 }

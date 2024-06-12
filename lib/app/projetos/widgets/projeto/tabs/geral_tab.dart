@@ -19,7 +19,12 @@ class GeralTab extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       children: [
         DetailField(
-          leading: Icon(projeto.status.iconData, color: projeto.status.color),
+          leading: Icon(
+            projeto.status.iconData,
+            color: projeto.status.getIconColor(
+              Theme.of(context).brightness,
+            ),
+          ),
           title: 'Status',
           child: Text(projeto.status.name),
         ),

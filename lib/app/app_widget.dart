@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:projac_mobile/core/get_it.dart';
 import 'package:projac_mobile/core/theme/theme_cubit.dart';
-import 'package:projac_mobile/routes.dart';
+import 'package:projac_mobile/routes.g.dart';
 import 'package:routefly/routefly.dart';
 
 class AppWidget extends StatelessWidget {

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:ionicons/ionicons.dart';
+import 'package:projac_mobile/app/_widgets/gradient_icon.dart';
 import 'package:projac_mobile/app/_widgets/projeto_base_list_tile.dart';
 import 'package:projac_mobile/app/projetos/widgets/projeto_list_tile/area.dart';
-import 'package:projac_mobile/app/projetos/widgets/projeto_list_tile/coordenador.dart';
 import 'package:projac_mobile/core/api/models/projeto_list.dart';
 import 'package:projac_mobile/core/api/models/status_projeto.dart';
 import 'package:routefly/routefly.dart';
 
-class ProjetoListTile extends StatelessWidget {
-  const ProjetoListTile({
+class ProjetoPesquisadorListTile extends StatelessWidget {
+  const ProjetoPesquisadorListTile({
     required this.projeto,
     required this.isLast,
     super.key,
@@ -27,12 +28,37 @@ class ProjetoListTile extends StatelessWidget {
       title: Text(
         projeto.titulo,
       ),
-      subtitle: Text(
-        projeto.objetivo,
-      ),
+      // subtitle: Text(
+      //   '${projeto.horas}h trabalhadas',
+      // ),
       trailing: [
-        CoordenadorWidget(coordenador: projeto.coordenador),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const GradientIcon(
+              Ionicons.person_outline,
+              size: 16,
+            ),
+            const SizedBox(width: 4),
+            Text(
+              projeto.cargo!,
+            ),
+          ],
+        ),
         const SizedBox(height: 2),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const GradientIcon(
+              Ionicons.time_outline,
+              size: 16,
+            ),
+            const SizedBox(width: 4),
+            Text(
+              '${projeto.horas}h trabalhadas',
+            ),
+          ],
+        ),
         AreaWidget(area: projeto.area),
       ],
       topCornerFlagColor: projeto.status.getColor(Theme.of(context).brightness),

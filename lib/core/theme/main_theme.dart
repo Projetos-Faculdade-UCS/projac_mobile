@@ -24,6 +24,15 @@ class MainTheme {
           unselectedLabelColor: Color(0xFFFFFFFF),
           tabAlignment: TabAlignment.start,
         ),
+        cardTheme: CardTheme(
+          elevation: 2,
+          shape: RoundedRectangleBorder(
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
+            side: BorderSide(
+              color: const Color(0xFF3A0CA3).withAlpha(50).withOpacity(.1),
+            ),
+          ),
+        ),
         colorScheme: const ColorScheme.light(
           primary: Color(0xFF3A0CA3),
           secondary: Color(0xFF93ADF6),
@@ -58,6 +67,15 @@ class MainTheme {
           labelColor: Color(0xFFFFFFFF),
           unselectedLabelColor: Color(0xFFFFFFFF),
           tabAlignment: TabAlignment.start,
+        ),
+        cardTheme: CardTheme(
+          elevation: 2,
+          shape: RoundedRectangleBorder(
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
+            side: BorderSide(
+              color: const Color(0xFF8A5EF3).withAlpha(50).withOpacity(.1),
+            ),
+          ),
         ),
         colorScheme: const ColorScheme.dark(
           primary: Color(0xFF8A5EF3),

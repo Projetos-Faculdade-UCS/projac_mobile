@@ -14,24 +14,26 @@ class ProjetoPage extends StatefulWidget {
 
 class _ProjetoPageState extends State<ProjetoPage> {
   late final int id;
+  late final bool disposeGetIt;
 
   @override
   void initState() {
     super.initState();
-    setupProjetoGetIt();
+    disposeGetIt = setupProjetoGetIt();
     id = Routefly.query['id'] as int;
   }
 
   @override
   void dispose() {
-    disposeProjetoGetIt();
+    disposeProjetoGetIt(dispose: disposeGetIt);
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => projetoGetIt<ProjetoBloc>()..add(ProjetoLoad(id)),
+      create: (context) =>
+          projetoGetIt.get<ProjetoBloc>()..add(ProjetoLoad(id)),
       child: BlocBuilder<ProjetoBloc, ProjetoState>(
         builder: (context, state) {
           return Scaffold(

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:projac_mobile/app/_widgets/gradient_icon.dart';
+import 'package:projac_mobile/app/_widgets/svg_icon.dart';
 import 'package:projac_mobile/core/theme/main_theme.dart';
-import 'package:projac_mobile/routes.dart';
+import 'package:projac_mobile/routes.g.dart';
 import 'package:routefly/routefly.dart';
 
 class HomeDrawer extends StatelessWidget {
@@ -18,14 +19,35 @@ class HomeDrawer extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: MainTheme.getGradient(Theme.of(context).brightness),
             ),
-            child: const Text('Drawer Header'),
+            child: const Row(
+              children: [
+                SvgIcon(size: 48, color: Colors.white),
+                SizedBox(width: 16),
+                Text(
+                  'Projac',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                  ),
+                ),
+              ],
+            ),
           ),
           ListTile(
-            leading: const GradientIcon(Ionicons.library_outline),
+            leading: const GradientIcon(Ionicons.folder_open_outline),
             title: const Text('Projetos'),
             onTap: () {
-              Routefly.pushNavigate(
+              Routefly.push<void>(
                 routePaths.projetos.path,
+              );
+            },
+          ),
+          ListTile(
+            leading: const GradientIcon(Ionicons.people_outline),
+            title: const Text('Pesquisadores'),
+            onTap: () {
+              Routefly.push<void>(
+                routePaths.pesquisadores.path,
               );
             },
           ),
@@ -33,7 +55,7 @@ class HomeDrawer extends StatelessWidget {
             leading: const GradientIcon(Ionicons.settings_outline),
             title: const Text('Configurações'),
             onTap: () {
-              Routefly.pushNavigate(routePaths.settings);
+              Routefly.push<void>(routePaths.settings);
             },
           ),
         ],

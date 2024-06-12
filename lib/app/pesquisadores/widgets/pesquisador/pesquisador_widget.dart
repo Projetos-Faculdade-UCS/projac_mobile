@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:projac_mobile/app/_widgets/detail/detail_field.dart';
-import 'package:projac_mobile/app/pesquisadores/widgets/openable_picture.dart';
-import 'package:projac_mobile/core/api/models/pesquisador.dart';
+import 'package:projac_mobile/app/pesquisadores/widgets/pesquisador/openable_picture.dart';
+import 'package:projac_mobile/core/api/models/pesquisador_detail.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -12,10 +12,10 @@ class PesquisadorWidget extends StatelessWidget {
     super.key,
   });
 
-  final Pesquisador pesquisador;
+  final PesquisadorDetail pesquisador;
 
   static Widget get skeleton {
-    final pesquisador = Pesquisador.skeleton();
+    final pesquisador = PesquisadorDetail.skeleton();
 
     return Skeletonizer(
       effect: ShimmerEffect(
@@ -51,7 +51,7 @@ class PesquisadorWidget extends StatelessWidget {
                   ),
                 ),
                 child: OpenablePicture(
-                  image: NetworkImage(pesquisador.fotoPerfil),
+                  imageUrl: pesquisador.fotoPerfil,
                 ),
               ),
             ),
@@ -68,11 +68,6 @@ class PesquisadorWidget extends StatelessWidget {
             child: Text(
               pesquisador.email,
             ),
-          ),
-          DetailField(
-            title: 'Gênero',
-            icon: Ionicons.woman_outline,
-            child: Text(pesquisador.genero),
           ),
           DetailField(
             title: 'Data de nascimento',
