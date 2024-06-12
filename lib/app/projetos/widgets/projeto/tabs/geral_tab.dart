@@ -21,7 +21,7 @@ class GeralTab extends StatelessWidget {
         DetailField(
           leading: Icon(
             projeto.status.iconData,
-            color: projeto.status.getColor(
+            color: projeto.status.getIconColor(
               Theme.of(context).brightness,
             ),
           ),

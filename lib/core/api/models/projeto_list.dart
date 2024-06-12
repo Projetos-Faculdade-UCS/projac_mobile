@@ -16,6 +16,7 @@ class ProjetoList {
     required this.area,
     required this.coordenador,
     this.horas,
+    this.cargo,
   });
 
   factory ProjetoList.fromJson(Map<String, dynamic> json) =>
@@ -39,6 +40,7 @@ class ProjetoList {
   final StatusProjeto status;
   final BaseArea area;
   final Coordenador coordenador;
+  final String? cargo;
 
   /// Horas de trabalho do projeto (somente ira aparecer
   /// na listagem de projetos de um pesquisador)

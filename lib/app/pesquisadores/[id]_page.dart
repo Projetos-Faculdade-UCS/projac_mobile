@@ -5,6 +5,7 @@ import 'package:projac_mobile/app/_widgets/custom_app_bar.dart';
 import 'package:projac_mobile/app/pesquisadores/bloc/pesquisador/pesquisador_bloc.dart';
 import 'package:projac_mobile/app/pesquisadores/get_it.dart';
 import 'package:projac_mobile/app/pesquisadores/widgets/pesquisador/cubit/pesquisador_app_bar_cubit.dart';
+import 'package:projac_mobile/app/pesquisadores/widgets/pesquisador/lists/pesquisador_projetos_list.dart';
 import 'package:projac_mobile/app/pesquisadores/widgets/pesquisador/pesquisador_widget.dart';
 import 'package:projac_mobile/app/projetos/widgets/projeto/tabs/producoes_academicas_tab.dart';
 import 'package:projac_mobile/app/projetos/widgets/projetos_list_view.dart';
@@ -171,7 +172,9 @@ class _PesquisadorPageState extends State<PesquisadorPage>
     return BlocBuilder<PesquisadorBloc, PesquisadorState>(
       builder: (context, state) {
         if (state is PesquisadorLoaded) {
-          return ProjetosListView(projetos: state.pesquisador.projetos);
+          return PesquisadorProjetosList(
+            projetos: state.pesquisador.projetos,
+          );
         }
 
         if (state is PesquisadorError) {

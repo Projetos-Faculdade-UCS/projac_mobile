@@ -28,6 +28,30 @@ class ProjetoBaseListTile extends StatelessWidget {
   final Color topCornerFlagIconColor;
   final BorderRadius borderRadius;
 
+  static Widget get skeleton {
+    return Skeletonizer(
+      effect: ShimmerEffect(
+        baseColor: Colors.grey[300]!.withAlpha(100),
+        highlightColor: Colors.white.withAlpha(100),
+      ),
+      child: ProjetoBaseListTile(
+        onTap: () {},
+        isLast: false,
+        areaColor: Colors.grey[300]!,
+        title: const SizedBox(
+          height: 24,
+          child: CircularProgressIndicator(
+            color: Colors.white,
+            strokeWidth: 2,
+          ),
+        ),
+        topCornerFlagColor: Colors.grey[300]!,
+        topCornerFlagIcon: Icons.circle,
+        topCornerFlagIconColor: Colors.grey[300]!,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
