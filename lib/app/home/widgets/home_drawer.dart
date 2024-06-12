@@ -24,7 +24,7 @@ class HomeDrawer extends StatelessWidget {
             leading: const GradientIcon(Ionicons.folder_open_outline),
             title: const Text('Projetos'),
             onTap: () {
-              Routefly.push(
+              Routefly.push<void>(
                 routePaths.projetos.path,
               );
             },
@@ -33,7 +33,7 @@ class HomeDrawer extends StatelessWidget {
             leading: const GradientIcon(Ionicons.people_outline),
             title: const Text('Pesquisadores'),
             onTap: () {
-              Routefly.push(
+              Routefly.push<void>(
                 routePaths.pesquisadores.path,
               );
             },
@@ -42,7 +42,7 @@ class HomeDrawer extends StatelessWidget {
             leading: const GradientIcon(Ionicons.settings_outline),
             title: const Text('Configurações'),
             onTap: () {
-              Routefly.push(routePaths.settings);
+              Routefly.push<void>(routePaths.settings);
             },
           ),
         ],

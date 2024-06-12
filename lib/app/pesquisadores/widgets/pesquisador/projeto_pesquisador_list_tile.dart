@@ -21,7 +21,7 @@ class ProjetoPesquisadorListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ProjetoBaseListTile(
       onTap: () {
-        Routefly.push('/projetos/${projeto.id}');
+        Routefly.push<void>('/projetos/${projeto.id}');
       },
       isLast: isLast,
       areaColor: projeto.area.cor,

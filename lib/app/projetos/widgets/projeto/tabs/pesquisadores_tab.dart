@@ -64,7 +64,7 @@ class PesquisadoresTab extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                Routefly.push(
+                Routefly.push<void>(
                   routePaths.pesquisadores.$id.changes(
                     {
                       'id': pesquisador.id.toString(),

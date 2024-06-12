@@ -94,7 +94,7 @@ class PesquisadorCard extends StatelessWidget {
           child: Icon(Ionicons.chevron_forward),
         ),
         onTap: () {
-          Routefly.push(
+          Routefly.push<void>(
             routePaths.pesquisadores.$id.changes({
               'id': pesquisador.id.toString(),
             }),
