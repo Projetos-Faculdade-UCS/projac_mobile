@@ -20,15 +20,34 @@ extension StatusProjetoExtension on StatusProjeto {
     }
   }
 
-  Color get color {
+  Color get _colorFraca {
     switch (this) {
       case StatusProjeto.emAndamento:
-        return Colors.orange;
+        return Colors.orange.shade200;
       case StatusProjeto.concluido:
-        return Colors.green;
+        return Colors.green.shade200;
       case StatusProjeto.cancelado:
-        return Colors.red;
+        return Colors.red.shade200;
     }
+  }
+
+  Color get _colorForte {
+    switch (this) {
+      case StatusProjeto.emAndamento:
+        return Colors.orange.shade800;
+      case StatusProjeto.concluido:
+        return Colors.green.shade800;
+      case StatusProjeto.cancelado:
+        return Colors.red.shade800;
+    }
+  }
+
+  Color getColor(Brightness brightness) {
+    return brightness == Brightness.light ? _colorFraca : _colorForte;
+  }
+
+  Color getIconColor(Brightness brightness) {
+    return brightness == Brightness.light ? _colorForte : _colorFraca;
   }
 
   IconData get iconData {
