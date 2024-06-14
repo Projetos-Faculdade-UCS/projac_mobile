@@ -55,6 +55,23 @@ class ProjetosSearchDelegate extends SearchDelegate<List<Projeto>> {
     );
   }
 
+  @override
+  ThemeData appBarTheme(BuildContext context) {
+    return Theme.of(context).copyWith(
+      inputDecorationTheme: InputDecorationTheme(
+        hintStyle: TextStyle(
+          color: Colors.white.withOpacity(.5),
+        ),
+      ),
+    );
+  }
+
+  @override
+  TextStyle? get searchFieldStyle => const TextStyle(
+        color: Colors.white,
+        fontSize: 20,
+      );
+
   Widget _builder(
     BuildContext context,
     AsyncSnapshot<List<ProjetoList>> snapshot,

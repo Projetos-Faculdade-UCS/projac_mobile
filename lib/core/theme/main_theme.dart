@@ -33,15 +33,18 @@ class MainTheme {
             ),
           ),
         ),
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: Colors.white,
+          selectionColor: Colors.white.withOpacity(.5),
+          selectionHandleColor: const Color(0xFF7209B7),
+        ),
         colorScheme: const ColorScheme.light(
           primary: Color(0xFF3A0CA3),
-          secondary: Color(0xFF93ADF6),
+          secondary: Color(0xFF7209B7),
           surface: Color(0xFFFAF7FA),
           onSecondary: Color(0xFFFFFFFF),
           onSurface: Color(0xFF0E0B0D),
-        )
-            .copyWith(secondary: const Color(0xFF7209B7))
-            .copyWith(surface: const Color(0xFFFAF7FA)),
+        ),
       );
 
   // TODO(marhaubrich): Mudar para final
@@ -77,16 +80,19 @@ class MainTheme {
             ),
           ),
         ),
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: Colors.white,
+          selectionColor: Colors.white.withOpacity(.5),
+          selectionHandleColor: const Color(0xFFB046F6),
+        ),
         colorScheme: const ColorScheme.dark(
           primary: Color(0xFF8A5EF3),
-          secondary: Color(0xFF09236D),
+          secondary: Color(0xFFB046F6),
           surface: Color(0xFF090609),
           onPrimary: Color(0xFFFFFFFF),
           onSecondary: Color(0xFFFFFFFF),
           onSurface: Color(0xFFF4F1F3),
-        )
-            .copyWith(secondary: const Color(0xFFB046F6))
-            .copyWith(surface: const Color(0xFF090609)),
+        ),
       );
 
   static final LinearGradient lightGradient = LinearGradient(
