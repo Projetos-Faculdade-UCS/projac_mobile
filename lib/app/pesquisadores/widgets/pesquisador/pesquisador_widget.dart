@@ -60,19 +60,19 @@ class PesquisadorWidget extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           DetailField(
-            title: 'E-mail',
+            title: const Text('E-mail'),
             icon: Ionicons.mail_outline,
             child: Text(
               pesquisador.email,
             ),
           ),
           DetailField(
-            title: 'Data de nascimento',
+            title: const Text('Data de nascimento'),
             icon: Ionicons.calendar_outline,
             child: Text(pesquisador.dataNascimento),
           ),
           DetailField(
-            title: 'Formação',
+            title: const Text('Formação'),
             icon: Ionicons.school_outline,
             onTap: () {
               launchUrl(pesquisador.curriculoLattesUri);

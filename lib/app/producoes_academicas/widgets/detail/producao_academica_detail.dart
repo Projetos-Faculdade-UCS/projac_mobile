@@ -30,12 +30,12 @@ class ProducaoAcademicaDetail extends StatelessWidget {
       children: [
         DetailField(
           icon: Ionicons.book_outline,
-          title: 'Tipo',
+          title: const Text('Tipo'),
           child: Text(producaoAcademica.tipo),
         ),
         DetailField(
           icon: Ionicons.document_outline,
-          title: 'Descrição',
+          title: const Text('Descrição'),
           child: LerMais(
             producaoAcademica.descricao,
             maxLines: 6,

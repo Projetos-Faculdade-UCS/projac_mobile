@@ -16,7 +16,7 @@ class DetailField extends StatelessWidget {
 
   final IconData? icon;
   final Widget? leading;
-  final String title;
+  final Widget title;
   final Widget child;
   final VoidCallback? onTap;
   final Widget? trailing;
@@ -67,11 +67,11 @@ class DetailField extends StatelessWidget {
           ),
           Expanded(
             child: ListTile(
-              title: Text(
-                title,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
+              title: DefaultTextStyle(
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                      fontSize: 16,
+                    ),
+                child: title,
               ),
               subtitle: Container(
                 margin: const EdgeInsets.only(top: 4),

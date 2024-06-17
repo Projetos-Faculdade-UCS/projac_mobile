@@ -17,7 +17,7 @@ class AgenciasFomentoTab extends StatelessWidget {
           .map(
             (agencia) => DetailField(
               icon: Ionicons.business_outline,
-              title: agencia.nome,
+              title: Text(agencia.nome),
               child: Text(agencia.sigla),
             ),
           )

@@ -29,7 +29,7 @@ class PesquisadoresTab extends StatelessWidget {
                       )
                     : null,
               ),
-              title: '${pesquisador.nome} ${pesquisador.sobrenome}',
+              title: Text('${pesquisador.nome} ${pesquisador.sobrenome}'),
               child: RichText(
                 text: TextSpan(
                   children: [

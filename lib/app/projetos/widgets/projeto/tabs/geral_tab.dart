@@ -25,32 +25,32 @@ class GeralTab extends StatelessWidget {
               Theme.of(context).brightness,
             ),
           ),
-          title: 'Status',
+          title: const Text('Status'),
           child: Text(projeto.status.name),
         ),
         DetailField(
           icon: Ionicons.flag_outline,
-          title: 'Objetivo',
+          title: const Text('Objetivo'),
           child: Text(projeto.objetivo),
         ),
         ..._buildSubareas(),
         if (projeto.descricao != null)
           DetailField(
             icon: Ionicons.document_outline,
-            title: 'Descrição',
+            title: const Text('Descrição'),
             child: LerMais(
               projeto.descricao!,
             ),
           ),
         DetailField(
           icon: Ionicons.calendar_outline,
-          title: 'Data de Criação',
+          title: const Text('Data de Criação'),
           child: Text(projeto.dataCriacao),
         ),
         if (projeto.dataConclusao != null)
           DetailField(
             icon: Ionicons.calendar_outline,
-            title: 'Data de Conclusão',
+            title: const Text('Data de Conclusão'),
             child: Text(projeto.dataConclusao!),
           ),
       ],
@@ -64,7 +64,7 @@ class GeralTab extends StatelessWidget {
     return [
       DetailField(
         icon: Ionicons.book_outline,
-        title: 'Área e Subáreas',
+        title: const Text('Área e Subáreas'),
         child: Wrap(
           spacing: 8,
           runSpacing: 8,
