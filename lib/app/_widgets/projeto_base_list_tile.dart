@@ -58,7 +58,13 @@ class ProjetoBaseListTile extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 8),
       child: Material(
         color: Colors.transparent,
-        borderRadius: borderRadius,
+        // borderRadius: borderRadius,
+        shape: RoundedRectangleBorder(
+          borderRadius: borderRadius,
+          side: BorderSide(
+            color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
+          ),
+        ),
         elevation: 5,
         child: InkWell(
           hoverColor: Colors.grey.withOpacity(0.3),
