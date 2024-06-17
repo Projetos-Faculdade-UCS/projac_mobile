@@ -14,7 +14,7 @@ abstract class ApiClient {
 
   @GET('/projetos')
   Future<List<ProjetoList>> getProjetos({
-    @Query('query') String? query,
+    @Query('q') String? query,
   });
 
   @GET('/projetos/{id}')
@@ -24,7 +24,9 @@ abstract class ApiClient {
   Future<Area> getAreas();
 
   @GET('/pesquisadores')
-  Future<List<PesquisadorList>> getPesquisadores();
+  Future<List<PesquisadorList>> getPesquisadores({
+    @Query('q') String? query,
+  });
 
   @GET('/pesquisadores/{id}')
   Future<PesquisadorDetail> getPesquisador(@Path('id') int id);

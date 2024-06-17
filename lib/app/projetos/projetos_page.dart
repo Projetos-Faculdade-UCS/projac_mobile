@@ -5,7 +5,7 @@ import 'package:projac_mobile/app/_widgets/error_message.dart';
 import 'package:projac_mobile/app/_widgets/search_action_button.dart';
 import 'package:projac_mobile/app/projetos/bloc/list/projetos_list_bloc.dart';
 import 'package:projac_mobile/app/projetos/get_it.dart';
-import 'package:projac_mobile/app/projetos/projetos_search_delegate.dart';
+import 'package:projac_mobile/app/projetos/repositories/projetos_repository.dart';
 import 'package:projac_mobile/app/projetos/widgets/projeto_list_tile/projeto_list_tile.dart';
 import 'package:projac_mobile/app/projetos/widgets/projetos_list_view.dart';
 
@@ -43,7 +43,26 @@ class _ProjetosPageState extends State<ProjetosPage> {
           title: const Text('Projetos'),
           actions: [
             SearchActionButton(
-              delegate: projetosListGetIt<ProjetosSearchDelegate>(),
+              searchFieldLabel: 'Buscar projetos',
+              repository: projetosListGetIt<ProjetosRepository>(),
+              resultBuilder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return ErrorMessage(error: snapshot.error.toString());
+                }
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return ProjetosListView.skeleton;
+                }
+                return ProjetosListView(
+                  projetos: snapshot.data!,
+                  itemBuilder: (context, index) {
+                    final projeto = snapshot.data![index];
+                    return ProjetoListTile(
+                      projeto: projeto,
+                      isLast: index == snapshot.data!.length - 1,
+                    );
+                  },
+                );
+              },
             ),
           ],
           bottom: PreferredSize(
