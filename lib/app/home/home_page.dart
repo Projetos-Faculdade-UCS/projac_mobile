@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projac_mobile/app/_widgets/custom_app_bar.dart';
+import 'package:projac_mobile/app/home/graph/graph_widget.dart';
 import 'package:projac_mobile/app/home/widgets/home_drawer.dart';
 
 class HomePage extends StatelessWidget {
@@ -16,8 +17,15 @@ class HomePage extends StatelessWidget {
         title: Text(title),
       ),
       drawer: HomeDrawer(),
-      body: Center(
-        child: Text('Bem vindo ao Projac Mobile!'),
+      body: Column(
+        children: [
+          Center(
+            child: Text('Bem vindo ao Projac Mobile!'),
+          ),
+          Flexible(
+            child: GraphWidget(),
+          ),
+        ],
       ),
     );
   }
