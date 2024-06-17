@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:projac_mobile/app/_widgets/custom_app_bar.dart';
+import 'package:projac_mobile/app/producoes_academicas/widgets/producoes_academicas_list.dart';
 import 'package:projac_mobile/app/projetos/bloc/projeto/projeto_bloc.dart';
 import 'package:projac_mobile/app/projetos/widgets/projeto/tabs/agencias_fomento_tab.dart';
 import 'package:projac_mobile/app/projetos/widgets/projeto/tabs/financeiro_tab.dart';
 import 'package:projac_mobile/app/projetos/widgets/projeto/tabs/geral_tab.dart';
 import 'package:projac_mobile/app/projetos/widgets/projeto/tabs/pesquisadores_tab.dart';
-import 'package:projac_mobile/app/projetos/widgets/projeto/tabs/producoes_academicas_tab.dart';
 import 'package:projac_mobile/core/api/models/projeto.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -81,7 +81,7 @@ class ProjetoDetail extends StatelessWidget {
       PesquisadoresTab(projeto: projeto),
       FinanceiroTab(projeto: projeto),
       if (projeto.producoesAcademicas.isNotEmpty)
-        ProducoesAcademicasTab(
+        ProducoesAcademicasList(
           producoesAcademicas: projeto.producoesAcademicas,
         ),
       if (projeto.agenciasFomento.isNotEmpty)

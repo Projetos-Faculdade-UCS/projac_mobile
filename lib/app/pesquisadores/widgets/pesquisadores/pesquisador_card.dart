@@ -26,6 +26,12 @@ class PesquisadorCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+        side: BorderSide(
+          color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
+        ),
+      ),
       child: ListTile(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),

@@ -7,7 +7,7 @@ import 'package:projac_mobile/app/pesquisadores/get_it.dart';
 import 'package:projac_mobile/app/pesquisadores/widgets/pesquisador/cubit/pesquisador_app_bar_cubit.dart';
 import 'package:projac_mobile/app/pesquisadores/widgets/pesquisador/lists/pesquisador_projetos_list.dart';
 import 'package:projac_mobile/app/pesquisadores/widgets/pesquisador/pesquisador_widget.dart';
-import 'package:projac_mobile/app/projetos/widgets/projeto/tabs/producoes_academicas_tab.dart';
+import 'package:projac_mobile/app/producoes_academicas/widgets/producoes_academicas_list.dart';
 import 'package:projac_mobile/app/projetos/widgets/projetos_list_view.dart';
 import 'package:routefly/routefly.dart';
 
@@ -181,7 +181,7 @@ class _PesquisadorPageState extends State<PesquisadorPage>
     return BlocBuilder<PesquisadorBloc, PesquisadorState>(
       builder: (context, state) {
         if (state is PesquisadorLoaded) {
-          return ProducoesAcademicasTab(
+          return ProducoesAcademicasList(
             producoesAcademicas: state.pesquisador.producoesAcademicas,
           );
         }
@@ -192,7 +192,7 @@ class _PesquisadorPageState extends State<PesquisadorPage>
           );
         }
 
-        return ProducoesAcademicasTab.skeleton;
+        return ProducoesAcademicasList.skeleton;
       },
     );
   }
