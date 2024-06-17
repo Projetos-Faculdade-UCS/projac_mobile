@@ -23,7 +23,7 @@ class _PesquisadorPageState extends State<PesquisadorPage>
   late TabController _tabController;
   late final bool disposeGetIt;
   final pesquisadorAppBarCubit = PesquisadorAppBarCubit();
-  late final Future<PesquisadorBloc> bloc;
+  late final PesquisadorBloc bloc;
 
   @override
   void initState() {
@@ -34,7 +34,7 @@ class _PesquisadorPageState extends State<PesquisadorPage>
       vsync: this,
     );
     _tabController.addListener(_handleTabSelection);
-    bloc = pesquisadorGetIt.getAsync<PesquisadorBloc>();
+    bloc = pesquisadorGetIt.get<PesquisadorBloc>();
   }
 
   @override
@@ -50,7 +50,7 @@ class _PesquisadorPageState extends State<PesquisadorPage>
     if (_tabController.index == 0) {
       pesquisadorAppBarCubit.hidePesquisador();
     } else {
-      final state = (await bloc).state;
+      final state = bloc.state;
       if (state is PesquisadorLoaded) {
         final pesquisadorName = state.pesquisador.nomeCompleto;
         pesquisadorAppBarCubit.showPesquisador(pesquisadorName);
@@ -61,90 +61,79 @@ class _PesquisadorPageState extends State<PesquisadorPage>
   @override
   Widget build(BuildContext context) {
     final id = Routefly.query['id'] as int;
-    return FutureBuilder<PesquisadorBloc>(
-      future: bloc,
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-        return BlocProvider<PesquisadorBloc>(
-          create: (context) => snapshot.data!..add(PesquisadorLoad(id)),
-          child: BlocProvider(
-            create: (context) => pesquisadorAppBarCubit,
-            child: Scaffold(
-              appBar: CustomAppBar(
-                title:
-                    BlocBuilder<PesquisadorAppBarCubit, PesquisadorAppBarState>(
-                  builder: (context, state) {
-                    return AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 300),
-                      transitionBuilder: (
-                        Widget child,
-                        Animation<double> animation,
-                      ) {
-                        final opacityAnimation = Tween<double>(
-                          begin: 0,
-                          end: 1,
-                        ).animate(
-                          CurvedAnimation(
-                            parent: animation,
-                            curve: const Interval(
-                              0.5,
-                              1,
-                            ),
-                          ),
-                        );
+    return BlocProvider<PesquisadorBloc>(
+      create: (context) => bloc..add(PesquisadorLoad(id)),
+      child: BlocProvider(
+        create: (context) => pesquisadorAppBarCubit,
+        child: Scaffold(
+          appBar: CustomAppBar(
+            title: BlocBuilder<PesquisadorAppBarCubit, PesquisadorAppBarState>(
+              builder: (context, state) {
+                return AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 300),
+                  transitionBuilder: (
+                    Widget child,
+                    Animation<double> animation,
+                  ) {
+                    final opacityAnimation = Tween<double>(
+                      begin: 0,
+                      end: 1,
+                    ).animate(
+                      CurvedAnimation(
+                        parent: animation,
+                        curve: const Interval(
+                          0.5,
+                          1,
+                        ),
+                      ),
+                    );
 
-                        return FadeTransition(
-                          opacity: opacityAnimation,
-                          child: SlideTransition(
-                            position: Tween<Offset>(
-                              begin: const Offset(-1, 0),
-                              end: Offset.zero,
-                            ).animate(animation),
-                            child: child,
-                          ),
-                        );
-                      },
-                      child: _buildTitle(
-                        state,
+                    return FadeTransition(
+                      opacity: opacityAnimation,
+                      child: SlideTransition(
+                        position: Tween<Offset>(
+                          begin: const Offset(-1, 0),
+                          end: Offset.zero,
+                        ).animate(animation),
+                        child: child,
                       ),
                     );
                   },
+                  child: _buildTitle(
+                    state,
+                  ),
+                );
+              },
+            ),
+            bottom: TabBar(
+              controller: _tabController,
+              tabAlignment: TabAlignment.fill,
+              tabs: const [
+                Tab(
+                  text: 'Perfil',
+                  icon: Icon(Ionicons.person_outline),
                 ),
-                bottom: TabBar(
-                  controller: _tabController,
-                  tabAlignment: TabAlignment.fill,
-                  tabs: const [
-                    Tab(
-                      text: 'Perfil',
-                      icon: Icon(Ionicons.person_outline),
-                    ),
-                    Tab(
-                      text: 'Projetos',
-                      icon: Icon(Ionicons.folder_open_outline),
-                    ),
-                    Tab(
-                      text: 'Produções',
-                      icon: Icon(Ionicons.library_outline),
-                    ),
-                  ],
+                Tab(
+                  text: 'Projetos',
+                  icon: Icon(Ionicons.folder_open_outline),
                 ),
-              ),
-              body: TabBarView(
-                controller: _tabController,
-                children: [
-                  _buildPerfilTab(),
-                  _buildProjetosTab(),
-                  _buildProducoesTab(),
-                ],
-              ),
+                Tab(
+                  text: 'Produções',
+                  icon: Icon(Ionicons.library_outline),
+                ),
+              ],
             ),
           ),
-        );
-      },
+          body: TabBarView(
+            controller: _tabController,
+            children: [
+              _buildPerfilTab(),
+              _buildProjetosTab(),
+              _buildProducoesTab(),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
