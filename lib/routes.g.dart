@@ -6,10 +6,11 @@ import 'app/app_page.dart' as a0;
 import 'app/home/home_page.dart' as a1;
 import 'app/pesquisadores/[id]_page.dart' as a3;
 import 'app/pesquisadores/pesquisadores_page.dart' as a2;
+import 'app/producoes_academicas/[id]_page.dart' as a5;
 import 'app/producoes_academicas/producoes_academicas_page.dart' as a4;
-import 'app/projetos/[id]_page.dart' as a7;
-import 'app/projetos/projetos_page.dart' as a6;
-import 'app/settings/settings_page.dart' as a5;
+import 'app/projetos/[id]_page.dart' as a8;
+import 'app/projetos/projetos_page.dart' as a7;
+import 'app/settings/settings_page.dart' as a6;
 
 List<RouteEntity> get routes => [
       RouteEntity(
@@ -58,12 +59,21 @@ List<RouteEntity> get routes => [
         ),
       ),
       RouteEntity(
+        key: '/producoes_academicas/[id]',
+        uri: Uri.parse('/producoes_academicas/[id]'),
+        routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
+          ctx,
+          settings,
+          const a5.ProducaoAcademicaPage(),
+        ),
+      ),
+      RouteEntity(
         key: '/settings',
         uri: Uri.parse('/settings'),
         routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
           ctx,
           settings,
-          const a5.SettingsPage(),
+          const a6.SettingsPage(),
         ),
       ),
       RouteEntity(
@@ -72,7 +82,7 @@ List<RouteEntity> get routes => [
         routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
           ctx,
           settings,
-          const a6.ProjetosPage(),
+          const a7.ProjetosPage(),
         ),
       ),
       RouteEntity(
@@ -81,7 +91,7 @@ List<RouteEntity> get routes => [
         routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
           ctx,
           settings,
-          const a7.ProjetoPage(),
+          const a8.ProjetoPage(),
         ),
       ),
     ];
@@ -93,7 +103,10 @@ const routePaths = (
     path: '/pesquisadores',
     $id: '/pesquisadores/[id]',
   ),
-  producoesAcademicas: '/producoes_academicas',
+  producoesAcademicas: (
+    path: '/producoes_academicas',
+    $id: '/producoes_academicas/[id]',
+  ),
   settings: '/settings',
   projetos: (
     path: '/projetos',

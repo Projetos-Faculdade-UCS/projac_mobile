@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:projac_mobile/app/_widgets/custom_badge.dart';
 import 'package:projac_mobile/app/_widgets/detail/detail_field.dart';
+import 'package:projac_mobile/app/_widgets/ler_mais.dart';
 import 'package:projac_mobile/app/_widgets/outlined_badge.dart';
 import 'package:projac_mobile/core/api/models/projeto.dart';
 import 'package:projac_mobile/core/api/models/status_projeto.dart';
-import 'package:readmore/readmore.dart';
 import 'package:super_sliver_list/super_sliver_list.dart';
 
 class GeralTab extends StatelessWidget {
@@ -38,12 +38,8 @@ class GeralTab extends StatelessWidget {
           DetailField(
             icon: Ionicons.document_outline,
             title: 'Descrição',
-            child: ReadMoreText(
+            child: LerMais(
               projeto.descricao!,
-              trimLines: 3,
-              trimMode: TrimMode.Line,
-              trimCollapsedText: '\nVer mais',
-              trimExpandedText: '\nVer menos',
             ),
           ),
         DetailField(

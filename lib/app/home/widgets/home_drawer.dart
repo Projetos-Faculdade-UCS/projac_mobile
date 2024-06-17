@@ -56,7 +56,7 @@ class HomeDrawer extends StatelessWidget {
             title: const Text('Produções Acadêmicas'),
             onTap: () {
               Routefly.push<void>(
-                routePaths.producoesAcademicas,
+                routePaths.producoesAcademicas.path,
               );
             },
           ),

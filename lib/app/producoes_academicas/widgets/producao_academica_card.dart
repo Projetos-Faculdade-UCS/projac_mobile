@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:projac_mobile/app/_widgets/gradient_icon.dart';
 import 'package:projac_mobile/core/api/models/producao_academica.dart';
+import 'package:projac_mobile/routes.g.dart';
+import 'package:routefly/routefly.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class ProducaoAcademicaCard extends StatelessWidget {
@@ -43,7 +45,13 @@ class ProducaoAcademicaCard extends StatelessWidget {
         trailing: const Skeleton.keep(
           child: Icon(Ionicons.chevron_forward),
         ),
-        onTap: () {},
+        onTap: () {
+          Routefly.push<void>(
+            routePaths.producoesAcademicas.$id.changes({
+              'id': producaoAcademica.id.toString(),
+            }),
+          );
+        },
       ),
     );
   }

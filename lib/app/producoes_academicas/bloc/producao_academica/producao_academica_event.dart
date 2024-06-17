@@ -6,3 +6,12 @@ sealed class ProducaoAcademicaEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+final class FetchProducaoAcademica extends ProducaoAcademicaEvent {
+  const FetchProducaoAcademica(this.id);
+
+  final int id;
+
+  @override
+  List<Object> get props => [id];
+}
