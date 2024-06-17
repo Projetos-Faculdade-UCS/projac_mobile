@@ -58,9 +58,7 @@ class _ProducaoAcademicaPageState extends State<ProducaoAcademicaPage> {
               );
             }
 
-            return const CustomSkeletonizer(
-              child: Text('Produção Acadêmica'),
-            );
+            return ProducaoAcademicaDetail.skeleton;
           },
         ),
       ),
