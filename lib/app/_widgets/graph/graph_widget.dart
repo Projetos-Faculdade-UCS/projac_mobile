@@ -47,12 +47,14 @@ class _GraphWidgetState extends State<GraphWidget>
 
   @override
   Widget build(BuildContext context) {
-    return GraphVisualization(
-      key: const Key('graph_visualization'),
-      graphController: graphController,
-      interactive: widget.interactive,
-      maxNodes: widget.maxNodes,
-      backgroundColor: widget.backgroundColor,
+    return AbsorbPointer(
+      absorbing: !widget.interactive,
+      child: GraphVisualization(
+        graphController: graphController,
+        interactive: widget.interactive,
+        maxNodes: widget.maxNodes,
+        backgroundColor: widget.backgroundColor,
+      ),
     );
   }
 }

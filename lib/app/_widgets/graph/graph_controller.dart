@@ -11,18 +11,20 @@ class GraphController implements TickerProvider {
   }) {
     controller = ForceDirectedGraphController<PesquisadorDetail>(
       graph: ForceDirectedGraph(
-        config: const GraphConfig(
-          elasticity: 0.02,
-          repulsion: 80,
-          repulsionRange: 200,
-          damping: 0.9,
-          length: 250,
-        ),
+        config: config,
       ),
     );
   }
   late final ForceDirectedGraphController<PesquisadorDetail> controller;
   final int? maxNodes;
+
+  static const config = GraphConfig(
+    elasticity: 0.02,
+    repulsion: 80,
+    repulsionRange: 200,
+    damping: 0.9,
+    length: 250,
+  );
 
   double get _fitScale {
     final sizeProportion = size.width / size.height;
@@ -129,14 +131,19 @@ class GraphController implements TickerProvider {
     await animationController.forward();
     await Future.delayed(const Duration(milliseconds: 300), () {});
 
-    const edgesBatchSize = 1000;
+    final now = DateTime.now();
+    const edgesBatchSize = 100;
     for (var i = 0; i < edgesTuples.length; i += edgesBatchSize) {
       final batch = edgesTuples.skip(i).take(edgesBatchSize).toList();
       for (final edge in batch) {
         controller.addEdgeByNode(edge[0], edge[1]);
-        await Future.delayed(const Duration(milliseconds: 5), () {});
       }
+      await Future.delayed(const Duration(milliseconds: 10), () {});
     }
+
+    final elapsed = DateTime.now().difference(now).inMilliseconds;
+
+    print('GRAPH_DEBUG: Edges updated in $elapsed ms');
 
     controller.needUpdate();
   }
