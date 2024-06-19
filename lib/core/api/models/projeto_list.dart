@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:projac_mobile/core/api/models/area.dart';
 import 'package:projac_mobile/core/api/models/coordenador.dart';
@@ -6,8 +7,8 @@ import 'package:projac_mobile/core/api/models/status_projeto.dart';
 part 'projeto_list.g.dart';
 
 @JsonSerializable()
-class ProjetoList {
-  ProjetoList({
+class ProjetoList extends Equatable {
+  const ProjetoList({
     required this.id,
     required this.titulo,
     required this.objetivo,
@@ -47,4 +48,12 @@ class ProjetoList {
   final int? horas;
 
   Map<String, dynamic> toJson() => _$ProjetoListToJson(this);
+
+  @override
+  List<Object?> get props => [
+        id,
+      ];
+
+  @override
+  bool get stringify => true;
 }

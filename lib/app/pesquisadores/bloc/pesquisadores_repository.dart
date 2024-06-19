@@ -19,4 +19,8 @@ class PesquisadoresRepository
   Future<List<PesquisadorList>> search(String query) async {
     return (await apiClient).getPesquisadores(query: query);
   }
+
+  Future<List<PesquisadorDetail>> getGraph() async {
+    return (await apiClient).getGraph();
+  }
 }

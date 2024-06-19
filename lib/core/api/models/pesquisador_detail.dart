@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:projac_mobile/core/api/models/producao_academica.dart';
 import 'package:projac_mobile/core/api/models/projeto_list.dart';
@@ -5,8 +6,8 @@ import 'package:projac_mobile/core/api/models/projeto_list.dart';
 part 'pesquisador_detail.g.dart';
 
 @JsonSerializable()
-class PesquisadorDetail {
-  PesquisadorDetail({
+class PesquisadorDetail extends Equatable {
+  const PesquisadorDetail({
     required this.id,
     required this.nome,
     required this.sobrenome,
@@ -21,7 +22,7 @@ class PesquisadorDetail {
   factory PesquisadorDetail.fromJson(Map<String, dynamic> json) =>
       _$PesquisadorDetailFromJson(json);
 
-  factory PesquisadorDetail.skeleton() => PesquisadorDetail(
+  factory PesquisadorDetail.skeleton() => const PesquisadorDetail(
         id: 0,
         nome: 'Nome',
         sobrenome: 'Sobrenome',
@@ -48,4 +49,12 @@ class PesquisadorDetail {
   String get nomeCompleto => '$nome $sobrenome';
 
   Map<String, dynamic> toJson() => _$PesquisadorDetailToJson(this);
+
+  @override
+  List<Object?> get props => [
+        id,
+      ];
+
+  @override
+  bool get stringify => true;
 }

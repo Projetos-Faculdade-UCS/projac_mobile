@@ -39,4 +39,7 @@ abstract class ApiClient {
 
   @GET('/producoes-academicas/{id}')
   Future<ProducaoAcademica> getProducaoAcademica(@Path('id') int id);
+
+  @GET('/graph')
+  Future<List<PesquisadorDetail>> getGraph();
 }

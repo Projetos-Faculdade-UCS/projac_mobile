@@ -41,6 +41,7 @@ dependencies:
   very_good_analysis: ^5.1.0
   flutter_force_directed_graph: ^1.0.6
   dotted_border: ^2.1.0
+  vector_math: ^2.1.4
 
 dev_dependencies:
   flutter_test:

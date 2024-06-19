@@ -23,7 +23,9 @@ class HomePage extends StatelessWidget {
             child: Text('Bem vindo ao Projac Mobile!'),
           ),
           Flexible(
-            child: GraphWidget(),
+            child: GraphWidget(
+                // interactive: false,
+                ),
           ),
         ],
       ),
