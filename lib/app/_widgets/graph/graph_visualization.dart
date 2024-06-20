@@ -63,7 +63,7 @@ class GraphVisualization extends StatelessWidget {
                   return Box(
                     color: edgeColor,
                     // the smaller the visualization, the bigger the edge
-                    height: .5 / constraints.maxHeight * distance / 2,
+                    height: .5 / constraints.maxHeight * distance,
                     width: distance,
                   );
                 },
