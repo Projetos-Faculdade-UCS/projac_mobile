@@ -3,19 +3,19 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_force_directed_graph/flutter_force_directed_graph.dart';
 import 'package:projac_mobile/app/pesquisadores/bloc/pesquisadores_repository.dart';
-import 'package:projac_mobile/core/api/models/pesquisador_detail.dart';
+import 'package:projac_mobile/core/api/models/pesquisador_graph.dart';
 
 class GraphController implements TickerProvider {
   GraphController({
     this.maxNodes,
   }) {
-    controller = ForceDirectedGraphController<PesquisadorDetail>(
+    controller = ForceDirectedGraphController<PesquisadorGraph>(
       graph: ForceDirectedGraph(
         config: config,
       ),
     );
   }
-  late final ForceDirectedGraphController<PesquisadorDetail> controller;
+  late final ForceDirectedGraphController<PesquisadorGraph> controller;
   final int? maxNodes;
 
   static const config = GraphConfig(
@@ -70,15 +70,15 @@ class GraphController implements TickerProvider {
     }
   }
 
-  List<Node<PesquisadorDetail>> _getNodes(
-    List<PesquisadorDetail> pesquisadores,
+  List<Node<PesquisadorGraph>> _getNodes(
+    List<PesquisadorGraph> pesquisadores,
   ) {
     return pesquisadores.map((pesquisador) {
-      return Node<PesquisadorDetail>(pesquisador);
+      return Node<PesquisadorGraph>(pesquisador);
     }).toList();
   }
 
-  Future<void> _updateGraph(List<PesquisadorDetail> data) async {
+  Future<void> _updateGraph(List<PesquisadorGraph> data) async {
     var nodes = _getNodes(data)
       ..sort((a, b) {
         final aRelations = data
@@ -148,10 +148,10 @@ class GraphController implements TickerProvider {
     controller.needUpdate();
   }
 
-  List<List<Node<PesquisadorDetail>>> _getEdges(
-    List<Node<PesquisadorDetail>> nodes,
+  List<List<Node<PesquisadorGraph>>> _getEdges(
+    List<Node<PesquisadorGraph>> nodes,
   ) {
-    final edges = <List<Node<PesquisadorDetail>>>[];
+    final edges = <List<Node<PesquisadorGraph>>>[];
     for (var i = 0; i < nodes.length; i++) {
       for (var j = i + 1; j < nodes.length; j++) {
         final commonProjects = nodes[i]

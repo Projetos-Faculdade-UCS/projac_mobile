@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:projac_mobile/core/api/models/area.dart';
 import 'package:projac_mobile/core/api/models/pesquisador_detail.dart';
+import 'package:projac_mobile/core/api/models/pesquisador_graph.dart';
 import 'package:projac_mobile/core/api/models/pesquisador_list.dart';
 import 'package:projac_mobile/core/api/models/producao_academica.dart';
 import 'package:projac_mobile/core/api/models/projeto.dart';
@@ -41,5 +42,5 @@ abstract class ApiClient {
   Future<ProducaoAcademica> getProducaoAcademica(@Path('id') int id);
 
   @GET('/graph')
-  Future<List<PesquisadorDetail>> getGraph();
+  Future<List<PesquisadorGraph>> getGraph();
 }

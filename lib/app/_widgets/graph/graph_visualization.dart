@@ -22,7 +22,7 @@ class GraphVisualization extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final edgeColor = Theme.of(context).colorScheme.onSurface.withOpacity(.8);
+    final edgeColor = Theme.of(context).colorScheme.primary;
 
     return ColoredBox(
       color: backgroundColor,
@@ -62,7 +62,8 @@ class GraphVisualization extends StatelessWidget {
                   }
                   return Box(
                     color: edgeColor,
-                    height: .5,
+                    // the smaller the visualization, the bigger the edge
+                    height: .5 / constraints.maxHeight * distance / 2,
                     width: distance,
                   );
                 },

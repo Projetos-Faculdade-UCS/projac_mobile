@@ -1,4 +1,5 @@
 import 'package:projac_mobile/core/api/models/pesquisador_detail.dart';
+import 'package:projac_mobile/core/api/models/pesquisador_graph.dart';
 import 'package:projac_mobile/core/api/models/pesquisador_list.dart';
 import 'package:projac_mobile/core/get_it.dart';
 import 'package:projac_mobile/core/searchable_base_repository.dart';
@@ -20,7 +21,7 @@ class PesquisadoresRepository
     return (await apiClient).getPesquisadores(query: query);
   }
 
-  Future<List<PesquisadorDetail>> getGraph() async {
+  Future<List<PesquisadorGraph>> getGraph() async {
     return (await apiClient).getGraph();
   }
 }

@@ -219,13 +219,13 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<List<PesquisadorDetail>> getGraph() async {
+  Future<List<PesquisadorGraph>> getGraph() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio
-        .fetch<List<dynamic>>(_setStreamType<List<PesquisadorDetail>>(Options(
+        .fetch<List<dynamic>>(_setStreamType<List<PesquisadorGraph>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -242,8 +242,8 @@ class _ApiClient implements ApiClient {
               baseUrl,
             ))));
     var value = _result.data!
-        .map((dynamic i) =>
-            PesquisadorDetail.fromJson(i as Map<String, dynamic>))
+        .map(
+            (dynamic i) => PesquisadorGraph.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
