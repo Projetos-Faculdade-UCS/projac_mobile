@@ -60,10 +60,12 @@ class GraphVisualization extends StatelessWidget {
                   if (isDetailOpened) {
                     return const SizedBox();
                   }
+                  const k = 2;
+                  final height = (constraints.maxWidth / k) * (3 / distance);
+
                   return Box(
                     color: edgeColor,
-                    // the smaller the visualization, the bigger the edge
-                    height: .5 / constraints.maxHeight * distance,
+                    height: height,
                     width: distance,
                   );
                 },
