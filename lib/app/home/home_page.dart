@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
     super.key,
   });
 
-  static const String title = 'Projac';
+  static const String title = 'Acadion';
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
       body: Column(
         children: [
           const Center(
-            child: Text('Bem vindo ao Projac Mobile!'),
+            child: Text('Bem vindo ao Acadion Mobile!'),
           ),
           GraphCard(
             title: 'Pesquisadores',

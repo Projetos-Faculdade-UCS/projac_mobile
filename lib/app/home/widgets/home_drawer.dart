@@ -24,7 +24,7 @@ class HomeDrawer extends StatelessWidget {
                 SvgIcon(size: 48, color: Colors.white),
                 SizedBox(width: 16),
                 Text(
-                  'Projac',
+                  'Acadion',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24,
