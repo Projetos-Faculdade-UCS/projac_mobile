@@ -21,6 +21,8 @@ void main() async {
   setupApi(
     apiKey: Env.apiKey,
     baseUrl: Env.apiUrl,
+    apiKeyHeader: Env.apiKeyHeader,
+    apiKeyPrefix: Env.apiKeyPrefix,
   );
 
   await SentryFlutter.init(

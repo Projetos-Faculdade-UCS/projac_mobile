@@ -9,4 +9,8 @@ abstract class Env {
   static final String apiUrl = _Env.apiUrl;
   @EnviedField(varName: 'API_KEY')
   static final String apiKey = _Env.apiKey;
+  @EnviedField(varName: 'API_KEY_HEADER')
+  static final String apiKeyHeader = _Env.apiKeyHeader;
+  @EnviedField(varName: 'API_KEY_PREFIX')
+  static final String apiKeyPrefix = _Env.apiKeyPrefix;
 }

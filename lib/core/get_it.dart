@@ -10,6 +10,8 @@ final GetIt getIt = GetIt.instance;
 void setupApi({
   required String baseUrl,
   required String apiKey,
+  required String apiKeyHeader,
+  required String apiKeyPrefix,
 }) {
   getIt
     ..registerLazySingletonAsync<CacheOptions>(
@@ -35,7 +37,7 @@ void setupApi({
       dio.options.baseUrl = baseUrl;
       dio.options.headers = {
         'Content-Type': 'application/json',
-        'X-API-Key': apiKey,
+        apiKeyHeader: '$apiKeyPrefix$apiKey',
       };
       return dio;
     })
