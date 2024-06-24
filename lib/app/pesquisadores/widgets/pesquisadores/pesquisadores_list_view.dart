@@ -1,6 +1,6 @@
+import 'package:acadion/app/pesquisadores/widgets/pesquisadores/pesquisador_card.dart';
+import 'package:acadion/core/api/models/pesquisador_list.dart';
 import 'package:flutter/material.dart';
-import 'package:projac_mobile/app/pesquisadores/widgets/pesquisadores/pesquisador_card.dart';
-import 'package:projac_mobile/core/api/models/pesquisador_list.dart';
 import 'package:super_sliver_list/super_sliver_list.dart';
 
 class PesquisadoresListView extends StatelessWidget {

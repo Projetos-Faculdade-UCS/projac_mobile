@@ -1,9 +1,9 @@
+import 'package:acadion/app/_widgets/projeto_base_list_tile.dart';
+import 'package:acadion/app/projetos/widgets/projeto_list_tile/area.dart';
+import 'package:acadion/app/projetos/widgets/projeto_list_tile/coordenador.dart';
+import 'package:acadion/core/api/models/projeto_list.dart';
+import 'package:acadion/core/api/models/status_projeto.dart';
 import 'package:flutter/material.dart';
-import 'package:projac_mobile/app/_widgets/projeto_base_list_tile.dart';
-import 'package:projac_mobile/app/projetos/widgets/projeto_list_tile/area.dart';
-import 'package:projac_mobile/app/projetos/widgets/projeto_list_tile/coordenador.dart';
-import 'package:projac_mobile/core/api/models/projeto_list.dart';
-import 'package:projac_mobile/core/api/models/status_projeto.dart';
 import 'package:routefly/routefly.dart';
 
 class ProjetoListTile extends StatelessWidget {

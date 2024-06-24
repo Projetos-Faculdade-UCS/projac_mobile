@@ -1,6 +1,6 @@
+import 'package:acadion/app/_widgets/gradient_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:projac_mobile/app/_widgets/gradient_icon.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class DetailField extends StatelessWidget {

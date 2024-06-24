@@ -1,11 +1,11 @@
+import 'package:acadion/core/api/models/area.dart';
+import 'package:acadion/core/api/models/pesquisador_detail.dart';
+import 'package:acadion/core/api/models/pesquisador_graph.dart';
+import 'package:acadion/core/api/models/pesquisador_list.dart';
+import 'package:acadion/core/api/models/producao_academica.dart';
+import 'package:acadion/core/api/models/projeto.dart';
+import 'package:acadion/core/api/models/projeto_list.dart';
 import 'package:dio/dio.dart';
-import 'package:projac_mobile/core/api/models/area.dart';
-import 'package:projac_mobile/core/api/models/pesquisador_detail.dart';
-import 'package:projac_mobile/core/api/models/pesquisador_graph.dart';
-import 'package:projac_mobile/core/api/models/pesquisador_list.dart';
-import 'package:projac_mobile/core/api/models/producao_academica.dart';
-import 'package:projac_mobile/core/api/models/projeto.dart';
-import 'package:projac_mobile/core/api/models/projeto_list.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'api_client.g.dart';

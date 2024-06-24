@@ -1,7 +1,7 @@
+import 'package:acadion/app/producoes_academicas/bloc/producoes_academicas_repository.dart';
+import 'package:acadion/core/api/models/producao_academica.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:projac_mobile/app/producoes_academicas/bloc/producoes_academicas_repository.dart';
-import 'package:projac_mobile/core/api/models/producao_academica.dart';
 
 part 'producao_academica_event.dart';
 part 'producao_academica_state.dart';

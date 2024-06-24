@@ -1,8 +1,8 @@
+import 'package:acadion/app/pesquisadores/bloc/pesquisador/pesquisador_bloc.dart';
+import 'package:acadion/app/pesquisadores/bloc/pesquisadores/pesquisadores_bloc.dart';
+import 'package:acadion/app/pesquisadores/bloc/pesquisadores_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:projac_mobile/app/pesquisadores/bloc/pesquisador/pesquisador_bloc.dart';
-import 'package:projac_mobile/app/pesquisadores/bloc/pesquisadores/pesquisadores_bloc.dart';
-import 'package:projac_mobile/app/pesquisadores/bloc/pesquisadores_repository.dart';
 
 final pesquisadorGetIt = GetIt.asNewInstance();
 final pesquisadoresGetIt = GetIt.asNewInstance();

@@ -1,6 +1,6 @@
+import 'package:acadion/app/projetos/widgets/projeto_list_tile/projeto_list_tile.dart';
+import 'package:acadion/core/api/models/projeto_list.dart';
 import 'package:flutter/material.dart';
-import 'package:projac_mobile/app/projetos/widgets/projeto_list_tile/projeto_list_tile.dart';
-import 'package:projac_mobile/core/api/models/projeto_list.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:super_sliver_list/super_sliver_list.dart';
 

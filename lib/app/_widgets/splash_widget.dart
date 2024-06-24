@@ -1,5 +1,5 @@
+import 'package:acadion/routes.g.dart';
 import 'package:flutter/material.dart';
-import 'package:projac_mobile/routes.g.dart';
 import 'package:routefly/routefly.dart';
 
 class SplashWidget extends StatefulWidget {

@@ -1,9 +1,9 @@
+import 'package:acadion/app/_widgets/custom_app_bar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dismissible_page/dismissible_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:photo_view/photo_view.dart';
-import 'package:projac_mobile/app/_widgets/custom_app_bar.dart';
 
 class DismissiblePicture extends StatefulWidget {
   const DismissiblePicture({

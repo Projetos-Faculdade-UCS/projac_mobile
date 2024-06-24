@@ -1,8 +1,8 @@
+import 'package:acadion/app/_widgets/graph/graph_controller.dart';
+import 'package:acadion/app/_widgets/graph/graph_visualization.dart';
+import 'package:acadion/app/pesquisadores/bloc/pesquisadores_repository.dart';
+import 'package:acadion/app/pesquisadores/get_it.dart';
 import 'package:flutter/material.dart';
-import 'package:projac_mobile/app/_widgets/graph/graph_controller.dart';
-import 'package:projac_mobile/app/_widgets/graph/graph_visualization.dart';
-import 'package:projac_mobile/app/pesquisadores/bloc/pesquisadores_repository.dart';
-import 'package:projac_mobile/app/pesquisadores/get_it.dart';
 
 class GraphWidget extends StatefulWidget {
   const GraphWidget({

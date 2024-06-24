@@ -1,6 +1,6 @@
+import 'package:acadion/core/api/models/coordenador.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:projac_mobile/core/api/models/coordenador.dart';
 
 class CoordenadorWidget extends StatelessWidget {
   const CoordenadorWidget({

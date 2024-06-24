@@ -1,8 +1,8 @@
+import 'package:acadion/app/_widgets/detail/detail_field.dart';
+import 'package:acadion/core/api/models/projeto.dart';
+import 'package:acadion/routes.g.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:projac_mobile/app/_widgets/detail/detail_field.dart';
-import 'package:projac_mobile/core/api/models/projeto.dart';
-import 'package:projac_mobile/routes.g.dart';
 import 'package:routefly/routefly.dart';
 import 'package:super_sliver_list/super_sliver_list.dart';
 

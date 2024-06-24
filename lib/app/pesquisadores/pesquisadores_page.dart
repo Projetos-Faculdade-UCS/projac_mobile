@@ -1,11 +1,11 @@
+import 'package:acadion/app/_widgets/custom_app_bar.dart';
+import 'package:acadion/app/_widgets/search_action_button.dart';
+import 'package:acadion/app/pesquisadores/bloc/pesquisadores/pesquisadores_bloc.dart';
+import 'package:acadion/app/pesquisadores/bloc/pesquisadores_repository.dart';
+import 'package:acadion/app/pesquisadores/get_it.dart';
+import 'package:acadion/app/pesquisadores/widgets/pesquisadores/pesquisadores_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:projac_mobile/app/_widgets/custom_app_bar.dart';
-import 'package:projac_mobile/app/_widgets/search_action_button.dart';
-import 'package:projac_mobile/app/pesquisadores/bloc/pesquisadores/pesquisadores_bloc.dart';
-import 'package:projac_mobile/app/pesquisadores/bloc/pesquisadores_repository.dart';
-import 'package:projac_mobile/app/pesquisadores/get_it.dart';
-import 'package:projac_mobile/app/pesquisadores/widgets/pesquisadores/pesquisadores_widget.dart';
 
 class PesquisadoresPage extends StatefulWidget {
   const PesquisadoresPage({super.key});

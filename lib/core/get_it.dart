@@ -1,9 +1,9 @@
+import 'package:acadion/core/api/api_client.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_store.dart';
 import 'package:get_it/get_it.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:projac_mobile/core/api/api_client.dart';
 
 final GetIt getIt = GetIt.instance;
 
@@ -15,7 +15,6 @@ void setupApi({
     ..registerLazySingletonAsync<CacheOptions>(
       () async {
         final dir = await getApplicationDocumentsDirectory();
-        print('Cache dir: ${dir.path}');
         return CacheOptions(
           store: HiveCacheStore('${dir.path}/hiveCache'),
           hitCacheOnErrorExcept: [401, 403],

@@ -1,7 +1,7 @@
+import 'package:acadion/core/api/models/producao_academica.dart';
+import 'package:acadion/core/api/models/projeto_list.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:projac_mobile/core/api/models/producao_academica.dart';
-import 'package:projac_mobile/core/api/models/projeto_list.dart';
 
 part 'pesquisador_detail.g.dart';
 

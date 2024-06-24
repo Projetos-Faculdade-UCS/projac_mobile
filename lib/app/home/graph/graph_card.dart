@@ -1,5 +1,5 @@
+import 'package:acadion/app/_widgets/graph/graph_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:projac_mobile/app/_widgets/graph/graph_widget.dart';
 
 class GraphCard extends StatelessWidget {
   const GraphCard({

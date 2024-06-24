@@ -1,10 +1,10 @@
+import 'package:acadion/core/api/models/agencia_fomento.dart';
+import 'package:acadion/core/api/models/area.dart';
+import 'package:acadion/core/api/models/pesquisador_projeto.dart';
+import 'package:acadion/core/api/models/producao_academica.dart';
+import 'package:acadion/core/api/models/status_projeto.dart';
+import 'package:acadion/core/api/models/valor_arrecadado.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:projac_mobile/core/api/models/agencia_fomento.dart';
-import 'package:projac_mobile/core/api/models/area.dart';
-import 'package:projac_mobile/core/api/models/pesquisador_projeto.dart';
-import 'package:projac_mobile/core/api/models/producao_academica.dart';
-import 'package:projac_mobile/core/api/models/status_projeto.dart';
-import 'package:projac_mobile/core/api/models/valor_arrecadado.dart';
 
 part 'projeto.g.dart';
 

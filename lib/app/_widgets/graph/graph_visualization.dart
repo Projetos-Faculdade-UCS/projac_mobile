@@ -1,9 +1,9 @@
+import 'package:acadion/app/_widgets/graph/graph_controller.dart';
+import 'package:acadion/routes.g.dart';
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_force_directed_graph/widget/force_directed_graph_widget.dart';
-import 'package:projac_mobile/app/_widgets/graph/graph_controller.dart';
-import 'package:projac_mobile/routes.g.dart';
 import 'package:routefly/routefly.dart';
 
 class GraphVisualization extends StatelessWidget {

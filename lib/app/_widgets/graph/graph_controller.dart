@@ -1,9 +1,8 @@
-import 'package:flutter/animation.dart';
-import 'package:flutter/rendering.dart';
+import 'package:acadion/app/pesquisadores/bloc/pesquisadores_repository.dart';
+import 'package:acadion/core/api/models/pesquisador_graph.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_force_directed_graph/flutter_force_directed_graph.dart';
-import 'package:projac_mobile/app/pesquisadores/bloc/pesquisadores_repository.dart';
-import 'package:projac_mobile/core/api/models/pesquisador_graph.dart';
 
 class GraphController implements TickerProvider {
   GraphController({
@@ -143,7 +142,7 @@ class GraphController implements TickerProvider {
 
     final elapsed = DateTime.now().difference(now).inMilliseconds;
 
-    print('GRAPH_DEBUG: Edges updated in $elapsed ms');
+    debugPrint('GRAPH_DEBUG: Edges updated in $elapsed ms');
 
     controller.needUpdate();
   }

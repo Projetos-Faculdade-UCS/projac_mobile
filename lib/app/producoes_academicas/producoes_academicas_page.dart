@@ -1,11 +1,11 @@
+import 'package:acadion/app/_widgets/custom_app_bar.dart';
+import 'package:acadion/app/_widgets/search_action_button.dart';
+import 'package:acadion/app/producoes_academicas/bloc/producoes_academicas/producoes_academicas_bloc.dart';
+import 'package:acadion/app/producoes_academicas/bloc/producoes_academicas_repository.dart';
+import 'package:acadion/app/producoes_academicas/get_it.dart';
+import 'package:acadion/app/producoes_academicas/widgets/producoes_academicas_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:projac_mobile/app/_widgets/custom_app_bar.dart';
-import 'package:projac_mobile/app/_widgets/search_action_button.dart';
-import 'package:projac_mobile/app/producoes_academicas/bloc/producoes_academicas/producoes_academicas_bloc.dart';
-import 'package:projac_mobile/app/producoes_academicas/bloc/producoes_academicas_repository.dart';
-import 'package:projac_mobile/app/producoes_academicas/get_it.dart';
-import 'package:projac_mobile/app/producoes_academicas/widgets/producoes_academicas_list.dart';
 
 class ProducoesAcademicasPage extends StatefulWidget {
   const ProducoesAcademicasPage({super.key});

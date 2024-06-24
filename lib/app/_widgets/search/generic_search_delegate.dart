@@ -1,5 +1,5 @@
+import 'package:acadion/core/searchable_base_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:projac_mobile/core/searchable_base_repository.dart';
 
 class GenericSearchDelegate<T> extends SearchDelegate<List<T>> {
   GenericSearchDelegate({

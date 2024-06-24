@@ -1,8 +1,8 @@
+import 'package:acadion/app/_widgets/custom_app_bar.dart';
+import 'package:acadion/app/home/graph/graph_card.dart';
+import 'package:acadion/app/home/widgets/home_drawer.dart';
+import 'package:acadion/routes.g.dart';
 import 'package:flutter/material.dart';
-import 'package:projac_mobile/app/_widgets/custom_app_bar.dart';
-import 'package:projac_mobile/app/home/graph/graph_card.dart';
-import 'package:projac_mobile/app/home/widgets/home_drawer.dart';
-import 'package:projac_mobile/routes.g.dart';
 import 'package:routefly/routefly.dart';
 
 class HomePage extends StatelessWidget {

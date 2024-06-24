@@ -1,4 +1,4 @@
-name: projac_mobile
+name: acadion
 description: "A new Flutter project."
 
 publish_to: "none"
@@ -43,6 +43,7 @@ dependencies:
   dotted_border: ^2.1.0
   vector_math: ^2.1.4
   assorted_layout_widgets: ^9.0.1
+  sentry_flutter: ^8.3.0
 
 dev_dependencies:
   flutter_test:
@@ -55,6 +56,7 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   json_serializable: ^6.8.0
   retrofit_generator: ^8.1.0
+  sentry_dart_plugin: ^2.1.0
 
 dependency_overrides:
   flutter_lints: ^4.0.0
@@ -64,3 +66,13 @@ flutter:
   assets:
     - assets/
     - assets/icons/
+
+sentry:
+  upload_debug_symbols: true
+  upload_source_maps: false
+  upload_sources: false
+  wait_for_processing: false
+  commits: auto
+  ignore_missing: false
+  project: projac
+  org: mr-haubrich

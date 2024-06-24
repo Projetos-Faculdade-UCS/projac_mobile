@@ -1,11 +1,11 @@
 import 'dart:math';
 
+import 'package:acadion/core/get_it.dart';
+import 'package:acadion/core/theme/theme_cubit.dart';
+import 'package:acadion/routes.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:projac_mobile/core/get_it.dart';
-import 'package:projac_mobile/core/theme/theme_cubit.dart';
-import 'package:projac_mobile/routes.g.dart';
 import 'package:routefly/routefly.dart';
 
 class AppWidget extends StatelessWidget {
@@ -17,9 +17,6 @@ class AppWidget extends StatelessWidget {
       create: (context) => getIt.get<ThemeCubit>(),
       child: BlocBuilder<ThemeCubit, ThemeData>(
         builder: (context, theme) {
-          print(
-            'Theme: ${theme.brightness == Brightness.light ? 'light' : 'dark'}',
-          );
           return MaterialApp.router(
             theme: theme,
             debugShowCheckedModeBanner: false,

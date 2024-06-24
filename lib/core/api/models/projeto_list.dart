@@ -1,8 +1,8 @@
+import 'package:acadion/core/api/models/area.dart';
+import 'package:acadion/core/api/models/coordenador.dart';
+import 'package:acadion/core/api/models/status_projeto.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:projac_mobile/core/api/models/area.dart';
-import 'package:projac_mobile/core/api/models/coordenador.dart';
-import 'package:projac_mobile/core/api/models/status_projeto.dart';
 
 part 'projeto_list.g.dart';
 

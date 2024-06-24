@@ -1,6 +1,6 @@
-import 'package:projac_mobile/core/api/models/producao_academica.dart';
-import 'package:projac_mobile/core/get_it.dart';
-import 'package:projac_mobile/core/searchable_base_repository.dart';
+import 'package:acadion/core/api/models/producao_academica.dart';
+import 'package:acadion/core/get_it.dart';
+import 'package:acadion/core/searchable_base_repository.dart';
 
 class ProducoesAcademicasRepository
     implements SearchableBaseRepository<ProducaoAcademica> {

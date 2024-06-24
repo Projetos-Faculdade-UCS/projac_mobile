@@ -1,7 +1,7 @@
+import 'package:acadion/app/_widgets/custom_skeletonizer.dart';
+import 'package:acadion/app/producoes_academicas/widgets/producao_academica_card.dart';
+import 'package:acadion/core/api/models/producao_academica.dart';
 import 'package:flutter/material.dart';
-import 'package:projac_mobile/app/_widgets/custom_skeletonizer.dart';
-import 'package:projac_mobile/app/producoes_academicas/widgets/producao_academica_card.dart';
-import 'package:projac_mobile/core/api/models/producao_academica.dart';
 import 'package:super_sliver_list/super_sliver_list.dart';
 
 class ProducoesAcademicasList extends StatelessWidget {
