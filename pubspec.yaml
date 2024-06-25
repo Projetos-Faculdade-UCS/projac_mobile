@@ -44,6 +44,7 @@ dependencies:
   vector_math: ^2.1.4
   assorted_layout_widgets: ^9.0.1
   sentry_flutter: ^8.3.0
+  rive: ^0.13.8
 
 dev_dependencies:
   flutter_test:
@@ -66,6 +67,7 @@ flutter:
   assets:
     - assets/
     - assets/icons/
+    - assets/lottie/
 
 sentry:
   upload_debug_symbols: true

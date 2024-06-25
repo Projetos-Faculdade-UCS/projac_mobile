@@ -6,7 +6,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:rive/rive.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+
+late final RiveFile notFoundRive;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +28,20 @@ void main() async {
     apiKeyPrefix: Env.apiKeyPrefix,
   );
 
+  notFoundRive = await RiveFile.asset(
+    'assets/lottie/not_found.riv',
+  );
+
+  if (kReleaseMode) {
+    await _initSentry();
+  } else {
+    runApp(
+      const AppWidget(),
+    );
+  }
+}
+
+Future<void> _initSentry() async {
   await SentryFlutter.init(
     (options) {
       options
