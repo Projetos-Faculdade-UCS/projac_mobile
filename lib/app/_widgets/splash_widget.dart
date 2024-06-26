@@ -1,5 +1,7 @@
+import 'package:acadion/core/theme/main_theme.dart';
 import 'package:acadion/routes.g.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:routefly/routefly.dart';
 
 class SplashWidget extends StatefulWidget {
@@ -9,26 +11,92 @@ class SplashWidget extends StatefulWidget {
   State<SplashWidget> createState() => _SplashWidgetState();
 }
 
-class _SplashWidgetState extends State<SplashWidget> {
+class _SplashWidgetState extends State<SplashWidget>
+    with TickerProviderStateMixin {
+  late AnimationController _scaleController;
+  late Animation<double> _scaleAnimation;
+
   @override
   void initState() {
     super.initState();
-    Future<void>.delayed(const Duration(seconds: 2), () {
-      Routefly.navigate(routePaths.home);
+    _scaleController = AnimationController(
+      duration: const Duration(milliseconds: 500),
+      vsync: this,
+    );
+    _scaleAnimation = Tween<double>(begin: 1, end: 0).animate(
+      CurvedAnimation(parent: _scaleController, curve: Curves.easeInOut),
+    );
+
+    Future<void>.delayed(const Duration(seconds: 2), () async {
+      await Future<void>.delayed(
+        const Duration(seconds: 1),
+      ); // Wait for the second animation
+
+      await _scaleController.forward();
+
+      // Navigate after the animations
+      await Routefly.navigate(routePaths.home);
     });
   }
 
   @override
+  void dispose() {
+    _scaleController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Card(
-          child: Padding(
-            padding: EdgeInsets.all(16),
-            child: Text('Splash Screen'),
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _Gradient(
+              child: ScaleTransition(
+                scale: _scaleAnimation,
+                child: Lottie.asset(
+                  'assets/lottie/logo.json',
+                  width: 200,
+                  height: 200,
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            _Gradient(
+              child: ScaleTransition(
+                scale: _scaleAnimation,
+                child: Text(
+                  'Acadion',
+                  style: Theme.of(context).textTheme.headlineLarge,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
+    );
+  }
+}
+
+class _Gradient extends StatelessWidget {
+  const _Gradient({
+    required this.child,
+  });
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return ShaderMask(
+      shaderCallback: (bounds) {
+        return MainTheme.getGradientShader(
+          Theme.of(context).brightness,
+          bounds,
+        );
+      },
+      blendMode: BlendMode.srcIn,
+      child: child,
     );
   }
 }

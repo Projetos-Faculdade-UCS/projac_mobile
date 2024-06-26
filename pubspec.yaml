@@ -45,6 +45,7 @@ dependencies:
   assorted_layout_widgets: ^9.0.1
   sentry_flutter: ^8.3.0
   rive: ^0.13.8
+  lottie: ^3.1.2
 
 dev_dependencies:
   flutter_test:
