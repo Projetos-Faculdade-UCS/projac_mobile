@@ -1,5 +1,6 @@
 import 'package:acadion/core/theme/main_theme.dart';
 import 'package:acadion/routes.g.dart';
+import 'package:dotlottie_loader/dotlottie_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:routefly/routefly.dart';
@@ -27,7 +28,7 @@ class _SplashWidgetState extends State<SplashWidget>
       CurvedAnimation(parent: _scaleController, curve: Curves.easeInOut),
     );
 
-    Future<void>.delayed(const Duration(seconds: 2), () async {
+    Future<void>.delayed(const Duration(seconds: 5), () async {
       await Future<void>.delayed(
         const Duration(seconds: 1),
       ); // Wait for the second animation
@@ -49,30 +50,39 @@ class _SplashWidgetState extends State<SplashWidget>
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _Gradient(
-              child: ScaleTransition(
-                scale: _scaleAnimation,
-                child: Lottie.asset(
-                  'assets/lottie/logo.json',
-                  width: 200,
-                  height: 200,
+        child: ScaleTransition(
+          scale: _scaleAnimation,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _Gradient(
+                child: DotLottieLoader.fromAsset(
+                  'assets/lottie/Projac.lottie',
+                  frameBuilder: (BuildContext ctx, DotLottie? dotlottie) {
+                    if (dotlottie != null) {
+                      return Lottie.memory(
+                        dotlottie.animations.values.single,
+                        width: 200,
+                        height: 200,
+                      );
+                    } else {
+                      return const SizedBox(
+                        width: 200,
+                        height: 200,
+                      );
+                    }
+                  },
                 ),
               ),
-            ),
-            const SizedBox(height: 20),
-            _Gradient(
-              child: ScaleTransition(
-                scale: _scaleAnimation,
+              const SizedBox(height: 20),
+              _Gradient(
                 child: Text(
                   'Acadion',
                   style: Theme.of(context).textTheme.headlineLarge,
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
