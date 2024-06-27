@@ -1,10 +1,10 @@
+import 'package:acadion/app/_widgets/custom_app_bar.dart';
+import 'package:acadion/app/_widgets/custom_skeletonizer.dart';
+import 'package:acadion/app/producoes_academicas/bloc/producao_academica/producao_academica_bloc.dart';
+import 'package:acadion/app/producoes_academicas/get_it.dart';
+import 'package:acadion/app/producoes_academicas/widgets/detail/producao_academica_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:projac_mobile/app/_widgets/custom_app_bar.dart';
-import 'package:projac_mobile/app/_widgets/custom_skeletonizer.dart';
-import 'package:projac_mobile/app/producoes_academicas/bloc/producao_academica/producao_academica_bloc.dart';
-import 'package:projac_mobile/app/producoes_academicas/get_it.dart';
-import 'package:projac_mobile/app/producoes_academicas/widgets/detail/producao_academica_detail.dart';
 import 'package:routefly/routefly.dart';
 
 class ProducaoAcademicaPage extends StatefulWidget {

@@ -1,5 +1,5 @@
+import 'package:acadion/app/_widgets/splash_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:projac_mobile/app/_widgets/splash_widget.dart';
 
 class AppPage extends StatelessWidget {
   const AppPage({super.key});

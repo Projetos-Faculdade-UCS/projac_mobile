@@ -1,5 +1,5 @@
+import 'package:acadion/core/api/models/area.dart';
 import 'package:flutter/material.dart';
-import 'package:projac_mobile/core/api/models/area.dart';
 
 class AreaWidget extends StatelessWidget {
   const AreaWidget({

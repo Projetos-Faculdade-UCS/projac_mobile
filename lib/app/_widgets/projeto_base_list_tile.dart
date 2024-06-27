@@ -1,5 +1,5 @@
+import 'package:acadion/app/_widgets/top_corner_flag.dart';
 import 'package:flutter/material.dart';
-import 'package:projac_mobile/app/_widgets/top_corner_flag.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class ProjetoBaseListTile extends StatelessWidget {

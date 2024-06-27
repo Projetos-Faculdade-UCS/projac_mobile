@@ -1,7 +1,7 @@
+import 'package:acadion/core/theme/main_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:projac_mobile/core/theme/main_theme.dart';
 
 ThemeData get _initialTheme {
   final brightness =

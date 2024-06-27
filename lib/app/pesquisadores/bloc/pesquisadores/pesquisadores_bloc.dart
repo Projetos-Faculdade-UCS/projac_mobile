@@ -1,7 +1,7 @@
+import 'package:acadion/app/pesquisadores/bloc/pesquisadores_repository.dart';
+import 'package:acadion/core/api/models/pesquisador_list.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:projac_mobile/app/pesquisadores/bloc/pesquisadores_repository.dart';
-import 'package:projac_mobile/core/api/models/pesquisador_list.dart';
 
 part 'pesquisadores_event.dart';
 part 'pesquisadores_state.dart';

@@ -1,8 +1,8 @@
+import 'package:acadion/app/producoes_academicas/bloc/producao_academica/producao_academica_bloc.dart';
+import 'package:acadion/app/producoes_academicas/bloc/producoes_academicas/producoes_academicas_bloc.dart';
+import 'package:acadion/app/producoes_academicas/bloc/producoes_academicas_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:projac_mobile/app/producoes_academicas/bloc/producao_academica/producao_academica_bloc.dart';
-import 'package:projac_mobile/app/producoes_academicas/bloc/producoes_academicas/producoes_academicas_bloc.dart';
-import 'package:projac_mobile/app/producoes_academicas/bloc/producoes_academicas_repository.dart';
 
 final producaoAcademicaGetIt = GetIt.asNewInstance();
 final producoesAcademicasGetIt = GetIt.asNewInstance();

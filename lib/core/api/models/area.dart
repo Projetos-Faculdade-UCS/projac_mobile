@@ -1,8 +1,8 @@
 import 'dart:math';
 
+import 'package:acadion/core/theme/main_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:projac_mobile/core/theme/main_theme.dart';
 
 part 'area.g.dart';
 

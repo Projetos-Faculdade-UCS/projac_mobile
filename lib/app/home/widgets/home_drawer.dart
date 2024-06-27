@@ -1,9 +1,9 @@
+import 'package:acadion/app/_widgets/gradient_icon.dart';
+import 'package:acadion/app/_widgets/svg_icon.dart';
+import 'package:acadion/core/theme/main_theme.dart';
+import 'package:acadion/routes.g.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:projac_mobile/app/_widgets/gradient_icon.dart';
-import 'package:projac_mobile/app/_widgets/svg_icon.dart';
-import 'package:projac_mobile/core/theme/main_theme.dart';
-import 'package:projac_mobile/routes.g.dart';
 import 'package:routefly/routefly.dart';
 
 class HomeDrawer extends StatelessWidget {
@@ -24,7 +24,7 @@ class HomeDrawer extends StatelessWidget {
                 SvgIcon(size: 48, color: Colors.white),
                 SizedBox(width: 16),
                 Text(
-                  'Projac',
+                  'Acadion',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24,

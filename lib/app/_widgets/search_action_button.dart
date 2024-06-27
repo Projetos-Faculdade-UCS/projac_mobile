@@ -1,7 +1,7 @@
+import 'package:acadion/app/_widgets/search/generic_search_delegate.dart';
+import 'package:acadion/core/searchable_base_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:projac_mobile/app/_widgets/search/generic_search_delegate.dart';
-import 'package:projac_mobile/core/searchable_base_repository.dart';
 
 class SearchActionButton<T> extends StatelessWidget {
   const SearchActionButton({

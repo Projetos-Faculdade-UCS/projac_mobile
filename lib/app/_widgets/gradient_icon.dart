@@ -1,5 +1,5 @@
+import 'package:acadion/core/theme/main_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:projac_mobile/core/theme/main_theme.dart';
 
 class GradientIcon extends StatelessWidget implements Icon {
   const GradientIcon(

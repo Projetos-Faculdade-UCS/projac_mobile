@@ -1,6 +1,6 @@
+import 'package:acadion/app/pesquisadores/widgets/pesquisadores/pesquisadores_list_view.dart';
+import 'package:acadion/core/api/models/pesquisador_list.dart';
 import 'package:flutter/material.dart';
-import 'package:projac_mobile/app/pesquisadores/widgets/pesquisadores/pesquisadores_list_view.dart';
-import 'package:projac_mobile/core/api/models/pesquisador_list.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class PesquisadoresWidget extends StatelessWidget {

@@ -1,8 +1,8 @@
+import 'package:acadion/app/projetos/bloc/list/projetos_list_bloc.dart';
+import 'package:acadion/app/projetos/bloc/projeto/projeto_bloc.dart';
+import 'package:acadion/app/projetos/repositories/projetos_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
-import 'package:projac_mobile/app/projetos/bloc/list/projetos_list_bloc.dart';
-import 'package:projac_mobile/app/projetos/bloc/projeto/projeto_bloc.dart';
-import 'package:projac_mobile/app/projetos/repositories/projetos_repository.dart';
 
 final projetosListGetIt = GetIt.asNewInstance();
 final projetoGetIt = GetIt.asNewInstance();

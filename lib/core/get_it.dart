@@ -1,26 +1,27 @@
+import 'package:acadion/core/api/api_client.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_store.dart';
 import 'package:get_it/get_it.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:projac_mobile/core/api/api_client.dart';
 
 final GetIt getIt = GetIt.instance;
 
 void setupApi({
   required String baseUrl,
   required String apiKey,
+  required String apiKeyHeader,
+  required String apiKeyPrefix,
 }) {
   getIt
     ..registerLazySingletonAsync<CacheOptions>(
       () async {
         final dir = await getApplicationDocumentsDirectory();
-        print('Cache dir: ${dir.path}');
         return CacheOptions(
           store: HiveCacheStore('${dir.path}/hiveCache'),
           hitCacheOnErrorExcept: [401, 403],
           maxStale: const Duration(days: 1),
-          policy: CachePolicy.forceCache,
+          // policy: CachePolicy.forceCache,
           // policy: CachePolicy.noCache,
           priority: CachePriority.high,
         );
@@ -36,7 +37,7 @@ void setupApi({
       dio.options.baseUrl = baseUrl;
       dio.options.headers = {
         'Content-Type': 'application/json',
-        'X-API-Key': apiKey,
+        apiKeyHeader: '$apiKeyPrefix$apiKey',
       };
       return dio;
     })

@@ -3,14 +3,15 @@
 import 'package:routefly/routefly.dart';
 
 import 'app/app_page.dart' as a0;
+import 'app/graph/graph_page.dart' as a6;
 import 'app/home/home_page.dart' as a1;
 import 'app/pesquisadores/[id]_page.dart' as a3;
 import 'app/pesquisadores/pesquisadores_page.dart' as a2;
 import 'app/producoes_academicas/[id]_page.dart' as a5;
 import 'app/producoes_academicas/producoes_academicas_page.dart' as a4;
-import 'app/projetos/[id]_page.dart' as a8;
-import 'app/projetos/projetos_page.dart' as a7;
-import 'app/settings/settings_page.dart' as a6;
+import 'app/projetos/[id]_page.dart' as a9;
+import 'app/projetos/projetos_page.dart' as a8;
+import 'app/settings/settings_page.dart' as a7;
 
 List<RouteEntity> get routes => [
       RouteEntity(
@@ -68,12 +69,21 @@ List<RouteEntity> get routes => [
         ),
       ),
       RouteEntity(
+        key: '/graph',
+        uri: Uri.parse('/graph'),
+        routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
+          ctx,
+          settings,
+          const a6.GraphPage(),
+        ),
+      ),
+      RouteEntity(
         key: '/settings',
         uri: Uri.parse('/settings'),
         routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
           ctx,
           settings,
-          const a6.SettingsPage(),
+          const a7.SettingsPage(),
         ),
       ),
       RouteEntity(
@@ -82,7 +92,7 @@ List<RouteEntity> get routes => [
         routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
           ctx,
           settings,
-          const a7.ProjetosPage(),
+          const a8.ProjetosPage(),
         ),
       ),
       RouteEntity(
@@ -91,7 +101,7 @@ List<RouteEntity> get routes => [
         routeBuilder: (ctx, settings) => Routefly.defaultRouteBuilder(
           ctx,
           settings,
-          const a8.ProjetoPage(),
+          const a9.ProjetoPage(),
         ),
       ),
     ];
@@ -107,6 +117,7 @@ const routePaths = (
     path: '/producoes_academicas',
     $id: '/producoes_academicas/[id]',
   ),
+  graph: '/graph',
   settings: '/settings',
   projetos: (
     path: '/projetos',

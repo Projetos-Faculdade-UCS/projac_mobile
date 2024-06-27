@@ -1,13 +1,13 @@
+import 'package:acadion/app/_widgets/custom_app_bar.dart';
+import 'package:acadion/app/_widgets/error_message.dart';
+import 'package:acadion/app/_widgets/search_action_button.dart';
+import 'package:acadion/app/projetos/bloc/list/projetos_list_bloc.dart';
+import 'package:acadion/app/projetos/get_it.dart';
+import 'package:acadion/app/projetos/repositories/projetos_repository.dart';
+import 'package:acadion/app/projetos/widgets/projeto_list_tile/projeto_list_tile.dart';
+import 'package:acadion/app/projetos/widgets/projetos_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:projac_mobile/app/_widgets/custom_app_bar.dart';
-import 'package:projac_mobile/app/_widgets/error_message.dart';
-import 'package:projac_mobile/app/_widgets/search_action_button.dart';
-import 'package:projac_mobile/app/projetos/bloc/list/projetos_list_bloc.dart';
-import 'package:projac_mobile/app/projetos/get_it.dart';
-import 'package:projac_mobile/app/projetos/repositories/projetos_repository.dart';
-import 'package:projac_mobile/app/projetos/widgets/projeto_list_tile/projeto_list_tile.dart';
-import 'package:projac_mobile/app/projetos/widgets/projetos_list_view.dart';
 
 class ProjetosPage extends StatefulWidget {
   const ProjetosPage({super.key = const Key('projetos_page')});
