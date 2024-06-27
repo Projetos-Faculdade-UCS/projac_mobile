@@ -19,13 +19,14 @@ class _ApiClient implements ApiClient {
   String? baseUrl;
 
   @override
-  Future<List<Projeto>> getProjetos() async {
+  Future<List<ProjetoList>> getProjetos({String? query}) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'q': query};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result =
-        await _dio.fetch<List<dynamic>>(_setStreamType<List<Projeto>>(Options(
+    final _result = await _dio
+        .fetch<List<dynamic>>(_setStreamType<List<ProjetoList>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -42,7 +43,7 @@ class _ApiClient implements ApiClient {
               baseUrl,
             ))));
     var value = _result.data!
-        .map((dynamic i) => Projeto.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) => ProjetoList.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
@@ -102,13 +103,14 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<List<Pesquisador>> getPesquisadores() async {
+  Future<List<PesquisadorList>> getPesquisadores({String? query}) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'q': query};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio
-        .fetch<List<dynamic>>(_setStreamType<List<Pesquisador>>(Options(
+        .fetch<List<dynamic>>(_setStreamType<List<PesquisadorList>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -125,26 +127,26 @@ class _ApiClient implements ApiClient {
               baseUrl,
             ))));
     var value = _result.data!
-        .map((dynamic i) => Pesquisador.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) => PesquisadorList.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
 
   @override
-  Future<Usuario> getUser() async {
+  Future<PesquisadorDetail> getPesquisador(int id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Usuario>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<PesquisadorDetail>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/usuario',
+              '/pesquisadores/${id}',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -153,7 +155,96 @@ class _ApiClient implements ApiClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = Usuario.fromJson(_result.data!);
+    final value = PesquisadorDetail.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<List<ProducaoAcademica>> getProducoesAcademicas(
+      {String? query}) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'q': query};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<List<dynamic>>(_setStreamType<List<ProducaoAcademica>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/producoes-academicas',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    var value = _result.data!
+        .map((dynamic i) =>
+            ProducaoAcademica.fromJson(i as Map<String, dynamic>))
+        .toList();
+    return value;
+  }
+
+  @override
+  Future<ProducaoAcademica> getProducaoAcademica(int id) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ProducaoAcademica>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/producoes-academicas/${id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = ProducaoAcademica.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<List<PesquisadorGraph>> getGraph() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<List<dynamic>>(_setStreamType<List<PesquisadorGraph>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/graph',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    var value = _result.data!
+        .map(
+            (dynamic i) => PesquisadorGraph.fromJson(i as Map<String, dynamic>))
+        .toList();
     return value;
   }
 

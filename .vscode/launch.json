@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "projac_mobile",
+            "name": "acadion",
             "request": "launch",
             "type": "dart",
             // "args": [
@@ -13,7 +13,7 @@
             // ]
         },
         {
-            "name": "projac_mobile (profile mode)",
+            "name": "acadion (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile",
@@ -22,7 +22,7 @@
             // ]
         },
         {
-            "name": "projac_mobile (release mode)",
+            "name": "acadion (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release",

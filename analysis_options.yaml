@@ -11,3 +11,5 @@ analyzer:
 linter:
   rules:
     public_member_api_docs: false
+    # ignore file_name, cause Routefly uses [id]_page.dart
+    file_names: false

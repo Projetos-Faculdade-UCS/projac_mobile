@@ -1,4 +1,4 @@
-package com.example.projac_mobile
+package dev.mrhaubrich.acadion
 
 import io.flutter.embedding.android.FlutterActivity
 

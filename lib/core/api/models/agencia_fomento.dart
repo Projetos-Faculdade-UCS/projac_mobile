@@ -13,6 +13,12 @@ class AgenciaFomento {
   factory AgenciaFomento.fromJson(Map<String, dynamic> json) =>
       _$AgenciaFomentoFromJson(json);
 
+  factory AgenciaFomento.skeleton() => AgenciaFomento(
+        id: 0,
+        nome: 'Nome Qualquer',
+        sigla: 'Sigla Qualquer',
+      );
+
   final int? id;
   final String nome;
   final String sigla;

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class MainTheme {
   MainTheme._();
-  static final lightTheme = ThemeData(
+  static final ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     primaryColor: const Color(0xFF3A0CA3),
     appBarTheme: const AppBarTheme(
@@ -19,18 +19,35 @@ class MainTheme {
       bodyLarge: TextStyle(color: Color(0xFF0E0B0D)),
       bodyMedium: TextStyle(color: Color(0xFF0E0B0D)),
     ),
+    tabBarTheme: const TabBarTheme(
+      labelColor: Color(0xFFFFFFFF),
+      unselectedLabelColor: Color(0xFFFFFFFF),
+      tabAlignment: TabAlignment.start,
+    ),
+    cardTheme: CardTheme(
+      elevation: 2,
+      shape: RoundedRectangleBorder(
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        side: BorderSide(
+          color: const Color(0xFF3A0CA3).withAlpha(50).withOpacity(.1),
+        ),
+      ),
+    ),
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: Colors.white,
+      selectionColor: Colors.white.withOpacity(.5),
+      selectionHandleColor: const Color(0xFF7209B7),
+    ),
     colorScheme: const ColorScheme.light(
       primary: Color(0xFF3A0CA3),
-      secondary: Color(0xFF93ADF6),
+      secondary: Color(0xFF7209B7),
       surface: Color(0xFFFAF7FA),
       onSecondary: Color(0xFFFFFFFF),
       onSurface: Color(0xFF0E0B0D),
-    )
-        .copyWith(secondary: const Color(0xFF7209B7))
-        .copyWith(surface: const Color(0xFFFAF7FA)),
+    ),
   );
 
-  static final darkTheme = ThemeData(
+  static final ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     primaryColor: const Color(0xFF8A5EF3),
     appBarTheme: const AppBarTheme(
@@ -48,16 +65,33 @@ class MainTheme {
       bodyLarge: TextStyle(color: Color(0xFFF4F1F3)),
       bodyMedium: TextStyle(color: Color(0xFFF4F1F3)),
     ),
+    tabBarTheme: const TabBarTheme(
+      labelColor: Color(0xFFFFFFFF),
+      unselectedLabelColor: Color(0xFFFFFFFF),
+      tabAlignment: TabAlignment.start,
+    ),
+    cardTheme: CardTheme(
+      elevation: 2,
+      shape: RoundedRectangleBorder(
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        side: BorderSide(
+          color: const Color(0xFF8A5EF3).withAlpha(50).withOpacity(.1),
+        ),
+      ),
+    ),
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: Colors.white,
+      selectionColor: Colors.white.withOpacity(.5),
+      selectionHandleColor: const Color(0xFFB046F6),
+    ),
     colorScheme: const ColorScheme.dark(
       primary: Color(0xFF8A5EF3),
-      secondary: Color(0xFF09236D),
+      secondary: Color(0xFFB046F6),
       surface: Color(0xFF090609),
       onPrimary: Color(0xFFFFFFFF),
       onSecondary: Color(0xFFFFFFFF),
       onSurface: Color(0xFFF4F1F3),
-    )
-        .copyWith(secondary: const Color(0xFFB046F6))
-        .copyWith(surface: const Color(0xFF090609)),
+    ),
   );
 
   static final LinearGradient lightGradient = LinearGradient(
@@ -82,5 +116,9 @@ class MainTheme {
 
   static LinearGradient getGradient(Brightness brightness) {
     return brightness == Brightness.light ? lightGradient : darkGradient;
+  }
+
+  static Shader getGradientShader(Brightness brightness, Rect bounds) {
+    return getGradient(brightness).createShader(bounds);
   }
 }
