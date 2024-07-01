@@ -1,0 +1,122 @@
+name: Android Release
+
+on:
+  push:
+    branches: ["master"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: Production
+    strategy:
+      matrix:
+        build-type: ["apk", "appbundle"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: "zulu"
+          java-version: "17.x"
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.16.5"
+          channel: "stable"
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      # Decoding Keystore File
+      - name: Decode Keystore
+        run: echo "${{ secrets.KEYSTORE_B64 }}" | base64 -d > upload-keystore.jks
+
+      # Decoding Key Properties
+      - name: Decode Key Properties
+        run: echo "${{ secrets.KEY_PROPERTIES }}" | base64 -d > android/key.properties
+
+      - name: Build
+        run: flutter build ${{ matrix.build-type }} --release
+
+      - name: Upload APK Artifact
+        if: matrix.build-type == 'apk'
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Upload AppBundle Artifact
+        if: matrix.build-type == 'appbundle'
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release-aab
+          path: build/app/outputs/bundle/release/app-release.aab
+
+  upload-artifacts:
+    name: Upload Artifacts
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+
+    steps:
+      - name: Download all Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: app-release
+          pattern: app-release-*
+          merge-multiple: true
+
+      - name: Upload artifacts as one
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release
+          path: app-release
+
+  create-tag:
+    name: Create Tag and Release
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Extract version from pubspec.yaml
+        id: get_version
+        run: |
+          version=$(grep 'version:' pubspec.yaml | sed 's/version: //')
+          echo "::set-output name=VERSION::$version"
+
+      - name: Create new tag
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git tag v${{ steps.get_version.outputs.VERSION }}
+          git push origin v${{ steps.get_version.outputs.VERSION }}
+
+      - name: Download all Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: app-release
+          pattern: app-release-*
+          merge-multiple: true
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.get_version.outputs.VERSION }}
+          release_name: Release v${{ steps.get_version.outputs.VERSION }}
+          draft: false
+          prerelease: false
+
+      - name: Upload APK and AAB to Release
+        run: |
+          gh release upload v${{ steps.get_version.outputs.VERSION }} app-release/app-release.apk
+          gh release upload v${{ steps.get_version.outputs.VERSION }} app-release/app-release.aab
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
