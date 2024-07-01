@@ -21,6 +21,13 @@ jobs:
           distribution: "zulu"
           java-version: "17.x"
 
+      - uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: ${{ runner.os }}-pub-cache-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-cache-
+
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.22.2"
@@ -29,45 +36,29 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
-      # Decoding Keystore File
-      - name: Decode Keystore
-        run: echo "${{ secrets.KEYSTORE_B64 }}" | base64 -d > upload-keystore.jks
+      - name: Decode and Prepare Environment
+        run: |
+          echo "${{ secrets.KEYSTORE_B64 }}" | base64 -d > upload-keystore.jks
+          echo "${{ secrets.KEY_PROPERTIES }}" | base64 -d > android/key.properties
+          echo "${{ secrets.DOTENV_B64 }}" | base64 -d > .env
 
-      # Decoding Key Properties
-      - name: Decode Key Properties
-        run: echo "${{ secrets.KEY_PROPERTIES }}" | base64 -d > android/key.properties
-
-      # Decoding .env
-      - name: Decode .env
-        run: echo "${{ secrets.DOTENV_B64 }}" | base64 -d > .env
-
-      # Run Build_runner
       - name: Run Build Runner
         run: dart run build_runner build --delete-conflicting-outputs
 
       - name: Build
         run: flutter build ${{ matrix.build-type }} --release
 
-      - name: Upload APK Artifact
-        if: matrix.build-type == 'apk'
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: app-release-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
-
-      - name: Upload AppBundle Artifact
-        if: matrix.build-type == 'appbundle'
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-release-aab
-          path: build/app/outputs/bundle/release/app-release.aab
+          name: ${{ matrix.build-type == 'apk' && 'app-release-apk' || 'app-release-aab' }}
+          path: ${{ matrix.build-type == 'apk' && 'build/app/outputs/flutter-apk/app-release.apk' || 'build/app/outputs/bundle/release/app-release.aab' }}
 
   upload-artifacts:
     name: Upload Artifacts
     needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
-
     steps:
       - name: Download all Artifacts
         uses: actions/download-artifact@v4
