@@ -37,6 +37,14 @@ jobs:
       - name: Decode Key Properties
         run: echo "${{ secrets.KEY_PROPERTIES }}" | base64 -d > android/key.properties
 
+      # Decoding .env
+      - name: Decode .env
+        run: echo "${{ secrets.DOTENV_B64 }}" | base64 -d > .env
+
+      # Run Build_runner
+      - name: Run Build Runner
+        run: dart run build_runner build --delete-conflicting-outputs
+
       - name: Build
         run: flutter build ${{ matrix.build-type }} --release
 
