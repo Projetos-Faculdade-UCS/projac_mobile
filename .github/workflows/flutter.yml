@@ -47,7 +47,7 @@ jobs:
 
       - name: Build and Obfuscate
         run: |
-          flutter build ${{ matrix.build-type }} --release --split-debug-info=build/app/outputs/flutter-apk/split-debug-info --obfuscate --split-per-abi
+          flutter build ${{ matrix.build-type }} --release --split-debug-info=build/app/outputs/flutter-apk/split-debug-info --obfuscate
           SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }} dart run sentry_dart_plugin
 
       - name: Upload Artifact
