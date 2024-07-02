@@ -60,7 +60,7 @@ jobs:
           serviceAccountJson: ${{ secrets.SERVICE_ACCOUNT_JSON }}
           packageName: ${{ vars.PLAY_STORE_PACKAGE_NAME }}
           releaseFiles: |
-            build/app/outputs/flutter-apk/app-release.aab
+            build/app/outputs/bundle/release/app-release.aab
           track: internal
           # releaseName must be the version code
           releaseName: ${{ steps.version_code.outputs.version_code }}
