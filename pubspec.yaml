@@ -77,6 +77,6 @@ sentry:
   upload_sources: true
   wait_for_processing: false
   commits: auto
-  ignore_missing: false
+  ignore_missing: true
   project: projac
   org: mr-haubrich
