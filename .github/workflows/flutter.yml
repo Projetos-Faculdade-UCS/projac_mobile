@@ -22,17 +22,16 @@ jobs:
           java-version: "21"
           cache: 'gradle'
 
+
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.22.2"
           channel: "stable"
           cache: true
-          # optional parameters follow
-          cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:" # optional, change this to force refresh cache
-          cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:" # optional, change this to specify the cache path
-          pub-cache-key: "flutter-pub:os:-:channel:-:version:-:arch:-:hash:" # optional, change this to force refresh cache of dart pub get dependencies
-          pub-cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:" # optional, change this to specify the cache path
-  
+          cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:"
+          cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:"
+          pub-cache-key: "flutter-pub:os:-:channel:-:version:-:arch:-:hash:"
+          pub-cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:"
 
       - name: Get dependencies
         run: flutter pub get
@@ -42,6 +41,13 @@ jobs:
           echo "${{ secrets.KEYSTORE_B64 }}" | base64 -d > upload-keystore.jks
           echo "${{ secrets.KEY_PROPERTIES }}" | base64 -d > android/key.properties
           echo "${{ secrets.DOTENV_B64 }}" | base64 -d > .env
+
+      - uses: actions/cache@v4
+        with:
+          path: /usr/local/lib/android/sdk/
+          key: android-sdk-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/*.properties') }}
+          restore-keys: |
+            android-sdk-${{ runner.os }}-
 
       - name: Run Build Runner
         run: dart run build_runner build --delete-conflicting-outputs
