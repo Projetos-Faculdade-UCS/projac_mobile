@@ -45,8 +45,10 @@ jobs:
       - name: Run Build Runner
         run: dart run build_runner build --delete-conflicting-outputs
 
-      - name: Build
-        run: flutter build ${{ matrix.build-type }} --release
+      - name: Build and Obfuscate
+        run: |
+          flutter build ${{ matrix.build-type }} --release --split-debug-info=build/app/outputs/flutter-apk/split-debug-info --obfuscate --split-per-abi
+          SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }} dart run sentry_dart_plugin
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
