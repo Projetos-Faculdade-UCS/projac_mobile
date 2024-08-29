@@ -78,7 +78,6 @@ doc/api/
 ### Flutter ###
 # Flutter/Dart/Pub related
 **/doc/api/
-.fvm/flutter_sdk
 .pub-cache/
 .pub/
 coverage/
@@ -159,3 +158,6 @@ lib/generated_plugin_registrant.dart
 
 !.env.example
 lib/core/env.g.dart
+
+# FVM Version Cache
+.fvm/
