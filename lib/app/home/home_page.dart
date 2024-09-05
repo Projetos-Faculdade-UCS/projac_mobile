@@ -31,11 +31,6 @@ class HomePage extends StatelessWidget {
               Routefly.push<void>(routePaths.graph);
             },
           ),
-          // Flexible(
-          //     // child: GraphWidget(
-          //     //     // interactive: false,
-          //     //     ),
-          //     ),
         ],
       ),
     );

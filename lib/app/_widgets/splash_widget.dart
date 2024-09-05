@@ -1,3 +1,5 @@
+import 'package:acadion/app/pesquisadores/bloc/pesquisadores_repository.dart';
+import 'package:acadion/app/pesquisadores/get_it.dart';
 import 'package:acadion/core/theme/main_theme.dart';
 import 'package:acadion/routes.g.dart';
 import 'package:dotlottie_loader/dotlottie_loader.dart';
@@ -16,6 +18,7 @@ class _SplashWidgetState extends State<SplashWidget>
     with TickerProviderStateMixin {
   late AnimationController _scaleController;
   late Animation<double> _scaleAnimation;
+  late final bool _disposeGetIt;
 
   @override
   void initState() {
@@ -28,21 +31,28 @@ class _SplashWidgetState extends State<SplashWidget>
       CurvedAnimation(parent: _scaleController, curve: Curves.easeInOut),
     );
 
-    Future<void>.delayed(const Duration(seconds: 5), () async {
-      await Future<void>.delayed(
-        const Duration(seconds: 1),
-      ); // Wait for the second animation
+    _disposeGetIt = setupPesquisadoresGetIt();
 
-      await _scaleController.forward();
+    final repository = pesquisadoresGetIt.get<PesquisadoresRepository>();
 
-      // Navigate after the animations
-      await Routefly.navigate(routePaths.home);
-    });
+    Future.wait([repository.getGraph()]).then(
+      (value) async {
+        await Future<void>.delayed(
+          const Duration(seconds: 1),
+        );
+
+        await _scaleController.forward();
+
+        // Navigate after the animations
+        await Routefly.navigate(routePaths.home);
+      },
+    );
   }
 
   @override
   void dispose() {
     _scaleController.dispose();
+    disposePesquisadoresGetIt(dispose: _disposeGetIt);
     super.dispose();
   }
 
