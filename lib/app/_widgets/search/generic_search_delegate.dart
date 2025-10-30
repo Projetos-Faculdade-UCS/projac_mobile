@@ -6,8 +6,8 @@ class GenericSearchDelegate<T> extends SearchDelegate<List<T>> {
     required this.repository,
     required this.builder,
     required String searchFieldLabel,
-  })  : _searchFieldLabel = searchFieldLabel,
-        super();
+  }) : _searchFieldLabel = searchFieldLabel,
+       super();
 
   final SearchableBaseRepository<T> repository;
 
@@ -65,7 +65,7 @@ class GenericSearchDelegate<T> extends SearchDelegate<List<T>> {
     return Theme.of(context).copyWith(
       inputDecorationTheme: InputDecorationTheme(
         hintStyle: TextStyle(
-          color: Colors.white.withOpacity(.5),
+          color: Colors.white.withValues(alpha: .5),
         ),
       ),
     );
@@ -73,7 +73,7 @@ class GenericSearchDelegate<T> extends SearchDelegate<List<T>> {
 
   @override
   TextStyle? get searchFieldStyle => const TextStyle(
-        color: Colors.white,
-        fontSize: 20,
-      );
+    color: Colors.white,
+    fontSize: 20,
+  );
 }

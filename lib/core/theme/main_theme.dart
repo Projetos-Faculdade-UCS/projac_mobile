@@ -19,23 +19,23 @@ class MainTheme {
       bodyLarge: TextStyle(color: Color(0xFF0E0B0D)),
       bodyMedium: TextStyle(color: Color(0xFF0E0B0D)),
     ),
-    tabBarTheme: const TabBarTheme(
+    tabBarTheme: const TabBarThemeData(
       labelColor: Color(0xFFFFFFFF),
       unselectedLabelColor: Color(0xFFFFFFFF),
       tabAlignment: TabAlignment.start,
     ),
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       elevation: 2,
       shape: RoundedRectangleBorder(
         borderRadius: const BorderRadius.all(Radius.circular(10)),
         side: BorderSide(
-          color: const Color(0xFF3A0CA3).withAlpha(50).withOpacity(.1),
+          color: const Color(0xFF3A0CA3).withAlpha(50).withValues(alpha: .1),
         ),
       ),
     ),
     textSelectionTheme: TextSelectionThemeData(
       cursorColor: Colors.white,
-      selectionColor: Colors.white.withOpacity(.5),
+      selectionColor: Colors.white.withValues(alpha: .5),
       selectionHandleColor: const Color(0xFF7209B7),
     ),
     colorScheme: const ColorScheme.light(
@@ -65,23 +65,23 @@ class MainTheme {
       bodyLarge: TextStyle(color: Color(0xFFF4F1F3)),
       bodyMedium: TextStyle(color: Color(0xFFF4F1F3)),
     ),
-    tabBarTheme: const TabBarTheme(
+    tabBarTheme: const TabBarThemeData(
       labelColor: Color(0xFFFFFFFF),
       unselectedLabelColor: Color(0xFFFFFFFF),
       tabAlignment: TabAlignment.start,
     ),
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       elevation: 2,
       shape: RoundedRectangleBorder(
         borderRadius: const BorderRadius.all(Radius.circular(10)),
         side: BorderSide(
-          color: const Color(0xFF8A5EF3).withAlpha(50).withOpacity(.1),
+          color: const Color(0xFF8A5EF3).withAlpha(50).withValues(alpha: .1),
         ),
       ),
     ),
     textSelectionTheme: TextSelectionThemeData(
       cursorColor: Colors.white,
-      selectionColor: Colors.white.withOpacity(.5),
+      selectionColor: Colors.white.withValues(alpha: .5),
       selectionHandleColor: const Color(0xFFB046F6),
     ),
     colorScheme: const ColorScheme.dark(

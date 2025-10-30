@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:acadion/app/_widgets/custom_app_bar.dart';
 import 'package:acadion/app/_widgets/custom_skeletonizer.dart';
 import 'package:acadion/app/producoes_academicas/bloc/producao_academica/producao_academica_bloc.dart';
@@ -28,7 +30,7 @@ class _ProducaoAcademicaPageState extends State<ProducaoAcademicaPage> {
 
   @override
   void dispose() {
-    disposeProducaoAcademicaGetIt(dispose: _disposeGetIt);
+    unawaited(disposeProducaoAcademicaGetIt(dispose: _disposeGetIt));
     super.dispose();
   }
 

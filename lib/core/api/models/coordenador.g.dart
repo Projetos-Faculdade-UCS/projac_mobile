@@ -7,10 +7,10 @@ part of 'coordenador.dart';
 // **************************************************************************
 
 Coordenador _$CoordenadorFromJson(Map<String, dynamic> json) => Coordenador(
-      id: (json['id'] as num).toInt(),
-      nome: json['nome'] as String,
-      sobrenome: json['sobrenome'] as String,
-    );
+  id: (json['id'] as num).toInt(),
+  nome: json['nome'] as String,
+  sobrenome: json['sobrenome'] as String,
+);
 
 Map<String, dynamic> _$CoordenadorToJson(Coordenador instance) =>
     <String, dynamic>{

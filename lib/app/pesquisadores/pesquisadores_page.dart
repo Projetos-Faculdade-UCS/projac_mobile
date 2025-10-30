@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:acadion/app/_widgets/custom_app_bar.dart';
 import 'package:acadion/app/_widgets/search_action_button.dart';
 import 'package:acadion/app/pesquisadores/bloc/pesquisadores/pesquisadores_bloc.dart';
@@ -25,8 +27,10 @@ class _PesquisadoresPageState extends State<PesquisadoresPage> {
 
   @override
   void dispose() {
-    disposePesquisadoresGetIt(
-      dispose: disposeGetIt,
+    unawaited(
+      disposePesquisadoresGetIt(
+        dispose: disposeGetIt,
+      ),
     );
     super.dispose();
   }
@@ -34,8 +38,9 @@ class _PesquisadoresPageState extends State<PesquisadoresPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => pesquisadoresGetIt.get<PesquisadoresBloc>()
-        ..add(const PesquisadoresLoad()),
+      create: (context) =>
+          pesquisadoresGetIt.get<PesquisadoresBloc>()
+            ..add(const PesquisadoresLoad()),
       child: Scaffold(
         appBar: CustomAppBar(
           title: const Text('Pesquisadores'),

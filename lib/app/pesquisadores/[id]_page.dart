@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:acadion/app/_widgets/custom_app_bar.dart';
 import 'package:acadion/app/pesquisadores/bloc/pesquisador/pesquisador_bloc.dart';
 import 'package:acadion/app/pesquisadores/get_it.dart';
@@ -39,8 +41,10 @@ class _PesquisadorPageState extends State<PesquisadorPage>
 
   @override
   void dispose() {
-    disposePesquisadorGetIt(
-      dispose: disposeGetIt,
+    unawaited(
+      disposePesquisadorGetIt(
+        dispose: disposeGetIt,
+      ),
     );
     _tabController.dispose();
     super.dispose();
@@ -71,34 +75,36 @@ class _PesquisadorPageState extends State<PesquisadorPage>
               builder: (context, state) {
                 return AnimatedSwitcher(
                   duration: const Duration(milliseconds: 300),
-                  transitionBuilder: (
-                    Widget child,
-                    Animation<double> animation,
-                  ) {
-                    final opacityAnimation = Tween<double>(
-                      begin: 0,
-                      end: 1,
-                    ).animate(
-                      CurvedAnimation(
-                        parent: animation,
-                        curve: const Interval(
-                          0.5,
-                          1,
-                        ),
-                      ),
-                    );
+                  transitionBuilder:
+                      (
+                        Widget child,
+                        Animation<double> animation,
+                      ) {
+                        final opacityAnimation =
+                            Tween<double>(
+                              begin: 0,
+                              end: 1,
+                            ).animate(
+                              CurvedAnimation(
+                                parent: animation,
+                                curve: const Interval(
+                                  0.5,
+                                  1,
+                                ),
+                              ),
+                            );
 
-                    return FadeTransition(
-                      opacity: opacityAnimation,
-                      child: SlideTransition(
-                        position: Tween<Offset>(
-                          begin: const Offset(-1, 0),
-                          end: Offset.zero,
-                        ).animate(animation),
-                        child: child,
-                      ),
-                    );
-                  },
+                        return FadeTransition(
+                          opacity: opacityAnimation,
+                          child: SlideTransition(
+                            position: Tween<Offset>(
+                              begin: const Offset(-1, 0),
+                              end: Offset.zero,
+                            ).animate(animation),
+                            child: child,
+                          ),
+                        );
+                      },
                   child: _buildTitle(
                     state,
                   ),

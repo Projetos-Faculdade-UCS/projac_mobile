@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:acadion/app/_widgets/gradient_icon.dart';
 import 'package:acadion/core/api/models/pesquisador_list.dart';
 import 'package:acadion/routes.g.dart';
@@ -29,7 +31,7 @@ class PesquisadorCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
         side: BorderSide(
-          color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
+          color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.2),
         ),
       ),
       child: ListTile(
@@ -48,7 +50,7 @@ class PesquisadorCard extends StatelessWidget {
             width: 40,
             replacement: DecoratedBox(
               decoration: BoxDecoration(
-                color: Colors.grey[300]!.withOpacity(.3),
+                color: Colors.grey[300]!.withValues(alpha: .3),
                 shape: BoxShape.circle,
               ),
             ),
@@ -61,7 +63,7 @@ class PesquisadorCard extends StatelessWidget {
               placeholder: (context, url) => Skeletonizer(
                 child: DecoratedBox(
                   decoration: BoxDecoration(
-                    color: Colors.grey[300]!.withOpacity(.3),
+                    color: Colors.grey[300]!.withValues(alpha: .3),
                     shape: BoxShape.circle,
                   ),
                 ),
@@ -100,10 +102,12 @@ class PesquisadorCard extends StatelessWidget {
           child: Icon(Ionicons.chevron_forward),
         ),
         onTap: () {
-          Routefly.push<void>(
-            routePaths.pesquisadores.$id.changes({
-              'id': pesquisador.id.toString(),
-            }),
+          unawaited(
+            Routefly.push<void>(
+              routePaths.pesquisadores.$id.changes({
+                'id': pesquisador.id.toString(),
+              }),
+            ),
           );
         },
       ),

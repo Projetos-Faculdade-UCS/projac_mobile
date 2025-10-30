@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:acadion/app/pesquisadores/widgets/pesquisador/dismissible_picture.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dismissible_page/dismissible_page.dart';
@@ -18,10 +20,12 @@ class OpenablePicture extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.pushTransparentRoute<void>(
-          DismissiblePicture(imageUrl: imageUrl),
-          transitionDuration: const Duration(milliseconds: 500),
-          reverseTransitionDuration: const Duration(milliseconds: 500),
+        unawaited(
+          context.pushTransparentRoute<void>(
+            DismissiblePicture(imageUrl: imageUrl),
+            transitionDuration: const Duration(milliseconds: 500),
+            reverseTransitionDuration: const Duration(milliseconds: 500),
+          ),
         );
       },
       child: Hero(
@@ -30,32 +34,33 @@ class OpenablePicture extends StatelessWidget {
         createRectTween: (begin, end) {
           return MaterialRectCenterArcTween(begin: begin, end: end);
         },
-        flightShuttleBuilder: (
-          flightContext,
-          animation,
-          flightDirection,
-          fromHeroContext,
-          toHeroContext,
-        ) {
-          return ListenableBuilder(
-            listenable: animation,
-            builder: (context, snapshot) {
-              return Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(
-                    (1 - animation.value) * 50,
-                  ),
-                  image: DecorationImage(
-                    image: CachedNetworkImageProvider(
-                      imageUrl,
+        flightShuttleBuilder:
+            (
+              flightContext,
+              animation,
+              flightDirection,
+              fromHeroContext,
+              toHeroContext,
+            ) {
+              return ListenableBuilder(
+                listenable: animation,
+                builder: (context, snapshot) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        (1 - animation.value) * 50,
+                      ),
+                      image: DecorationImage(
+                        image: CachedNetworkImageProvider(
+                          imageUrl,
+                        ),
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                  );
+                },
               );
             },
-          );
-        },
         child: CachedNetworkImage(
           height: 100,
           width: 100,
@@ -65,7 +70,7 @@ class OpenablePicture extends StatelessWidget {
           placeholder: (context, url) => Skeletonizer(
             child: DecoratedBox(
               decoration: BoxDecoration(
-                color: Colors.grey[300]!.withOpacity(.3),
+                color: Colors.grey[300]!.withValues(alpha: .3),
                 shape: BoxShape.circle,
               ),
             ),

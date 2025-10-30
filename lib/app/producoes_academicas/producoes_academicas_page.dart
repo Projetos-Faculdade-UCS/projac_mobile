@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:acadion/app/_widgets/custom_app_bar.dart';
 import 'package:acadion/app/_widgets/search_action_button.dart';
 import 'package:acadion/app/producoes_academicas/bloc/producoes_academicas/producoes_academicas_bloc.dart';
@@ -28,7 +30,7 @@ class _ProducoesAcademicasPageState extends State<ProducoesAcademicasPage> {
 
   @override
   void dispose() {
-    disposeProducoesAcademicasGetIt(dispose: _disposeGetIt);
+    unawaited(disposeProducoesAcademicasGetIt(dispose: _disposeGetIt));
     super.dispose();
   }
 
@@ -42,8 +44,8 @@ class _ProducoesAcademicasPageState extends State<ProducoesAcademicasPage> {
           actions: [
             SearchActionButton(
               searchFieldLabel: 'Buscar produções',
-              repository:
-                  producoesAcademicasGetIt.get<ProducoesAcademicasRepository>(),
+              repository: producoesAcademicasGetIt
+                  .get<ProducoesAcademicasRepository>(),
               resultBuilder: (context, snapshot) {
                 if (snapshot.hasError) {
                   return const Center(

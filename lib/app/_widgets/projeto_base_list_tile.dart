@@ -62,12 +62,12 @@ class ProjetoBaseListTile extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: borderRadius,
           side: BorderSide(
-            color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
+            color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.2),
           ),
         ),
         elevation: 5,
         child: InkWell(
-          hoverColor: Colors.grey.withOpacity(0.3),
+          hoverColor: Colors.grey.withValues(alpha: 0.3),
           hoverDuration: const Duration(milliseconds: 250),
           borderRadius: borderRadius,
           onTap: onTap,
@@ -91,9 +91,9 @@ class ProjetoBaseListTile extends StatelessWidget {
                   ),
                   title: DefaultTextStyle(
                     style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 24,
-                        ),
+                      fontWeight: FontWeight.w500,
+                      fontSize: 24,
+                    ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     child: title,

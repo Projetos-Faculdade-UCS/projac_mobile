@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:acadion/app/_widgets/detail/detail_field.dart';
 import 'package:acadion/core/api/models/projeto.dart';
 import 'package:acadion/routes.g.dart';
@@ -64,11 +66,13 @@ class PesquisadoresTab extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                Routefly.push<void>(
-                  routePaths.pesquisadores.$id.changes(
-                    {
-                      'id': pesquisador.id.toString(),
-                    },
+                unawaited(
+                  Routefly.push<void>(
+                    routePaths.pesquisadores.$id.changes(
+                      {
+                        'id': pesquisador.id.toString(),
+                      },
+                    ),
                   ),
                 );
               },

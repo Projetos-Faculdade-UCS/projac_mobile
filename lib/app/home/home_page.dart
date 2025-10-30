@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:acadion/app/_widgets/custom_app_bar.dart';
 import 'package:acadion/app/home/graph/graph_card.dart';
 import 'package:acadion/app/home/widgets/home_drawer.dart';
@@ -28,7 +30,7 @@ class HomePage extends StatelessWidget {
             title: 'Pesquisadores',
             subtitle: 'Clique para ver mais detalhes',
             onTap: () {
-              Routefly.push<void>(routePaths.graph);
+              unawaited(Routefly.push<void>(routePaths.graph));
             },
           ),
         ],

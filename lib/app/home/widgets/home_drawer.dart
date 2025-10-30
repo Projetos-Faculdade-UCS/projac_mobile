@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:acadion/app/_widgets/gradient_icon.dart';
 import 'package:acadion/app/_widgets/svg_icon.dart';
 import 'package:acadion/core/theme/main_theme.dart';
@@ -37,8 +39,10 @@ class HomeDrawer extends StatelessWidget {
             leading: const GradientIcon(Ionicons.folder_open_outline),
             title: const Text('Projetos'),
             onTap: () {
-              Routefly.push<void>(
-                routePaths.projetos.path,
+              unawaited(
+                Routefly.push<void>(
+                  routePaths.projetos.path,
+                ),
               );
             },
           ),
@@ -46,8 +50,10 @@ class HomeDrawer extends StatelessWidget {
             leading: const GradientIcon(Ionicons.people_outline),
             title: const Text('Pesquisadores'),
             onTap: () {
-              Routefly.push<void>(
-                routePaths.pesquisadores.path,
+              unawaited(
+                Routefly.push<void>(
+                  routePaths.pesquisadores.path,
+                ),
               );
             },
           ),
@@ -55,8 +61,10 @@ class HomeDrawer extends StatelessWidget {
             leading: const GradientIcon(Ionicons.library_outline),
             title: const Text('Produções Acadêmicas'),
             onTap: () {
-              Routefly.push<void>(
-                routePaths.producoesAcademicas.path,
+              unawaited(
+                Routefly.push<void>(
+                  routePaths.producoesAcademicas.path,
+                ),
               );
             },
           ),
@@ -64,7 +72,7 @@ class HomeDrawer extends StatelessWidget {
             leading: const GradientIcon(Ionicons.settings_outline),
             title: const Text('Configurações'),
             onTap: () {
-              Routefly.push<void>(routePaths.settings);
+              unawaited(Routefly.push<void>(routePaths.settings));
             },
           ),
         ],

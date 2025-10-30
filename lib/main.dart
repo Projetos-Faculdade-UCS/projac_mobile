@@ -15,8 +15,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
-        ? HydratedStorage.webStorageDirectory
-        : await getApplicationDocumentsDirectory(),
+        ? HydratedStorageDirectory.web
+        : HydratedStorageDirectory((await getTemporaryDirectory()).path),
   );
 
   getIt.registerLazySingleton(ThemeCubit.new);
@@ -51,8 +51,8 @@ Future<void> _initSentry() async {
         ..profilesSampleRate = 1.0;
     },
     appRunner: () => runApp(
-      const SentryWidget(
-        child: AppWidget(),
+      SentryWidget(
+        child: const AppWidget(),
       ),
     ),
   );

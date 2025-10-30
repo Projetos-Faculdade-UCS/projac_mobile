@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:acadion/app/projetos/bloc/list/projetos_list_bloc.dart';
 import 'package:acadion/app/projetos/bloc/projeto/projeto_bloc.dart';
 import 'package:acadion/app/projetos/repositories/projetos_repository.dart';
@@ -42,7 +44,7 @@ void disposeProjetosListGetIt({
   required bool dispose,
 }) {
   if (!dispose) return;
-  projetosListGetIt.reset();
+  unawaited(projetosListGetIt.reset());
   debugPrint('ProjetosList Disposed');
 }
 
@@ -50,6 +52,6 @@ void disposeProjetoGetIt({
   required bool dispose,
 }) {
   if (!dispose) return;
-  projetoGetIt.reset();
+  unawaited(projetoGetIt.reset());
   debugPrint('Projeto Disposed');
 }

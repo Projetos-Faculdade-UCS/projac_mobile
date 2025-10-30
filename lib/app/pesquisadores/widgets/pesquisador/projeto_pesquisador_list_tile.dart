@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:acadion/app/_widgets/gradient_icon.dart';
 import 'package:acadion/app/_widgets/projeto_base_list_tile.dart';
 import 'package:acadion/app/projetos/widgets/projeto_list_tile/area.dart';
@@ -21,7 +23,7 @@ class ProjetoPesquisadorListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ProjetoBaseListTile(
       onTap: () {
-        Routefly.push<void>('/projetos/${projeto.id}');
+        unawaited(Routefly.push<void>('/projetos/${projeto.id}'));
       },
       isLast: isLast,
       areaColor: projeto.area.cor,

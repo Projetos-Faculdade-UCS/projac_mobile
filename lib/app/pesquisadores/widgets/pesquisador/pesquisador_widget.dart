@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:acadion/app/_widgets/custom_skeletonizer.dart';
 import 'package:acadion/app/_widgets/detail/detail_field.dart';
 import 'package:acadion/app/pesquisadores/widgets/pesquisador/openable_picture.dart';
@@ -43,7 +45,7 @@ class PesquisadorWidget extends StatelessWidget {
                 width: 100,
                 replacement: DecoratedBox(
                   decoration: BoxDecoration(
-                    color: Colors.grey[300]!.withOpacity(.3),
+                    color: Colors.grey[300]!.withValues(alpha: .3),
                     shape: BoxShape.circle,
                   ),
                 ),
@@ -75,7 +77,7 @@ class PesquisadorWidget extends StatelessWidget {
             title: const Text('Formação'),
             icon: Ionicons.school_outline,
             onTap: () {
-              launchUrl(pesquisador.curriculoLattesUri);
+              unawaited(launchUrl(pesquisador.curriculoLattesUri));
             },
             child: const Text('Ver currículo Lattes'),
           ),

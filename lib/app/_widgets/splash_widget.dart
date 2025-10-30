@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:acadion/app/pesquisadores/bloc/pesquisadores_repository.dart';
 import 'package:acadion/app/pesquisadores/get_it.dart';
 import 'package:acadion/core/theme/main_theme.dart';
@@ -35,24 +37,26 @@ class _SplashWidgetState extends State<SplashWidget>
 
     final repository = pesquisadoresGetIt.get<PesquisadoresRepository>();
 
-    Future.wait([repository.getGraph()]).then(
-      (value) async {
-        await Future<void>.delayed(
-          const Duration(seconds: 1),
-        );
+    unawaited(
+      Future.wait([repository.getGraph()]).then(
+        (value) async {
+          await Future<void>.delayed(
+            const Duration(seconds: 1),
+          );
 
-        await _scaleController.forward();
+          await _scaleController.forward();
 
-        // Navigate after the animations
-        await Routefly.navigate(routePaths.home);
-      },
+          // Navigate after the animations
+          await Routefly.navigate(routePaths.home);
+        },
+      ),
     );
   }
 
   @override
   void dispose() {
     _scaleController.dispose();
-    disposePesquisadoresGetIt(dispose: _disposeGetIt);
+    unawaited(disposePesquisadoresGetIt(dispose: _disposeGetIt));
     super.dispose();
   }
 

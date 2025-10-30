@@ -73,7 +73,7 @@ class GeralTab extends StatelessWidget {
               color: projeto.area.cor,
               boxShadow: [
                 BoxShadow(
-                  color: projeto.area.cor.withOpacity(0.5),
+                  color: projeto.area.cor.withValues(alpha: 0.5),
                   blurRadius: 4,
                   offset: const Offset(0, 2),
                 ),
@@ -85,7 +85,7 @@ class GeralTab extends StatelessWidget {
                 color: subarea.cor,
                 boxShadow: [
                   BoxShadow(
-                    color: subarea.cor.withOpacity(0.5),
+                    color: subarea.cor.withValues(alpha: 0.5),
                     blurRadius: 4,
                     offset: const Offset(0, 2),
                   ),

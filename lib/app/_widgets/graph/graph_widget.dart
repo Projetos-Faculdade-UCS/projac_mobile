@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:acadion/app/_widgets/graph/graph_controller.dart';
 import 'package:acadion/app/_widgets/graph/graph_visualization.dart';
 import 'package:acadion/app/pesquisadores/bloc/pesquisadores_repository.dart';
@@ -35,13 +37,13 @@ class _GraphWidgetState extends State<GraphWidget>
       maxNodes: widget.maxNodes,
     );
 
-    graphController.fetchData(_repository);
+    unawaited(graphController.fetchData(_repository));
   }
 
   @override
   void dispose() {
     graphController.dispose();
-    disposePesquisadoresGetIt(dispose: _disposeGetIt);
+    unawaited(disposePesquisadoresGetIt(dispose: _disposeGetIt));
     super.dispose();
   }
 

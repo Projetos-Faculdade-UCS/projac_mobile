@@ -13,7 +13,4 @@ ValorArrecadado _$ValorArrecadadoFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$ValorArrecadadoToJson(ValorArrecadado instance) =>
-    <String, dynamic>{
-      'valor': instance.valor,
-      'descricao': instance.descricao,
-    };
+    <String, dynamic>{'valor': instance.valor, 'descricao': instance.descricao};

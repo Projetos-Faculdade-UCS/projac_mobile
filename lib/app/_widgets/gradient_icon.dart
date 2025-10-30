@@ -15,6 +15,8 @@ class GradientIcon extends StatelessWidget implements Icon {
     this.size,
     this.textDirection,
     this.weight,
+    this.blendMode = BlendMode.srcIn,
+    this.fontWeight = FontWeight.normal,
   });
 
   @override
@@ -75,4 +77,10 @@ class GradientIcon extends StatelessWidget implements Icon {
 
   @override
   final double? weight;
+
+  @override
+  final BlendMode? blendMode;
+
+  @override
+  final FontWeight? fontWeight;
 }

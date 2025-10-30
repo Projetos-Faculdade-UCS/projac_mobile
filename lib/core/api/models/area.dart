@@ -67,6 +67,13 @@ class _ColorConverter implements JsonConverter<Color, String> {
 
   @override
   String toJson(Color object) {
-    return '#${object.value.toRadixString(16).substring(2)}';
+    // Use toARGB32 (0xAARRGGBB) and drop alpha to produce #RRGGBB
+    final hex = object
+        .toARGB32()
+        .toRadixString(16)
+        .padLeft(8, '0')
+        .substring(2)
+        .toUpperCase();
+    return '#$hex';
   }
 }

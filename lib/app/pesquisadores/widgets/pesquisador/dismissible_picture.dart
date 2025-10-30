@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:acadion/app/_widgets/custom_app_bar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dismissible_page/dismissible_page.dart';
@@ -36,9 +38,11 @@ class _DismissiblePictureState extends State<DismissiblePicture> {
   void dispose() {
     _controller.dispose();
     _scaleController.dispose();
-    SystemChrome.setEnabledSystemUIMode(
-      SystemUiMode.manual,
-      overlays: SystemUiOverlay.values,
+    unawaited(
+      SystemChrome.setEnabledSystemUIMode(
+        SystemUiMode.manual,
+        overlays: SystemUiOverlay.values,
+      ),
     );
     super.dispose();
   }
@@ -60,11 +64,11 @@ class _DismissiblePictureState extends State<DismissiblePicture> {
               color: Colors.transparent,
             ),
             onScaleEnd: (context, details, controllerValue) {
-              _setZoomed(controllerValue.scale);
+              unawaited(_setZoomed(controllerValue.scale));
             },
             scaleStateChangedCallback: (state) {
               Future.delayed(const Duration(milliseconds: 300), () {
-                _setZoomed(_controller.scale);
+                unawaited(_setZoomed(_controller.scale));
               });
             },
             initialScale: PhotoViewComputedScale.contained,
@@ -78,32 +82,33 @@ class _DismissiblePictureState extends State<DismissiblePicture> {
               createRectTween: (begin, end) {
                 return MaterialRectCenterArcTween(begin: begin, end: end);
               },
-              flightShuttleBuilder: (
-                flightContext,
-                animation,
-                flightDirection,
-                fromHeroContext,
-                toHeroContext,
-              ) {
-                return ListenableBuilder(
-                  listenable: animation,
-                  builder: (context, snapshot) {
-                    return Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          (1 - animation.value) * 50,
-                        ),
-                        image: DecorationImage(
-                          image: CachedNetworkImageProvider(
-                            widget.imageUrl,
+              flightShuttleBuilder:
+                  (
+                    flightContext,
+                    animation,
+                    flightDirection,
+                    fromHeroContext,
+                    toHeroContext,
+                  ) {
+                    return ListenableBuilder(
+                      listenable: animation,
+                      builder: (context, snapshot) {
+                        return Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              (1 - animation.value) * 50,
+                            ),
+                            image: DecorationImage(
+                              image: CachedNetworkImageProvider(
+                                widget.imageUrl,
+                              ),
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                        );
+                      },
                     );
                   },
-                );
-              },
             ),
           ),
         ),

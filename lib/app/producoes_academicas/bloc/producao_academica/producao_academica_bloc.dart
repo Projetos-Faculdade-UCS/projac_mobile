@@ -16,6 +16,8 @@ class ProducaoAcademicaBloc
       try {
         final producaoAcademica = await repository.get(event.id);
         emit(ProducaoAcademicaLoaded(producaoAcademica));
+        // ignore
+        // ignore: avoid_catches_without_on_clauses
       } catch (e) {
         emit(ProducaoAcademicaError(e.toString()));
       }
