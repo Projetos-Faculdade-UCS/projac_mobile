@@ -29,11 +29,20 @@ jobs:
           cache: true
           cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:"
           cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:"
-          pub-cache-key: "flutter-pub:os:-:channel:-:version:-:arch:-:hash:"
-          pub-cache-path: "${{ runner.tool_cache }}/flutter/:channel:-:version:-:arch:"
+
+      # Cache Dart/Flutter pub packages to speed up installs, using the default ~/.pub-cache location
+      - name: Cache pub packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-
 
       - name: Get dependencies
         run: flutter pub get
+        env:
+          PUB_CACHE: ~/.pub-cache
 
       - name: Decode and Prepare Environment
         run: |
@@ -86,8 +95,8 @@ jobs:
       - name: Extract version from pubspec.yaml
         id: get_version
         run: |
-          version=$(grep 'version:' pubspec.yaml | sed 's/version: //')
-          echo "::set-output name=VERSION::$version"
+          version=$(grep '^version:' pubspec.yaml | sed 's/version: //')
+          echo "VERSION=$version" >> "$GITHUB_OUTPUT"
 
       - name: Create new tag
         run: |
